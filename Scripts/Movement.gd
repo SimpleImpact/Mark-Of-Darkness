@@ -1,7 +1,6 @@
 extends Node
 
 var change = Vector2(0, 0)
-var pos = self.position
 var speed = 5
 var delta: float
 
@@ -23,15 +22,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func get_input():
-	left = Input.is_action_pressed("Left")
-	right = Input.is_action_pressed("Right")
-	up  = Input.is_action_pressed("Up")
-	down = Input.is_action_pressed("Down")
+	pass
+
 	
-	if right: change.x += 50
-	if left: change.x -= 50
-	if up: change.y -= 50
-	if down: change.y += 50
 	
-	self.position += change * speed * delta 
-	change = Vector2(0, 0)
