@@ -2,7 +2,7 @@ extends Node
 
 var change = Vector2(0, 0)
 var pos = self.position
-var speed = 10
+var speed = 5
 var delta: float
 
 var left
@@ -34,3 +34,4 @@ func get_input():
 	if down: change.y += 50
 	
 	self.position += change * speed * delta 
+	change = Vector2(0, 0)

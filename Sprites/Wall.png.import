@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcposynuojudu"
-path="res://.godot/imported/rougePlayer Left.png-418f068e5d94d806b5ddf7124fa9b4bf.ctex"
+uid="uid://d4mukni1ssn3e"
+path="res://.godot/imported/Wall.png-c1e6c8a44733b40234aae37bb1bf51ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/rougePlayer Left.png"
-dest_files=["res://.godot/imported/rougePlayer Left.png-418f068e5d94d806b5ddf7124fa9b4bf.ctex"]
+source_file="res://Sprites/Wall.png"
+dest_files=["res://.godot/imported/Wall.png-c1e6c8a44733b40234aae37bb1bf51ff.ctex"]
 
 [params]
 

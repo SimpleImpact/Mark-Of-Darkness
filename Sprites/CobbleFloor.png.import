@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmamoknxh6c32"
-path="res://.godot/imported/roguePlayer.png-1f5a9fb43511b182bc8f2b53d42ad7c6.ctex"
+uid="uid://c8gr1tseri7t8"
+path="res://.godot/imported/CobbleFloor.png-883e3ddcadb2bc687ad833b297490f74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/roguePlayer.png"
-dest_files=["res://.godot/imported/roguePlayer.png-1f5a9fb43511b182bc8f2b53d42ad7c6.ctex"]
+source_file="res://Sprites/CobbleFloor.png"
+dest_files=["res://.godot/imported/CobbleFloor.png-883e3ddcadb2bc687ad833b297490f74.ctex"]
 
 [params]
 
