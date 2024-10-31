@@ -1,0 +1,499 @@
+[gd_scene load_steps=4 format=3 uid="uid://tl30q1pom403"]
+
+[ext_resource type="Texture2D" uid="uid://c8gr1tseri7t8" path="res://Sprites/CobbleFloor.png" id="1_5a6fv"]
+[ext_resource type="Texture2D" uid="uid://d4mukni1ssn3e" path="res://Sprites/Wall.png" id="2_dkfm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akjok"]
+size = Vector2(512, 512)
+
+[node name="SpawnRoom1" type="Node2D"]
+
+[node name="9x9 1" type="Node" parent="."]
+
+[node name="Cobble" type="Sprite2D" parent="9x9 1"]
+position = Vector2(64, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble2" type="Sprite2D" parent="9x9 1"]
+position = Vector2(64, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble3" type="Sprite2D" parent="9x9 1"]
+position = Vector2(320, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble4" type="Sprite2D" parent="9x9 1"]
+position = Vector2(192, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble5" type="Sprite2D" parent="9x9 1"]
+position = Vector2(64, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble6" type="Sprite2D" parent="9x9 1"]
+position = Vector2(320, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble7" type="Sprite2D" parent="9x9 1"]
+position = Vector2(192, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble8" type="Sprite2D" parent="9x9 1"]
+position = Vector2(320, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble9" type="Sprite2D" parent="9x9 1"]
+position = Vector2(192, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="9x1 2" type="Node" parent="."]
+
+[node name="Cobble" type="Sprite2D" parent="9x1 2"]
+position = Vector2(448, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble2" type="Sprite2D" parent="9x1 2"]
+position = Vector2(448, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble3" type="Sprite2D" parent="9x1 2"]
+position = Vector2(704, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble4" type="Sprite2D" parent="9x1 2"]
+position = Vector2(576, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble5" type="Sprite2D" parent="9x1 2"]
+position = Vector2(448, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble6" type="Sprite2D" parent="9x1 2"]
+position = Vector2(704, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble7" type="Sprite2D" parent="9x1 2"]
+position = Vector2(576, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble8" type="Sprite2D" parent="9x1 2"]
+position = Vector2(704, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble9" type="Sprite2D" parent="9x1 2"]
+position = Vector2(576, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="9x1 3" type="Node" parent="."]
+
+[node name="Cobble" type="Sprite2D" parent="9x1 3"]
+position = Vector2(64, 448)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble2" type="Sprite2D" parent="9x1 3"]
+position = Vector2(64, 704)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble3" type="Sprite2D" parent="9x1 3"]
+position = Vector2(320, 576)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble4" type="Sprite2D" parent="9x1 3"]
+position = Vector2(192, 576)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble5" type="Sprite2D" parent="9x1 3"]
+position = Vector2(64, 576)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble6" type="Sprite2D" parent="9x1 3"]
+position = Vector2(320, 448)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble7" type="Sprite2D" parent="9x1 3"]
+position = Vector2(192, 448)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble8" type="Sprite2D" parent="9x1 3"]
+position = Vector2(320, 704)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble9" type="Sprite2D" parent="9x1 3"]
+position = Vector2(192, 704)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="9x1 4" type="Node" parent="."]
+
+[node name="Cobble" type="Sprite2D" parent="9x1 4"]
+position = Vector2(448, 448)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble2" type="Sprite2D" parent="9x1 4"]
+position = Vector2(448, 704)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble3" type="Sprite2D" parent="9x1 4"]
+position = Vector2(704, 576)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble4" type="Sprite2D" parent="9x1 4"]
+position = Vector2(576, 576)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble5" type="Sprite2D" parent="9x1 4"]
+position = Vector2(448, 576)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble6" type="Sprite2D" parent="9x1 4"]
+position = Vector2(704, 448)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble7" type="Sprite2D" parent="9x1 4"]
+position = Vector2(576, 448)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble8" type="Sprite2D" parent="9x1 4"]
+position = Vector2(704, 704)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Cobble9" type="Sprite2D" parent="9x1 4"]
+position = Vector2(576, 704)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5a6fv")
+
+[node name="Top Wall" type="Node" parent="."]
+
+[node name="Wall" type="Area2D" parent="Top Wall"]
+position = Vector2(64, -64)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall/Wall"]
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Top Wall/Wall"]
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall2" type="Area2D" parent="Top Wall"]
+position = Vector2(704, -64)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall/Wall2"]
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Top Wall/Wall2"]
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall3" type="Area2D" parent="Top Wall"]
+position = Vector2(576, -64)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall/Wall3"]
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Top Wall/Wall3"]
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall4" type="Area2D" parent="Top Wall"]
+position = Vector2(448, -64)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall/Wall4"]
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Top Wall/Wall4"]
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall5" type="Area2D" parent="Top Wall"]
+position = Vector2(320, -64)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall/Wall5"]
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Top Wall/Wall5"]
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall6" type="Area2D" parent="Top Wall"]
+position = Vector2(192, -64)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall/Wall6"]
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Top Wall/Wall6"]
+texture = ExtResource("2_dkfm2")
+
+[node name="Bottom Wall" type="Node" parent="."]
+
+[node name="Wall" type="Area2D" parent="Bottom Wall"]
+position = Vector2(64, 832)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall/Wall"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Bottom Wall/Wall"]
+rotation = 1.5708
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall2" type="Area2D" parent="Bottom Wall"]
+position = Vector2(704, 832)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall/Wall2"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Bottom Wall/Wall2"]
+rotation = 1.5708
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall3" type="Area2D" parent="Bottom Wall"]
+position = Vector2(576, 832)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall/Wall3"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Bottom Wall/Wall3"]
+rotation = 1.5708
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall4" type="Area2D" parent="Bottom Wall"]
+position = Vector2(448, 832)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall/Wall4"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Bottom Wall/Wall4"]
+rotation = 1.5708
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall5" type="Area2D" parent="Bottom Wall"]
+position = Vector2(320, 832)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall/Wall5"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Bottom Wall/Wall5"]
+rotation = 1.5708
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall6" type="Area2D" parent="Bottom Wall"]
+position = Vector2(192, 832)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall/Wall6"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Bottom Wall/Wall6"]
+rotation = 1.5708
+texture = ExtResource("2_dkfm2")
+
+[node name="Right Wall" type="Node" parent="."]
+
+[node name="Wall" type="Area2D" parent="Right Wall"]
+position = Vector2(832, 64)
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Right Wall/Wall"]
+rotation = 0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall2" type="Area2D" parent="Right Wall"]
+position = Vector2(832, 192)
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall2"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Right Wall/Wall2"]
+rotation = 0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall3" type="Area2D" parent="Right Wall"]
+position = Vector2(832, 320)
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall3"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Right Wall/Wall3"]
+rotation = 0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall4" type="Area2D" parent="Right Wall"]
+position = Vector2(832, 448)
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall4"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Right Wall/Wall4"]
+rotation = 0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall5" type="Area2D" parent="Right Wall"]
+position = Vector2(832, 576)
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall5"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Right Wall/Wall5"]
+rotation = 0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall6" type="Area2D" parent="Right Wall"]
+position = Vector2(832, 704)
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall6"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Right Wall/Wall6"]
+rotation = 0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Left Wall" type="Node" parent="."]
+
+[node name="Wall" type="Area2D" parent="Left Wall"]
+position = Vector2(-64, 64)
+rotation = -0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall"]
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Left Wall/Wall"]
+rotation = -0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall2" type="Area2D" parent="Left Wall"]
+position = Vector2(-64, 192)
+rotation = -0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall2"]
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Left Wall/Wall2"]
+rotation = -0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall3" type="Area2D" parent="Left Wall"]
+position = Vector2(-64, 320)
+rotation = -0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall3"]
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Left Wall/Wall3"]
+rotation = -0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall4" type="Area2D" parent="Left Wall"]
+position = Vector2(-63.9999, 448)
+rotation = -0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall4"]
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Left Wall/Wall4"]
+rotation = -0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall5" type="Area2D" parent="Left Wall"]
+position = Vector2(-64, 576)
+rotation = -0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall5"]
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Left Wall/Wall5"]
+rotation = -0.785398
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall6" type="Area2D" parent="Left Wall"]
+position = Vector2(-64, 704)
+rotation = -0.785398
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall6"]
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Wall" type="Sprite2D" parent="Left Wall/Wall6"]
+rotation = -0.785398
+texture = ExtResource("2_dkfm2")
