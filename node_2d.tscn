@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="1_dgash"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="1_o3uii"]
-[ext_resource type="Script" path="res://Scripts/AnimationControler.gd" id="1_rjv25"]
+[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_rjv25"]
 [ext_resource type="Script" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqpu3"]
@@ -141,8 +141,15 @@ animation = &"Rouge Idle"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D/Player"]
 position = Vector2(0, 8)
+zoom = Vector2(0.05, 0.05)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_2eyvx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+z_index = 2
+scale = Vector2(0.2, 0.2)
