@@ -122,7 +122,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2eyvx"]
-size = Vector2(96, 128)
+size = Vector2(64, 96)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("5_abbcs")
@@ -135,13 +135,14 @@ script = ExtResource("1_rjv25")
 [node name="Player" type="AnimatedSprite2D" parent="CharacterBody2D"]
 z_index = 1
 position = Vector2(0, -12)
+scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_xfc0c")
 animation = &"Rouge Idle"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D/Player"]
 position = Vector2(0, 8)
-zoom = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+y_sort_enabled = true
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_2eyvx")

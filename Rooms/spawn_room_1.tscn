@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://tl30q1pom403"]
+[gd_scene load_steps=6 format=3 uid="uid://tl30q1pom403"]
 
 [ext_resource type="Texture2D" uid="uid://c8gr1tseri7t8" path="res://Sprites/CobbleFloor.png" id="1_5a6fv"]
 [ext_resource type="Texture2D" uid="uid://d4mukni1ssn3e" path="res://Sprites/Wall.png" id="2_dkfm2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akjok"]
-size = Vector2(3072, 512)
+size = Vector2(4096, 512)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hl4bd"]
-size = Vector2(768, 130)
+size = Vector2(1024, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sp1eu"]
+size = Vector2(256, 48)
 
 [node name="SpawnRoom1" type="Node2D"]
 position = Vector2(-384, -384)
@@ -200,242 +203,184 @@ position = Vector2(192, 320)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_5a6fv")
 
-[node name="Top Wall" type="Node" parent="."]
+[node name="Wall1" type="Node" parent="."]
 
-[node name="Wall12" type="Sprite2D" parent="Top Wall"]
+[node name="Wall1" type="Sprite2D" parent="Wall1"]
 position = Vector2(-64, -448)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall11" type="Sprite2D" parent="Top Wall"]
+[node name="Wall2" type="Sprite2D" parent="Wall1"]
 position = Vector2(320, -448)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall10" type="Sprite2D" parent="Top Wall"]
+[node name="Wall3" type="Sprite2D" parent="Wall1"]
 position = Vector2(192, -448)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall9" type="Sprite2D" parent="Top Wall"]
+[node name="Wall4" type="Sprite2D" parent="Wall1"]
 position = Vector2(64, -448)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall8" type="Sprite2D" parent="Top Wall"]
+[node name="Wall5" type="Sprite2D" parent="Wall1"]
 position = Vector2(-192, -448)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall7" type="Sprite2D" parent="Top Wall"]
+[node name="Wall6" type="Sprite2D" parent="Wall1"]
 position = Vector2(-320, -448)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Bottom Wall" type="Node" parent="."]
+[node name="Wall2" type="Node" parent="."]
 
-[node name="Wall12" type="Sprite2D" parent="Bottom Wall"]
+[node name="Wall1" type="Sprite2D" parent="Wall2"]
 position = Vector2(192, 448)
 rotation = -3.14159
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall10" type="Sprite2D" parent="Bottom Wall"]
+[node name="Wall2" type="Sprite2D" parent="Wall2"]
 position = Vector2(64, 448)
 rotation = -3.14159
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall9" type="Sprite2D" parent="Bottom Wall"]
+[node name="Wall3" type="Sprite2D" parent="Wall2"]
 position = Vector2(-64, 448)
 rotation = -3.14159
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall8" type="Sprite2D" parent="Bottom Wall"]
+[node name="Wall4" type="Sprite2D" parent="Wall2"]
 position = Vector2(-192, 448)
 rotation = -3.14159
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall7" type="Sprite2D" parent="Bottom Wall"]
+[node name="Wall5" type="Sprite2D" parent="Wall2"]
 position = Vector2(-320, 448)
 rotation = -3.14159
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall11" type="Sprite2D" parent="Bottom Wall"]
+[node name="Wall6" type="Sprite2D" parent="Wall2"]
 position = Vector2(320, 448)
 rotation = -3.14159
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall"]
-position = Vector2(0, 448)
+[node name="Wall3" type="Node" parent="."]
+
+[node name="Wall" type="Sprite2D" parent="Wall3"]
+position = Vector2(448, -320)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall2" type="Sprite2D" parent="Wall3"]
+position = Vector2(448, -64)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall3" type="Sprite2D" parent="Wall3"]
+position = Vector2(448, 320)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall4" type="Sprite2D" parent="Wall3"]
+position = Vector2(448, 192)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall5" type="Sprite2D" parent="Wall3"]
+position = Vector2(448, 64)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall6" type="Sprite2D" parent="Wall3"]
+position = Vector2(448, -192)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall4" type="Node" parent="."]
+
+[node name="Wall1" type="Sprite2D" parent="Wall4"]
+position = Vector2(-448, 192)
+rotation = -1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall2" type="Sprite2D" parent="Wall4"]
+position = Vector2(-448, -320)
+rotation = -1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall3" type="Sprite2D" parent="Wall4"]
+position = Vector2(-448, 64.0001)
+rotation = -1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall4" type="Sprite2D" parent="Wall4"]
+position = Vector2(-448, -192)
+rotation = -1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall5" type="Sprite2D" parent="Wall4"]
+position = Vector2(-448, -64)
+rotation = -1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="Wall6" type="Sprite2D" parent="Wall4"]
+position = Vector2(-448, 320)
+rotation = -1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dkfm2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Right" type="CollisionShape2D" parent="StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(832, 384)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_akjok")
+
+[node name="Top" type="CollisionShape2D" parent="StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(384, -64)
+shape = SubResource("RectangleShape2D_hl4bd")
+
+[node name="Bottom" type="CollisionShape2D" parent="StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(384, 832)
 rotation = -3.14159
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_akjok")
 
-[node name="Right Wall" type="Node" parent="."]
-
-[node name="Wall" type="Area2D" parent="Right Wall"]
-position = Vector2(448, -320)
-rotation = 0.785398
+[node name="Left" type="CollisionShape2D" parent="StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(-64, 384)
+rotation = -1.5708
 scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall"]
-rotation = 0.785398
 shape = SubResource("RectangleShape2D_akjok")
 
-[node name="Wall" type="Sprite2D" parent="Right Wall/Wall"]
-rotation = 0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall2" type="Area2D" parent="Right Wall"]
-position = Vector2(448, -192)
-rotation = 0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall2"]
-rotation = 0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Right Wall/Wall2"]
-rotation = 0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall3" type="Area2D" parent="Right Wall"]
-position = Vector2(448, -64)
-rotation = 0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall3"]
-rotation = 0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Right Wall/Wall3"]
-rotation = 0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall4" type="Area2D" parent="Right Wall"]
-position = Vector2(448, 64)
-rotation = 0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall4"]
-rotation = 0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Right Wall/Wall4"]
-rotation = 0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall5" type="Area2D" parent="Right Wall"]
-position = Vector2(448, 192)
-rotation = 0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall5"]
-rotation = 0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Right Wall/Wall5"]
-rotation = 0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall6" type="Area2D" parent="Right Wall"]
-position = Vector2(448, 320)
-rotation = 0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall/Wall6"]
-rotation = 0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Right Wall/Wall6"]
-rotation = 0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Left Wall" type="Node" parent="."]
-
-[node name="Wall" type="Area2D" parent="Left Wall"]
-position = Vector2(-448, -320)
-rotation = -0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall"]
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Left Wall/Wall"]
-rotation = -0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall2" type="Area2D" parent="Left Wall"]
-position = Vector2(-448, -192)
-rotation = -0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall2"]
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Left Wall/Wall2"]
-rotation = -0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall3" type="Area2D" parent="Left Wall"]
-position = Vector2(-448, -64)
-rotation = -0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall3"]
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Left Wall/Wall3"]
-rotation = -0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall4" type="Area2D" parent="Left Wall"]
-position = Vector2(-448, 64)
-rotation = -0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall4"]
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Left Wall/Wall4"]
-rotation = -0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall5" type="Area2D" parent="Left Wall"]
-position = Vector2(-448, 192)
-rotation = -0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall5"]
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Left Wall/Wall5"]
-rotation = -0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall6" type="Area2D" parent="Left Wall"]
-position = Vector2(-448, 320)
-rotation = -0.785398
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall/Wall6"]
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Wall" type="Sprite2D" parent="Left Wall/Wall6"]
-rotation = -0.785398
-texture = ExtResource("2_dkfm2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Triggers" type="StaticBody2D" parent="."]
 position = Vector2(384, -64)
-shape = SubResource("RectangleShape2D_hl4bd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers"]
+z_index = 1
+position = Vector2(448, 384)
+shape = SubResource("RectangleShape2D_sp1eu")

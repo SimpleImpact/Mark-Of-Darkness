@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var _animated_sprite = $Player
 
 var change = Vector2(0, 0)
-var speed = 5
+var speed = 400
 var delta: float
 
 var left
@@ -34,16 +34,14 @@ func _process(_delta: float) -> void:
 		_animated_sprite.play("Rouge Idle")
 	pass
 	
-	left = Input.is_action_pressed("Left")
-	right = Input.is_action_pressed("Right")
-	up  = Input.is_action_pressed("Up")
-	down = Input.is_action_pressed("Down")
 	
-	if right: change.x += 50
-	if left: change.x -= 50
-	if up: change.y -= 50
-	if down: change.y += 50
 	
-	self.position += change * speed * _delta
 	#getChild().position += change * speed * delta 
 	change = Vector2(0, 0)
+func _physics_process(_delta: float) -> void:
+	get_input()
+	move_and_slide()
+
+func get_input():
+	var input_direction = Input.get_vector("Left", "Right", "Up", "Down")
+	velocity = input_direction * speed
