@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 [gd_scene load_steps=22 format=3 uid="uid://c0wsv0wn7obag"]
 
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="1_dgash"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="1_o3uii"]
 [ext_resource type="Script" path="res://Scripts/AnimationControler.gd" id="1_rjv25"]
 [ext_resource type="Script" path="res://Scripts/Movement.gd" id="2_c7buy"]
+=======
+[gd_scene load_steps=21 format=3 uid="uid://c0wsv0wn7obag"]
+
+[ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="1_dgash"]
+[ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="1_o3uii"]
+[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_rjv25"]
+>>>>>>> 38b635fa2fba75895c1c94fa51ebe0f1eeb26ecb
 [ext_resource type="Script" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqpu3"]
@@ -122,17 +130,28 @@ animations = [{
 "speed": 10.0
 }]
 
+<<<<<<< HEAD
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikngf"]
 size = Vector2(96, 120)
+=======
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2eyvx"]
+size = Vector2(64, 96)
+>>>>>>> 38b635fa2fba75895c1c94fa51ebe0f1eeb26ecb
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("5_abbcs")
 
+<<<<<<< HEAD
+=======
+[node name="Node" type="Node" parent="."]
+
+>>>>>>> 38b635fa2fba75895c1c94fa51ebe0f1eeb26ecb
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_rjv25")
 
 [node name="Player" type="AnimatedSprite2D" parent="CharacterBody2D"]
 z_index = 1
+<<<<<<< HEAD
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_xfc0c")
 animation = &"Rouge Idle"
@@ -145,3 +164,24 @@ zoom = Vector2(0.5, 0.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_ikngf")
+=======
+position = Vector2(0, -12)
+scale = Vector2(0.85, 0.85)
+sprite_frames = SubResource("SpriteFrames_xfc0c")
+animation = &"Rouge Idle"
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D/Player"]
+position = Vector2(0, 8)
+zoom = Vector2(0.05, 0.05)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_2eyvx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+z_index = 2
+scale = Vector2(0.2, 0.2)
+>>>>>>> 38b635fa2fba75895c1c94fa51ebe0f1eeb26ecb
