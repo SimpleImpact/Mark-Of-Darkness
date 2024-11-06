@@ -35,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("Mouse") and dash:
 		if position.distance_to(target) > 50:
 			print(self.position.distance_to(target))
-			velocity = position.direction_to(target) * self.position.distance_to(target) * Engine.get_frames_per_second()/4
+			velocity = position.direction_to(target) * self.position.distance_to(target) * Engine.get_frames_per_second()
 			print(Engine.get_frames_per_second())
 			start_timer()
 			dash = false
