@@ -4,8 +4,10 @@ extends CharacterBody2D
 @export var rotation_speed = 1.5
 var rotation_direction = 0
 var dash = true
+var MaxDist = 400
+var v = Vector2(0, 0)
 
-var speed = 400
+var speed = 1
 var target
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,21 +33,34 @@ func _process(_delta: float) -> void:
 	pass
 	
 func _physics_process(_delta: float) -> void:
-	get_input()
-	if Input.is_action_pressed("Mouse") and dash:
-		if position.distance_to(target) > 50:
-			print(self.position.distance_to(target))
-			velocity = position.direction_to(target) * self.position.distance_to(target) * Engine.get_frames_per_second()
-			print(Engine.get_frames_per_second())
-			start_timer()
-			dash = false
+	print(v)
+	if Input.is_action_pressed("Down") or Input.is_action_pressed("Left") or Input.is_action_pressed("Up") or Input.is_action_pressed("Right"):
+		if v.x < 400 * speed:
+			if Input.is_action_pressed("Right"):
+				v.x = 400 * speed
+		if v.x > -400 * speed:
+			if Input.is_action_pressed("Left"):
+				v.x = -400 * speed
+		if v.y < 400 * speed:
+			if Input.is_action_pressed("Up"):
+				v.y = -400 * speed
+		if v.y > -400 * speed:
+			if Input.is_action_pressed("Down"):
+				v.y = 400 * speed
+				
+	v = v/1.1
+	
+	if Input.is_action_pressed("Mouse2") and dash:
+		v.x *= 4
+		v.y *= 4
+		start_timer()
+		dash = false
+		
+	velocity = v
 	move_and_slide()
 
 func get_input():
-	var input_direction = Input.get_vector("Left", "Right", "Up", "Down")
-	velocity = input_direction * speed * 1
-	target = Vector2(0, 0)
-	target = get_global_mouse_position()
+	pass
 
 func start_timer():
 	var timer = get_tree().create_timer(1.0)

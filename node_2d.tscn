@@ -140,23 +140,16 @@ sprite_frames = SubResource("SpriteFrames_xfc0c")
 animation = &"Rouge Idle"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D/Player"]
-position = Vector2(0, 8)
+position = Vector2(0, 8.23529)
+scale = Vector2(1, 1)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.5
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-z_index = 2
-scale = Vector2(0.2, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_2eyvx")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 z_index = 2
-amount = 1
-emission_shape = 1
-emission_sphere_radius = 0.01
-gravity = Vector2(0, 0)
-angular_velocity_max = 720.0
+scale = Vector2(0.2, 0.2)
