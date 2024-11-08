@@ -6,6 +6,8 @@ var rotation_direction = 0
 var dash = true
 var MaxDist = 400
 var v = Vector2(0, 0)
+var friction = 0.25
+var dashCof = 8
 
 var speed = 1
 var target
@@ -48,11 +50,11 @@ func _physics_process(_delta: float) -> void:
 			if Input.is_action_pressed("Down"):
 				v.y = 400 * speed
 				
-	v = v/1.1
+	v = v / (friction + 1)
 	
 	if Input.is_action_pressed("Mouse2") and dash:
-		v.x *= 4
-		v.y *= 4
+		v.x *= dashCof
+		v.y *= dashCof
 		start_timer()
 		dash = false
 		
