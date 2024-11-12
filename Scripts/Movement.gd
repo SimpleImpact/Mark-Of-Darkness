@@ -4,8 +4,8 @@ extends CharacterBody2D
 var dash = true
 var MaxDist = 400
 var v = Vector2(0, 0)
-var friction = 0.2
-var dashPower = 8
+var friction = 0.25
+var dashCof = 8
 
 var speed = 1
 var target
@@ -50,8 +50,8 @@ func _physics_process(_delta: float) -> void:
 	v = v / (friction + 1)
 	
 	if Input.is_action_pressed("Mouse2") and dash:
-		v.x *= dashPower
-		v.y *= dashPower
+		v.x *= dashCof
+		v.y *= dashCof
 		start_timer()
 		dash = false
 		
