@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
 @onready var _animated_sprite = $Player
-@export var rotation_speed = 1.5
-var rotation_direction = 0
 var dash = true
 var MaxDist = 400
 var v = Vector2(0, 0)
+var friction = 0.2
+var dashPower = 8
 
 var speed = 1
 var target
@@ -33,7 +33,6 @@ func _process(_delta: float) -> void:
 	pass
 	
 func _physics_process(_delta: float) -> void:
-	print(v)
 	if Input.is_action_pressed("Down") or Input.is_action_pressed("Left") or Input.is_action_pressed("Up") or Input.is_action_pressed("Right"):
 		if v.x < 400 * speed:
 			if Input.is_action_pressed("Right"):
@@ -41,18 +40,18 @@ func _physics_process(_delta: float) -> void:
 		if v.x > -400 * speed:
 			if Input.is_action_pressed("Left"):
 				v.x = -400 * speed
-		if v.y < 400 * speed:
+		if v.y > -400 * speed:
 			if Input.is_action_pressed("Up"):
 				v.y = -400 * speed
-		if v.y > -400 * speed:
+		if v.y < 400 * speed:
 			if Input.is_action_pressed("Down"):
 				v.y = 400 * speed
 				
-	v = v/1.1
+	v = v / (friction + 1)
 	
 	if Input.is_action_pressed("Mouse2") and dash:
-		v.x *= 4
-		v.y *= 4
+		v.x *= dashPower
+		v.y *= dashPower
 		start_timer()
 		dash = false
 		

@@ -1,20 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://tl30q1pom403"]
+[gd_scene load_steps=8 format=3 uid="uid://tl30q1pom403"]
 
 [ext_resource type="Texture2D" uid="uid://c8gr1tseri7t8" path="res://Sprites/CobbleFloor.png" id="1_5a6fv"]
 [ext_resource type="Texture2D" uid="uid://d4mukni1ssn3e" path="res://Sprites/Wall.png" id="2_dkfm2"]
 [ext_resource type="Script" path="res://Scripts/Trigger.gd" id="3_66key"]
+[ext_resource type="Texture2D" uid="uid://dh3a1plb7rqi6" path="res://Sprites/door.png" id="4_ypsdw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akjok"]
-size = Vector2(4096, 512)
+size = Vector2(3488, 229.713)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hl4bd"]
-size = Vector2(1024, 129)
+size = Vector2(880, 56.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sp1eu"]
-size = Vector2(256, 48)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqyje"]
+size = Vector2(88, 192)
 
 [node name="SpawnRoom1" type="Node2D"]
 position = Vector2(-384, -384)
+script = ExtResource("3_66key")
 
 [node name="3x3 1" type="Node" parent="."]
 
@@ -312,39 +314,39 @@ rotation = 1.5708
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall4" type="Node" parent="."]
+[node name="Left Wall" type="Node" parent="."]
 
-[node name="Wall1" type="Sprite2D" parent="Wall4"]
+[node name="Wall1" type="Sprite2D" parent="Left Wall"]
 position = Vector2(-448, 192)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall2" type="Sprite2D" parent="Wall4"]
+[node name="Wall2" type="Sprite2D" parent="Left Wall"]
 position = Vector2(-448, -320)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall3" type="Sprite2D" parent="Wall4"]
+[node name="Wall3" type="Sprite2D" parent="Left Wall"]
 position = Vector2(-448, 64.0001)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
+texture = ExtResource("4_ypsdw")
 
-[node name="Wall4" type="Sprite2D" parent="Wall4"]
+[node name="Wall4" type="Sprite2D" parent="Left Wall"]
 position = Vector2(-448, -192)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dkfm2")
 
-[node name="Wall5" type="Sprite2D" parent="Wall4"]
+[node name="Wall5" type="Sprite2D" parent="Left Wall"]
 position = Vector2(-448, -64)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
+texture = ExtResource("4_ypsdw")
 
-[node name="Wall6" type="Sprite2D" parent="Wall4"]
+[node name="Wall6" type="Sprite2D" parent="Left Wall"]
 position = Vector2(-448, 320)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
@@ -354,36 +356,37 @@ texture = ExtResource("2_dkfm2")
 
 [node name="Right" type="CollisionShape2D" parent="Wall"]
 y_sort_enabled = true
-position = Vector2(832, 384)
+position = Vector2(796, 380)
 rotation = 1.5708
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_akjok")
 
 [node name="Top" type="CollisionShape2D" parent="Wall"]
 y_sort_enabled = true
-position = Vector2(384, -64)
+position = Vector2(384, -27.75)
 shape = SubResource("RectangleShape2D_hl4bd")
 
 [node name="Bottom" type="CollisionShape2D" parent="Wall"]
 y_sort_enabled = true
-position = Vector2(384, 832)
+position = Vector2(384, 794.001)
 rotation = -3.14159
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_akjok")
 
 [node name="Left" type="CollisionShape2D" parent="Wall"]
 y_sort_enabled = true
-position = Vector2(-64, 384)
+position = Vector2(-26.6851, 384)
 rotation = -1.5708
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.25, 0.255231)
 shape = SubResource("RectangleShape2D_akjok")
 
-[node name="Triggers" type="StaticBody2D" parent="."]
-position = Vector2(384, -64)
-script = ExtResource("3_66key")
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(836, 320)
 
-[node name="Left" type="CollisionShape2D" parent="Triggers"]
+[node name="Left" type="CollisionShape2D" parent="Area2D"]
 z_index = 1
-position = Vector2(448, 384)
-shape = SubResource("RectangleShape2D_sp1eu")
-disabled = true
+position = Vector2(-864, 64)
+shape = SubResource("RectangleShape2D_cqyje")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
