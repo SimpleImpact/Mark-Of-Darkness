@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="New Game Project"
+config/tags=PackedStringArray("group_project")
 run/main_scene="res://node_2d.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 

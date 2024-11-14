@@ -47,6 +47,11 @@ func _physics_process(_delta: float) -> void:
 			if Input.is_action_pressed("Down"):
 				v.y = 400 * speed
 				
+		if Input.is_action_pressed("Down") and Input.is_action_pressed("Up"):
+				v.y = 0
+		if Input.is_action_pressed("Right") and Input.is_action_pressed("Left"):
+				v.x = 0
+				
 	v = v / (friction + 1)
 	
 	if Input.is_action_pressed("Mouse2") and dash:
