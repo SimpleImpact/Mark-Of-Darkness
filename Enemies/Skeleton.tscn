@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dp8bmdgw20t85"]
+[gd_scene load_steps=45 format=3 uid="uid://dp8bmdgw20t85"]
 
 [ext_resource type="Texture2D" uid="uid://11na623fi73x" path="res://Sprites/skeleton.png" id="1_0bpre"]
 [ext_resource type="Script" path="res://Scripts/Enemy Scripts/Skeleton.gd" id="1_65cfn"]
@@ -276,15 +276,19 @@ animations = [{
 }],
 "loop": false,
 "name": &"Spawn Anim",
-"speed": 10.0
+"speed": 20.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4lcp"]
 size = Vector2(60, 70)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lj6og"]
+size = Vector2(70, 80)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
+safe_margin = 2.587
 script = ExtResource("1_65cfn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -311,3 +315,12 @@ autoplay = "Spawn Anim"
 shape = SubResource("RectangleShape2D_o4lcp")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 3
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_lj6og")
+
+[connection signal="area_shape_entered" from="Hitbox" to="." method="_on_hitbox_area_shape_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

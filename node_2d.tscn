@@ -216,6 +216,12 @@ script = ExtResource("5_abbcs")
 texture_filter = 1
 script = ExtResource("1_rjv25")
 
+[node name="Player Camera" type="Camera2D" parent="Player"]
+position = Vector2(0, -9)
+scale = Vector2(0.85, 0.85)
+process_callback = 0
+position_smoothing_enabled = true
+
 [node name="Attack Handler" type="Node2D" parent="Player"]
 script = ExtResource("7_8eboh")
 
@@ -226,8 +232,15 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_g20p2")
 animation = &"Slash"
 frame = 8
-frame_progress = 1.0
+frame_progress = 0.347687
 offset = Vector2(4, -24)
+
+[node name="Area2D" type="Area2D" parent="Player/Attack Handler/Slash"]
+visible = false
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/Attack Handler/Slash/Area2D"]
+polygon = PackedVector2Array(-36, -75, -8, -68, 62, -67, 67, -94, 9, -106, -42, -104, -47, -81)
 
 [node name="Player Collider" type="CollisionPolygon2D" parent="Player"]
 visible = false
@@ -244,14 +257,10 @@ animation = &"Rouge Idle"
 frame_progress = 0.0812302
 script = ExtResource("7_dikdd")
 
-[node name="Player Camera" type="Camera2D" parent="Player/Player Sprite"]
-position = Vector2(0, 8.23529)
-process_callback = 0
-position_smoothing_enabled = true
-
 [node name="Touchscreen Inputs" type="Node" parent="."]
 
 [node name="Down" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
 texture_filter = 1
 position = Vector2(-870.4, 99.8)
 scale = Vector2(5.6491, 5.6491)
@@ -261,6 +270,7 @@ action = "Down"
 visibility_mode = 1
 
 [node name="Up" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
 texture_filter = 1
 position = Vector2(-695.538, 72.6)
 rotation = 3.14159
@@ -271,6 +281,7 @@ action = "Up"
 visibility_mode = 1
 
 [node name="Left" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
 texture_filter = 1
 position = Vector2(-797.279, -2.2)
 rotation = 1.5708
@@ -281,6 +292,7 @@ action = "Left"
 visibility_mode = 1
 
 [node name="Right" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
 texture_filter = 1
 position = Vector2(-769.327, 173.805)
 rotation = -1.5708

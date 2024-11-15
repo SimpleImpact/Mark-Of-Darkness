@@ -26,4 +26,9 @@ func _physics_process(delta: float) -> void:
 
 #func get_point():
 	if ray.is_colliding():
-		print(ray.get_collider())
+		if ray.get_collider() == get_parent().get_parent().get_parent().get_child(0):
+			print("e")
+
+func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
+	print(area)
+	pass # Replace with function body.

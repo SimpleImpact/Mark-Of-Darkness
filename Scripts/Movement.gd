@@ -58,8 +58,6 @@ func _process(_delta: float) -> void:
 	
 func _physics_process(_delta: float) -> void:
 	
-	var pPos = position
-	
 	if v.x < 400 * speed:
 		if Input.is_action_pressed("Right"):
 			v.x = 400 * speed
