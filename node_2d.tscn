@@ -1,11 +1,89 @@
-[gd_scene load_steps=25 format=3 uid="uid://c0wsv0wn7obag"]
+[gd_scene load_steps=36 format=3 uid="uid://c0wsv0wn7obag"]
 
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="1_dgash"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="1_o3uii"]
 [ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_rjv25"]
-[ext_resource type="Script" path="res://Scripts/Enemey Spawner.gd" id="2_5gwqv"]
+[ext_resource type="Texture2D" uid="uid://cpkg7p7xd8gk8" path="res://Sprites/Attacks/Slash.png" id="4_vj7ty"]
 [ext_resource type="Script" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
 [ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="6_d4b3v"]
+[ext_resource type="Script" path="res://Scripts/Attack Handler.gd" id="7_8eboh"]
+[ext_resource type="Script" path="res://Scripts/pPos.gd" id="7_dikdd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tr32"]
+atlas = ExtResource("4_vj7ty")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrfgc"]
+atlas = ExtResource("4_vj7ty")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_263tg"]
+atlas = ExtResource("4_vj7ty")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4i8r"]
+atlas = ExtResource("4_vj7ty")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p8ru"]
+atlas = ExtResource("4_vj7ty")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj2cl"]
+atlas = ExtResource("4_vj7ty")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dygbf"]
+atlas = ExtResource("4_vj7ty")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2oh8"]
+atlas = ExtResource("4_vj7ty")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucrj4"]
+atlas = ExtResource("4_vj7ty")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g20p2"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tr32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrfgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_263tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4i8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p8ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj2cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dygbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2oh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucrj4")
+}],
+"loop": false,
+"name": &"Slash",
+"speed": 50.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ph2tk"]
 atlas = ExtResource("1_o3uii")
@@ -130,76 +208,84 @@ margin = Rect2(0, 0, -1, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfyvs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2eyvx"]
-size = Vector2(68, 96)
-
 [node name="Node2D" type="Node2D"]
+texture_filter = 1
 script = ExtResource("5_abbcs")
 
-[node name="NavigationLink2D" type="NavigationLink2D" parent="."]
-position = Vector2(0, -12)
-scale = Vector2(0.85, 0.85)
-start_position = Vector2(10, 0)
-end_position = Vector2(-10, 0)
-
-[node name="Enemey Spawner" type="Node" parent="."]
-script = ExtResource("2_5gwqv")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
+texture_filter = 1
 script = ExtResource("1_rjv25")
 
-[node name="Player" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="Attack Handler" type="Node2D" parent="Player"]
+script = ExtResource("7_8eboh")
+
+[node name="Slash" type="AnimatedSprite2D" parent="Player/Attack Handler"]
+z_index = 2
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_g20p2")
+animation = &"Slash"
+frame = 8
+frame_progress = 1.0
+offset = Vector2(4, -24)
+
+[node name="Player Collider" type="CollisionPolygon2D" parent="Player"]
+visible = false
+position = Vector2(0, -4)
+polygon = PackedVector2Array(-34, -57, 34, -57, 34, 38, 7, 38, -34, 38)
+
+[node name="Player Sprite" type="AnimatedSprite2D" parent="Player"]
 z_index = 1
-position = Vector2(0, -12)
+texture_filter = 1
+position = Vector2(0, -16)
 scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_xfc0c")
 animation = &"Rouge Idle"
 frame_progress = 0.0812302
+script = ExtResource("7_dikdd")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D/Player"]
+[node name="Player Camera" type="Camera2D" parent="Player/Player Sprite"]
 position = Vector2(0, 8.23529)
+process_callback = 0
 position_smoothing_enabled = true
 
-[node name="Down" type="TouchScreenButton" parent="CharacterBody2D/Player/Camera2D"]
+[node name="Touchscreen Inputs" type="Node" parent="."]
+
+[node name="Down" type="TouchScreenButton" parent="Touchscreen Inputs"]
 texture_filter = 1
-position = Vector2(-1024, 128)
-scale = Vector2(6.646, 6.646)
+position = Vector2(-870.4, 99.8)
+scale = Vector2(5.6491, 5.6491)
 texture_normal = SubResource("AtlasTexture_egwdq")
 shape = SubResource("RectangleShape2D_sfyvs")
 action = "Down"
 visibility_mode = 1
 
-[node name="Up" type="TouchScreenButton" parent="CharacterBody2D/Player/Camera2D"]
+[node name="Up" type="TouchScreenButton" parent="Touchscreen Inputs"]
 texture_filter = 1
-position = Vector2(-818.28, 96)
+position = Vector2(-695.538, 72.6)
 rotation = 3.14159
-scale = Vector2(6.646, 6.646)
+scale = Vector2(5.6491, 5.6491)
 texture_normal = SubResource("AtlasTexture_egwdq")
 shape = SubResource("RectangleShape2D_sfyvs")
 action = "Up"
 visibility_mode = 1
 
-[node name="Left" type="TouchScreenButton" parent="CharacterBody2D/Player/Camera2D"]
+[node name="Left" type="TouchScreenButton" parent="Touchscreen Inputs"]
 texture_filter = 1
-position = Vector2(-937.975, 8)
+position = Vector2(-797.279, -2.2)
 rotation = 1.5708
-scale = Vector2(6.646, 6.646)
+scale = Vector2(5.6491, 5.6491)
 texture_normal = SubResource("AtlasTexture_egwdq")
 shape = SubResource("RectangleShape2D_sfyvs")
 action = "Left"
 visibility_mode = 1
 
-[node name="Right" type="TouchScreenButton" parent="CharacterBody2D/Player/Camera2D"]
+[node name="Right" type="TouchScreenButton" parent="Touchscreen Inputs"]
 texture_filter = 1
-position = Vector2(-905.09, 215.065)
+position = Vector2(-769.327, 173.805)
 rotation = -1.5708
-scale = Vector2(6.646, 6.646)
+scale = Vector2(5.6491, 5.6491)
 texture_normal = SubResource("AtlasTexture_egwdq")
 shape = SubResource("RectangleShape2D_sfyvs")
 action = "Right"
 visibility_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-y_sort_enabled = true
-position = Vector2(0, -9)
-shape = SubResource("RectangleShape2D_2eyvx")
