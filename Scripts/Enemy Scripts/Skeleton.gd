@@ -15,8 +15,8 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3()
-	ray.target_position = playerInfo.playerPos
-	
+	ray.to_local(get_parent().get_parent().get_parent().get_child(0).position)
+	ray.force_raycast_update()
 	nav.target_position = get_parent().get_parent().get_parent().get_child(0).position
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()

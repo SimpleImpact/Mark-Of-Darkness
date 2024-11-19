@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c0wsv0wn7obag"]
+[gd_scene load_steps=35 format=3 uid="uid://c0wsv0wn7obag"]
 
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="1_dgash"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="1_o3uii"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
 [ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="6_d4b3v"]
 [ext_resource type="Script" path="res://Scripts/Attack Handler.gd" id="7_8eboh"]
-[ext_resource type="Script" path="res://Scripts/pPos.gd" id="7_dikdd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tr32"]
 atlas = ExtResource("4_vj7ty")
@@ -255,7 +254,6 @@ scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_xfc0c")
 animation = &"Rouge Idle"
 frame_progress = 0.0812302
-script = ExtResource("7_dikdd")
 
 [node name="Touchscreen Inputs" type="Node" parent="."]
 
