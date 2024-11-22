@@ -1,88 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://c0wsv0wn7obag"]
+[gd_scene load_steps=24 format=3 uid="uid://c0wsv0wn7obag"]
 
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="1_dgash"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="1_o3uii"]
 [ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_rjv25"]
-[ext_resource type="Texture2D" uid="uid://cpkg7p7xd8gk8" path="res://Sprites/Attacks/Slash.png" id="4_vj7ty"]
 [ext_resource type="Script" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
 [ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="6_d4b3v"]
 [ext_resource type="Script" path="res://Scripts/Attack Handler.gd" id="7_8eboh"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1tr32"]
-atlas = ExtResource("4_vj7ty")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xrfgc"]
-atlas = ExtResource("4_vj7ty")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_263tg"]
-atlas = ExtResource("4_vj7ty")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r4i8r"]
-atlas = ExtResource("4_vj7ty")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3p8ru"]
-atlas = ExtResource("4_vj7ty")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aj2cl"]
-atlas = ExtResource("4_vj7ty")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dygbf"]
-atlas = ExtResource("4_vj7ty")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2oh8"]
-atlas = ExtResource("4_vj7ty")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ucrj4"]
-atlas = ExtResource("4_vj7ty")
-region = Rect2(16, 8, 8, 8)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_g20p2"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"Default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1tr32")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xrfgc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_263tg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r4i8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3p8ru")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aj2cl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dygbf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h2oh8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ucrj4")
-}],
-"loop": false,
-"name": &"Slash",
-"speed": 50.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ph2tk"]
 atlas = ExtResource("1_o3uii")
@@ -224,36 +147,17 @@ position_smoothing_enabled = true
 [node name="Attack Handler" type="Node2D" parent="Player"]
 script = ExtResource("7_8eboh")
 
-[node name="Slash" type="AnimatedSprite2D" parent="Player/Attack Handler"]
-z_index = 2
-texture_filter = 1
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_g20p2")
-animation = &"Slash"
-frame = 8
-frame_progress = 0.347687
-offset = Vector2(4, -24)
-
-[node name="Area2D" type="Area2D" parent="Player/Attack Handler/Slash"]
-visible = false
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/Attack Handler/Slash/Area2D"]
-polygon = PackedVector2Array(-36, -75, -8, -68, 62, -67, 67, -94, 9, -106, -42, -104, -47, -81)
-
 [node name="Player Collider" type="CollisionPolygon2D" parent="Player"]
-visible = false
 position = Vector2(0, -4)
-polygon = PackedVector2Array(-34, -57, 34, -57, 34, 38, 7, 38, -34, 38)
+polygon = PackedVector2Array(-40, -56, 40, -56, 40, 39, -40, 39)
 
 [node name="Player Sprite" type="AnimatedSprite2D" parent="Player"]
 z_index = 1
 texture_filter = 1
 position = Vector2(0, -16)
-scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_xfc0c")
-animation = &"Rouge Idle"
-frame_progress = 0.0812302
+animation = &"Rouge Run Left"
+frame_progress = 0.441745
 
 [node name="Touchscreen Inputs" type="Node" parent="."]
 
