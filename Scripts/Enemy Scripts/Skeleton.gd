@@ -18,7 +18,7 @@ func _ready():
 	set_physics_process(true)
 
 func _process(_delta: float) -> void:
-	$Healthbar.frame = round(health / (maxHealth / 30))
+	$Healthbar.frame = round(float(health) / (float(maxHealth) / 30))
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3()

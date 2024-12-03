@@ -88,16 +88,16 @@ texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_erwu2")
 animation = &"Slash"
-frame = 2
-frame_progress = 0.357702
+frame = 8
+frame_progress = 1.0
 offset = Vector2(4, -24)
 script = ExtResource("2_efym2")
 
 [node name="Area2D2" type="Area2D" parent="."]
 metadata/Type = "Attack"
-metadata/Damage = 10
+metadata/Damage = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(2.86, -21.65)
-rotation = 1.5708
+rotation = 1.66679
 shape = SubResource("CapsuleShape2D_tssyu")

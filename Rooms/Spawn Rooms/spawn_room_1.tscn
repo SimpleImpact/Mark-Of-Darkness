@@ -8,6 +8,9 @@
 script/source = "extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var door1 = get_meta(\"Door1\")
+	var door2 = get_meta(\"Door2\")
+	var door3 = get_meta(\"Door3\")
 	pass # Replace with function body.
 
 
@@ -46,6 +49,9 @@ sources/0 = SubResource("TileSetAtlasSource_cogu5")
 
 [node name="Spawn Room 1" type="Node2D"]
 script = SubResource("GDScript_nlfqo")
+metadata/Door1 = Vector2(-512, 0)
+metadata/Door2 = Vector2(0, 0)
+metadata/Door3 = Vector2(0, 0)
 
 [node name="Room" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -53,12 +59,14 @@ tile_map_data = PackedByteArray("AAD+//3/AAAAAAAAAAD8//3/AAAAAAAAAAD6//3/AAAAAAA
 tile_set = SubResource("TileSet_o3x28")
 
 [node name="Door" type="Sprite2D" parent="."]
-position = Vector2(-448, 64.0002)
+texture_filter = 1
+position = Vector2(-448, 64)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_40qrl")
 
 [node name="Door 2" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-448, -63.9998)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)

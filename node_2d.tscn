@@ -162,7 +162,6 @@ frame_progress = 0.441745
 [node name="Touchscreen Inputs" type="Node" parent="."]
 
 [node name="Down" type="TouchScreenButton" parent="Touchscreen Inputs"]
-visible = false
 texture_filter = 1
 position = Vector2(-870.4, 99.8)
 scale = Vector2(5.6491, 5.6491)
@@ -172,7 +171,6 @@ action = "Down"
 visibility_mode = 1
 
 [node name="Up" type="TouchScreenButton" parent="Touchscreen Inputs"]
-visible = false
 texture_filter = 1
 position = Vector2(-695.538, 72.6)
 rotation = 3.14159
@@ -183,7 +181,6 @@ action = "Up"
 visibility_mode = 1
 
 [node name="Left" type="TouchScreenButton" parent="Touchscreen Inputs"]
-visible = false
 texture_filter = 1
 position = Vector2(-797.279, -2.2)
 rotation = 1.5708
@@ -194,7 +191,6 @@ action = "Left"
 visibility_mode = 1
 
 [node name="Right" type="TouchScreenButton" parent="Touchscreen Inputs"]
-visible = false
 texture_filter = 1
 position = Vector2(-769.327, 173.805)
 rotation = -1.5708
