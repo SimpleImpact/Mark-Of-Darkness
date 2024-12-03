@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=4 uid="uid://dk0ly3d0ldx3s"]
+
+[ext_resource type="Texture2D" uid="uid://c8gr1tseri7t8" path="res://Sprites/CobbleFloor.png" id="1_crs7h"]
+[ext_resource type="Texture2D" uid="uid://b82hn4wchnfh1" path="res://Sprites/CobbleCorner.png" id="2_k8kw6"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_llb4g"]
+vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(64, -64, -64, -64, -64, 64, 64, 64)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jks2u"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nrpe4"]
+texture = ExtResource("1_crs7h")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -64, -64, -64, -64, 64, 64, 64, 64, 8, -8, 8)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_llb4g")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 16, 64, 0, -64, 0, -64, 64, 64, 64)
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jks2u")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e6lk3"]
+texture = ExtResource("2_k8kw6")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -64, -64, -64, -64, 64, 64, 64, 64, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_hccen"]
+tile_shape = 1
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 3
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_nrpe4")
+sources/2 = SubResource("TileSetAtlasSource_e6lk3")
+
+[node name="Hall 1" type="Node2D"]
+metadata/ExitAngle = 0
+metadata/EnterenceAngle = 0
+
+[node name="Room" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAAAAAAEAAAAAAAAAAAACAP3/AAABAAAAAHACAPn/AAABAAAAAHACAPX/AAABAAAAAHACAPH/AAABAAAAAHACAO3/AAABAAAAAHACAOn/AAABAAAAAHAAAOX/AAABAAAAAAD8//3/AAABAAAAAGD8//n/AAABAAAAAGD8//X/AAABAAAAAGD+/+X/AAABAAAAAAD8/+X/AAABAAAAAAD8//H/AgAAAAAAADD6//H/AAABAAAAADD4//H/AAABAAAAADD2//H/AAABAAAAADD0/+3/AAABAAAAAGD0/+n/AAABAAAAAGD0/+X/AAABAAAAAGD6/+X/AgAAAAAAAAD6/+H/AAABAAAAAFD6/93/AAABAAAAAFD0/+H/AAABAAAAAGD0/93/AAABAAAAAGD2/93/AAAAAAAAAAD4/93/AAAAAAAAAAD4/+H/AAAAAAAAAAD2/+H/AAAAAAAAAAD2/+X/AAAAAAAAAAD4/+X/AAAAAAAAAAD2/+n/AAAAAAAAAAD2/+3/AAAAAAAAAAD4/+n/AAAAAAAAAAD4/+3/AAAAAAAAAAD6/+3/AAAAAAAAAAD6/+n/AAAAAAAAAAD8/+n/AAAAAAAAAAD8/+3/AAAAAAAAAAD+/+n/AAAAAAAAAAAAAOn/AAAAAAAAAAAAAO3/AAAAAAAAAAD+/+3/AAAAAAAAAAAAAPH/AAAAAAAAAAD+//H/AAAAAAAAAAD+//X/AAAAAAAAAAAAAPX/AAAAAAAAAAAAAPn/AAAAAAAAAAD+//n/AAAAAAAAAAD+//3/AAAAAAAAAAAAAP3/AAAAAAAAAAD2/9n/AAAAAAAAAAD4/9n/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_hccen")
+
+[node name="Enter" type="Node2D" parent="."]
+
+[node name="Exit" type="Node2D" parent="."]
+position = Vector2(-512, -1152)

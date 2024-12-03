@@ -77,7 +77,6 @@ func _physics_process(_delta: float) -> void:
 			v.x = 0
 				
 	v = v / (friction + 1)
-	print(get_child(3).global_position)
 	if Input.is_action_pressed("Mouse2") and dash:
 		v.x *= dashCof
 		v.y *= dashCof
