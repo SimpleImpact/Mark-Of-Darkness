@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://drer37xha7mfv"]
+[gd_scene load_steps=13 format=3 uid="uid://drer37xha7mfv"]
 
 [ext_resource type="Texture2D" uid="uid://cpkg7p7xd8gk8" path="res://Sprites/Attacks/Slash.png" id="1_p55mk"]
 [ext_resource type="Script" path="res://Scripts/Attacks/slash.gd" id="2_efym2"]
@@ -79,9 +79,6 @@ animations = [{
 "speed": 60.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tssyu"]
-radius = 3.41
-
 [node name="Slash" type="AnimatedSprite2D"]
 z_index = 2
 texture_filter = 1
@@ -97,7 +94,5 @@ script = ExtResource("2_efym2")
 metadata/Type = "Attack"
 metadata/Damage = 35
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(2.86, -21.65)
-rotation = 1.66679
-shape = SubResource("CapsuleShape2D_tssyu")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2"]
+polygon = PackedVector2Array(-7.75, -24.75, 15, -22, 16, -15.25, 3.5, 0.25, -6, 0, -10.8087, -20.6373)

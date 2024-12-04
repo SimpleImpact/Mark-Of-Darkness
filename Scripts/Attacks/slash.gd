@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 		collider.disabled = true
 
 func start_timer():
-	var timer = get_tree().create_timer(0.5)
+	var timer = get_tree().create_timer(0.25)
 	timer.timeout.connect(timeout_function)
 
 func timeout_function():
