@@ -1,5 +1,5 @@
 extends Node
-var Spawn_room: PackedScene = preload("res://Rooms/spawn_room_1.tscn")
+var Spawn_room: PackedScene = preload("res://Rooms/Spawn Rooms/spawn_room_1.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,64 +1,23 @@
-[gd_scene load_steps=9 format=4 uid="uid://tl30q1pom403"]
+[gd_scene load_steps=5 format=4 uid="uid://tl30q1pom403"]
 
-[ext_resource type="Texture2D" uid="uid://c8gr1tseri7t8" path="res://Sprites/CobbleFloor.png" id="1_ii0w2"]
+[ext_resource type="Script" path="res://Rooms/Spawn Rooms/MapMaker.gd" id="1_ga3j5"]
 [ext_resource type="Texture2D" uid="uid://dh3a1plb7rqi6" path="res://Sprites/door.png" id="2_40qrl"]
+[ext_resource type="TileSet" uid="uid://dw3shrb6t37df" path="res://TileMaps/CobbleTileset.tres" id="2_w5jst"]
 [ext_resource type="Script" path="res://Scripts/Enemey Spawner.gd" id="3_3u4ce"]
 
-[sub_resource type="GDScript" id="GDScript_nlfqo"]
-script/source = "extends Node2D
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	var door1 = get_meta(\"Door1\")
-	var door2 = get_meta(\"Door2\")
-	var door3 = get_meta(\"Door3\")
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
-func _on_area_2d_body_exited(_body: Node2D) -> void:
-	pass # Replace with function body.
-"
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_llb4g"]
-vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(64, -64, -64, -64, -64, 64, 64, 64)])
-agent_radius = 0.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jks2u"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cogu5"]
-texture = ExtResource("1_ii0w2")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_llb4g")
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 16, 64, 0, -64, 0, -64, 64, 64, 64)
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jks2u")
-
-[sub_resource type="TileSet" id="TileSet_o3x28"]
-tile_shape = 1
-tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 3
-navigation_layer_0/layers = 1
-sources/0 = SubResource("TileSetAtlasSource_cogu5")
-
 [node name="Spawn Room 1" type="Node2D"]
-script = SubResource("GDScript_nlfqo")
-metadata/Door1 = Vector2(-512, 0)
-metadata/Door2 = Vector2(0, 0)
-metadata/Door3 = Vector2(0, 0)
+script = ExtResource("1_ga3j5")
+metadata/Door1 = Vector3(-512, 0, -90)
+metadata/Door2 = Vector3(0, 0, 0)
+metadata/Door3 = Vector3(0, 0, 0)
 
 [node name="Room" type="TileMapLayer" parent="."]
 texture_filter = 1
-tile_map_data = PackedByteArray("AAD+//3/AAAAAAAAAAD8//3/AAAAAAAAAAD6//3/AAAAAAAAAAD6/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAAAAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAAEAAAAAAAAAAAACAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAEAAUAAAAAAAAAAAACAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAD+/wUAAAAAAAAAAAD8/wUAAAAAAAAAAAD6/wUAAAAAAAAAAAD6/wkAAAAAAAAAAAD8/wkAAAAAAAAAAAD+/wkAAAAAAAAAAAAAAAkAAAAAAAAAAAACAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAPn/AAAAAAAAAAACAPn/AAAAAAAAAAAAAPn/AAAAAAAAAAAEAPX/AAAAAAAAAAACAPX/AAAAAAAAAAAAAPX/AAAAAAAAAAD+//X/AAAAAAAAAAD+//n/AAAAAAAAAAD8//n/AAAAAAAAAAD8//X/AAAAAAAAAAD6//X/AAAAAAAAAAD6//n/AAAAAAAAAAD6//H/AAABAAAAAAD8//H/AAABAAAAAAD+//H/AAABAAAAAAAAAPH/AAABAAAAAAACAPH/AAABAAAAAAAEAPH/AAABAAAAAAAGAPX/AAABAAAAAFAGAPn/AAABAAAAAFAGAP3/AAABAAAAAFAGAAEAAAABAAAAAFAGAAUAAAABAAAAAFAGAAkAAAABAAAAAFAEAA0AAAABAAAAADACAA0AAAABAAAAADAAAA0AAAABAAAAADD+/w0AAAABAAAAADD8/w0AAAABAAAAADD6/w0AAAABAAAAADD4/wkAAAABAAAAAED4/wUAAAABAAAAAED4//n/AAABAAAAAED4//X/AAABAAAAAEA=")
-tile_set = SubResource("TileSet_o3x28")
+tile_map_data = PackedByteArray("AAD+//3/AAAAAAAAAAD8//3/AAAAAAAAAAD6//3/AAAAAAAAAAD6/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAAAAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAAEAAAAAAAAAAAACAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAEAAUAAAAAAAAAAAACAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAD+/wUAAAAAAAAAAAD8/wUAAAAAAAAAAAD6/wUAAAAAAAAAAAD6/wkAAAAAAAAAAAD8/wkAAAAAAAAAAAD+/wkAAAAAAAAAAAAAAAkAAAAAAAAAAAACAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAPn/AAAAAAAAAAACAPn/AAAAAAAAAAAAAPn/AAAAAAAAAAAEAPX/AAAAAAAAAAACAPX/AAAAAAAAAAAAAPX/AAAAAAAAAAD+//X/AAAAAAAAAAD+//n/AAAAAAAAAAD8//n/AAAAAAAAAAD8//X/AAAAAAAAAAD6//X/AAAAAAAAAAD6//n/AAAAAAAAAAD6//H/AAABAAAAAAD8//H/AAABAAAAAAD+//H/AAABAAAAAAAAAPH/AAABAAAAAAACAPH/AAABAAAAAAAEAPH/AAABAAAAAAAGAPX/AAABAAAAAFAGAPn/AAABAAAAAFAGAP3/AAABAAAAAFAGAAEAAAABAAAAAFAGAAUAAAABAAAAAFAGAAkAAAABAAAAAFAEAA0AAAABAAAAADACAA0AAAABAAAAADAAAA0AAAABAAAAADD+/w0AAAABAAAAADD8/w0AAAABAAAAADD6/w0AAAABAAAAADD4/wkAAAABAAAAAED4//X/AAABAAAAAED4/wUAAQAAAAAAADD4//n/AQAAAAAAAGA=")
+tile_set = ExtResource("2_w5jst")
 
 [node name="Door" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(-448, 64)
 rotation = -1.5708
@@ -66,6 +25,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_40qrl")
 
 [node name="Door 2" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(-448, -63.9998)
 rotation = -1.5708
