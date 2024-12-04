@@ -1,205 +1,58 @@
-[gd_scene load_steps=24 format=3 uid="uid://c0wsv0wn7obag"]
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
 
-[ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="1_dgash"]
-[ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="1_o3uii"]
-[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_rjv25"]
-[ext_resource type="Script" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
-[ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="6_d4b3v"]
-[ext_resource type="Script" path="res://Scripts/Attack Handler.gd" id="7_8eboh"]
+config_version=5
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ph2tk"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(0, 121, 96, 120)
+[application]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b505h"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(96, 121, 96, 120)
+config/name="New Game Project"
+config/tags=PackedStringArray("group_project")
+run/main_scene="res://node_2d.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0h1e1"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1760, 121, 96, 120)
+[autoload]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aj2rv"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1664, 121, 96, 120)
+playerInfo="*res://Scripts/pPos.gd"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0ljc"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1568, 121, 96, 120)
+[input]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lcen8"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1472, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d3ond"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1376, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7py14"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1280, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ree64"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(192, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v6wqy"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(288, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d3p0a"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(384, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgv0l"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(480, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_el4fa"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(576, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pd83d"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(672, 121, 96, 120)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xfc0c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ph2tk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b505h")
-}],
-"loop": true,
-"name": &"Rouge Idle",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0h1e1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aj2rv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e0ljc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lcen8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d3ond")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7py14")
-}],
-"loop": true,
-"name": &"Rouge Run Left",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ree64")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v6wqy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d3p0a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vgv0l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_el4fa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pd83d")
-}],
-"loop": true,
-"name": &"Rouge Run Right",
-"speed": 10.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_egwdq"]
-atlas = ExtResource("6_d4b3v")
-region = Rect2(0, 0, 32, 32)
-margin = Rect2(0, 0, -1, 3)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfyvs"]
-
-[node name="Node2D" type="Node2D"]
-texture_filter = 1
-script = ExtResource("5_abbcs")
-
-[node name="Player" type="CharacterBody2D" parent="."]
-texture_filter = 1
-script = ExtResource("1_rjv25")
-
-[node name="Player Camera" type="Camera2D" parent="Player"]
-position = Vector2(0, -9)
-scale = Vector2(0.85, 0.85)
-process_callback = 0
-position_smoothing_enabled = true
-
-[node name="Attack Handler" type="Node2D" parent="Player"]
-script = ExtResource("7_8eboh")
-
-[node name="Player Collider" type="CollisionPolygon2D" parent="Player"]
-position = Vector2(0, -4)
-polygon = PackedVector2Array(-40, -56, 40, -56, 40, 39, -40, 39)
-
-[node name="Player Sprite" type="AnimatedSprite2D" parent="Player"]
-z_index = 1
-texture_filter = 1
-position = Vector2(0, -16)
-sprite_frames = SubResource("SpriteFrames_xfc0c")
-animation = &"Rouge Run Left"
-frame_progress = 0.441745
-
-[node name="Touchscreen Inputs" type="Node" parent="."]
-
-[node name="Down" type="TouchScreenButton" parent="Touchscreen Inputs"]
-visible = false
-texture_filter = 1
-position = Vector2(-870.4, 99.8)
-scale = Vector2(5.6491, 5.6491)
-texture_normal = SubResource("AtlasTexture_egwdq")
-shape = SubResource("RectangleShape2D_sfyvs")
-action = "Down"
-visibility_mode = 1
-
-[node name="Up" type="TouchScreenButton" parent="Touchscreen Inputs"]
-visible = false
-texture_filter = 1
-position = Vector2(-695.538, 72.6)
-rotation = 3.14159
-scale = Vector2(5.6491, 5.6491)
-texture_normal = SubResource("AtlasTexture_egwdq")
-shape = SubResource("RectangleShape2D_sfyvs")
-action = "Up"
-visibility_mode = 1
-
-[node name="Left" type="TouchScreenButton" parent="Touchscreen Inputs"]
-visible = false
-texture_filter = 1
-position = Vector2(-797.279, -2.2)
-rotation = 1.5708
-scale = Vector2(5.6491, 5.6491)
-texture_normal = SubResource("AtlasTexture_egwdq")
-shape = SubResource("RectangleShape2D_sfyvs")
-action = "Left"
-visibility_mode = 1
-
-[node name="Right" type="TouchScreenButton" parent="Touchscreen Inputs"]
-visible = false
-texture_filter = 1
-position = Vector2(-769.327, 173.805)
-rotation = -1.5708
-scale = Vector2(5.6491, 5.6491)
-texture_normal = SubResource("AtlasTexture_egwdq")
-shape = SubResource("RectangleShape2D_sfyvs")
-action = "Right"
-visibility_mode = 1
+Up={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+Left={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+Right={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+Down={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+Mouse2={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+Attack={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
+]
+}

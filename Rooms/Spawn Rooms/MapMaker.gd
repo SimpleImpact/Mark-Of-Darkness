@@ -1,5 +1,5 @@
 extends Node2D
-var hall1: PackedScene = preload("res://Rooms/Halls/hall_1.tscn")
+var hall1: PackedScene = preload("res://Rooms/Halls/hall1.tscn")
 func _ready() -> void:
 	var door1 = get_meta("Door1")
 	var door2 = get_meta("Door2")
