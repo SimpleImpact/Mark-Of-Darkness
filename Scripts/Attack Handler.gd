@@ -1,5 +1,5 @@
 extends Node
-var slash: PackedScene = preload("res://Objects/Attacks/slash.tscn")
+var slash: PackedScene = preload("res://Attacks/slash.tscn")
 var target = "slash"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -15,6 +15,7 @@ var health = 100
 func _ready():
 	set_physics_process(false)
 	await get_tree().physics_frame
+	await get_tree().physics_frame
 	set_physics_process(true)
 
 func _process(_delta: float) -> void:
