@@ -1,6 +1,8 @@
-extends Node2D
+extends Node
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	spawn("skel", Vector2(0, 0))
 	pass # Replace with function body.
 
 
@@ -8,10 +10,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-
-func _on_area_2d_body_entered(_body: Node2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_area_2d_body_exited(_body: Node2D) -> void:
-	pass # Replace with function body.
+func spawn(_enemyPath, pos):
+	var enemyScene: PackedScene = preload("res://Enemies/Skeleton.tscn")
+	var model = enemyScene.instantiate()
+	model.position = pos
+	add_child(model)

@@ -152,9 +152,7 @@ position = Vector2(0, -4)
 polygon = PackedVector2Array(-40, -56, 40, -56, 40, 39, -40, 39)
 
 [node name="Player Sprite" type="AnimatedSprite2D" parent="Player"]
-light_mask = 7
-visibility_layer = 4
-z_index = 3
+z_index = 1
 texture_filter = 1
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_xfc0c")
@@ -164,6 +162,7 @@ frame_progress = 0.441745
 [node name="Touchscreen Inputs" type="Node" parent="."]
 
 [node name="Down" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
 texture_filter = 1
 position = Vector2(-870.4, 99.8)
 scale = Vector2(5.6491, 5.6491)
@@ -173,6 +172,7 @@ action = "Down"
 visibility_mode = 1
 
 [node name="Up" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
 texture_filter = 1
 position = Vector2(-695.538, 72.6)
 rotation = 3.14159
@@ -183,6 +183,7 @@ action = "Up"
 visibility_mode = 1
 
 [node name="Left" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
 texture_filter = 1
 position = Vector2(-797.279, -2.2)
 rotation = 1.5708
@@ -193,6 +194,7 @@ action = "Left"
 visibility_mode = 1
 
 [node name="Right" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
 texture_filter = 1
 position = Vector2(-769.327, 173.805)
 rotation = -1.5708

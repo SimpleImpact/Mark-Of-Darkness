@@ -1,389 +1,77 @@
-[gd_scene load_steps=7 format=3 uid="uid://tl30q1pom403"]
+[gd_scene load_steps=9 format=4 uid="uid://tl30q1pom403"]
 
-[ext_resource type="Texture2D" uid="uid://c8gr1tseri7t8" path="res://Sprites/CobbleFloor.png" id="1_5a6fv"]
-[ext_resource type="Texture2D" uid="uid://d4mukni1ssn3e" path="res://Sprites/Wall.png" id="2_dkfm2"]
-[ext_resource type="Script" path="res://Scripts/Trigger.gd" id="3_66key"]
+[ext_resource type="Texture2D" uid="uid://c8gr1tseri7t8" path="res://Sprites/CobbleFloor.png" id="2_ppp8m"]
+[ext_resource type="Script" path="res://Scripts/Enemey Spawner.gd" id="4_lh1bm"]
+[ext_resource type="Texture2D" uid="uid://dh3a1plb7rqi6" path="res://Sprites/door.png" id="4_ypsdw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_akjok"]
-size = Vector2(4096, 512)
+[sub_resource type="GDScript" id="GDScript_nlfqo"]
+script/source = "extends Node2D
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hl4bd"]
-size = Vector2(1024, 129)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sp1eu"]
-size = Vector2(256, 48)
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+
+
+func _on_area_2d_body_exited(_body: Node2D) -> void:
+	pass # Replace with function body.
+"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_llb4g"]
+vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(64, -64, -64, -64, -64, 64, 64, 64)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jks2u"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cogu5"]
+texture = ExtResource("2_ppp8m")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_llb4g")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 16, 64, 0, -64, 0, -64, 64, 64, 64)
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jks2u")
+
+[sub_resource type="TileSet" id="TileSet_o3x28"]
+tile_shape = 1
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 3
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_cogu5")
 
 [node name="SpawnRoom1" type="Node2D"]
-position = Vector2(-384, -384)
+script = SubResource("GDScript_nlfqo")
 
-[node name="3x3 1" type="Node" parent="."]
+[node name="Room" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD+//3/AAAAAAAAAAD8//3/AAAAAAAAAAD6//3/AAAAAAAAAAD6/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAAAAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAAEAAAAAAAAAAAACAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAEAAUAAAAAAAAAAAACAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAD+/wUAAAAAAAAAAAD8/wUAAAAAAAAAAAD6/wUAAAAAAAAAAAD6/wkAAAAAAAAAAAD8/wkAAAAAAAAAAAD+/wkAAAAAAAAAAAAAAAkAAAAAAAAAAAACAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAPn/AAAAAAAAAAACAPn/AAAAAAAAAAAAAPn/AAAAAAAAAAAEAPX/AAAAAAAAAAACAPX/AAAAAAAAAAAAAPX/AAAAAAAAAAD+//X/AAAAAAAAAAD+//n/AAAAAAAAAAD8//n/AAAAAAAAAAD8//X/AAAAAAAAAAD6//X/AAAAAAAAAAD6//n/AAAAAAAAAAD6//H/AAABAAAAAAD8//H/AAABAAAAAAD+//H/AAABAAAAAAAAAPH/AAABAAAAAAACAPH/AAABAAAAAAAEAPH/AAABAAAAAAAGAPX/AAABAAAAAFAGAPn/AAABAAAAAFAGAP3/AAABAAAAAFAGAAEAAAABAAAAAFAGAAUAAAABAAAAAFAGAAkAAAABAAAAAFAEAA0AAAABAAAAADACAA0AAAABAAAAADAAAA0AAAABAAAAADD+/w0AAAABAAAAADD8/w0AAAABAAAAADD6/w0AAAABAAAAADD4/wkAAAABAAAAAED4/wUAAAABAAAAAED4//n/AAABAAAAAED4//X/AAABAAAAAED4/w0AAAAAAAAAAAD2/w0AAAAAAAAAAAD2/wkAAAAAAAAAAAD2/wUAAAAAAAAAAAD2/wEAAAAAAAAAAAD2//3/AAAAAAAAAAD2//n/AAAAAAAAAAD2//X/AAAAAAAAAAD2//H/AAAAAAAAAAD4//H/AAAAAAAAAAD4//3/AAAAAAAAAAD4/wEAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_o3x28")
 
-[node name="Cobble" type="Sprite2D" parent="3x3 1"]
-position = Vector2(-320, -320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble2" type="Sprite2D" parent="3x3 1"]
-position = Vector2(-320, -64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble3" type="Sprite2D" parent="3x3 1"]
-position = Vector2(-64, -192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble4" type="Sprite2D" parent="3x3 1"]
-position = Vector2(-192, -192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble5" type="Sprite2D" parent="3x3 1"]
-position = Vector2(-320, -192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble6" type="Sprite2D" parent="3x3 1"]
-position = Vector2(-64, -320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble7" type="Sprite2D" parent="3x3 1"]
-position = Vector2(-192, -320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble8" type="Sprite2D" parent="3x3 1"]
-position = Vector2(-64, -64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble9" type="Sprite2D" parent="3x3 1"]
-position = Vector2(-192, -64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="3x3 2" type="Node" parent="."]
-
-[node name="Cobble" type="Sprite2D" parent="3x3 2"]
-position = Vector2(64, -320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble2" type="Sprite2D" parent="3x3 2"]
-position = Vector2(64, -64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble3" type="Sprite2D" parent="3x3 2"]
-position = Vector2(320, -192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble4" type="Sprite2D" parent="3x3 2"]
-position = Vector2(192, -192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble5" type="Sprite2D" parent="3x3 2"]
-position = Vector2(64, -192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble6" type="Sprite2D" parent="3x3 2"]
-position = Vector2(320, -320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble7" type="Sprite2D" parent="3x3 2"]
-position = Vector2(192, -320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble8" type="Sprite2D" parent="3x3 2"]
-position = Vector2(320, -64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble9" type="Sprite2D" parent="3x3 2"]
-position = Vector2(192, -64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="3x3 3" type="Node" parent="."]
-
-[node name="Cobble" type="Sprite2D" parent="3x3 3"]
-position = Vector2(-320, 64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble2" type="Sprite2D" parent="3x3 3"]
-position = Vector2(-320, 320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble3" type="Sprite2D" parent="3x3 3"]
-position = Vector2(-64, 192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble4" type="Sprite2D" parent="3x3 3"]
-position = Vector2(-192, 192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble5" type="Sprite2D" parent="3x3 3"]
-position = Vector2(-320, 192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble6" type="Sprite2D" parent="3x3 3"]
-position = Vector2(-64, 64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble7" type="Sprite2D" parent="3x3 3"]
-position = Vector2(-192, 64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble8" type="Sprite2D" parent="3x3 3"]
-position = Vector2(-64, 320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble9" type="Sprite2D" parent="3x3 3"]
-position = Vector2(-192, 320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="3x3 4" type="Node" parent="."]
-
-[node name="Cobble" type="Sprite2D" parent="3x3 4"]
-position = Vector2(64, 64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble2" type="Sprite2D" parent="3x3 4"]
-position = Vector2(64, 320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble3" type="Sprite2D" parent="3x3 4"]
-position = Vector2(320, 192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble4" type="Sprite2D" parent="3x3 4"]
-position = Vector2(192, 192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble5" type="Sprite2D" parent="3x3 4"]
-position = Vector2(64, 192)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble6" type="Sprite2D" parent="3x3 4"]
-position = Vector2(320, 64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble7" type="Sprite2D" parent="3x3 4"]
-position = Vector2(192, 64)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble8" type="Sprite2D" parent="3x3 4"]
-position = Vector2(320, 320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Cobble9" type="Sprite2D" parent="3x3 4"]
-position = Vector2(192, 320)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_5a6fv")
-
-[node name="Wall1" type="Node" parent="."]
-
-[node name="Wall1" type="Sprite2D" parent="Wall1"]
-position = Vector2(-64, -448)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall2" type="Sprite2D" parent="Wall1"]
-position = Vector2(320, -448)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall3" type="Sprite2D" parent="Wall1"]
-position = Vector2(192, -448)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall4" type="Sprite2D" parent="Wall1"]
-position = Vector2(64, -448)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall5" type="Sprite2D" parent="Wall1"]
-position = Vector2(-192, -448)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall6" type="Sprite2D" parent="Wall1"]
-position = Vector2(-320, -448)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall2" type="Node" parent="."]
-
-[node name="Wall1" type="Sprite2D" parent="Wall2"]
-position = Vector2(192, 448)
-rotation = -3.14159
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall2" type="Sprite2D" parent="Wall2"]
-position = Vector2(64, 448)
-rotation = -3.14159
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall3" type="Sprite2D" parent="Wall2"]
-position = Vector2(-64, 448)
-rotation = -3.14159
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall4" type="Sprite2D" parent="Wall2"]
-position = Vector2(-192, 448)
-rotation = -3.14159
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall5" type="Sprite2D" parent="Wall2"]
-position = Vector2(-320, 448)
-rotation = -3.14159
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall6" type="Sprite2D" parent="Wall2"]
-position = Vector2(320, 448)
-rotation = -3.14159
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall3" type="Node" parent="."]
-
-[node name="Wall" type="Sprite2D" parent="Wall3"]
-position = Vector2(448, -320)
-rotation = 1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall2" type="Sprite2D" parent="Wall3"]
-position = Vector2(448, -64)
-rotation = 1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall3" type="Sprite2D" parent="Wall3"]
-position = Vector2(448, 320)
-rotation = 1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall4" type="Sprite2D" parent="Wall3"]
-position = Vector2(448, 192)
-rotation = 1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall5" type="Sprite2D" parent="Wall3"]
-position = Vector2(448, 64)
-rotation = 1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall6" type="Sprite2D" parent="Wall3"]
-position = Vector2(448, -192)
-rotation = 1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall4" type="Node" parent="."]
-
-[node name="Wall1" type="Sprite2D" parent="Wall4"]
-position = Vector2(-448, 192)
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(-448, 64.0002)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
+texture = ExtResource("4_ypsdw")
 
-[node name="Wall2" type="Sprite2D" parent="Wall4"]
-position = Vector2(-448, -320)
+[node name="Door 2" type="Sprite2D" parent="."]
+position = Vector2(-448, -63.9998)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
+texture = ExtResource("4_ypsdw")
 
-[node name="Wall3" type="Sprite2D" parent="Wall4"]
-position = Vector2(-448, 64.0001)
-rotation = -1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
+[node name="Enemey Spawner" type="Node" parent="."]
+script = ExtResource("4_lh1bm")
 
-[node name="Wall4" type="Sprite2D" parent="Wall4"]
-position = Vector2(-448, -192)
-rotation = -1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="Wall5" type="Sprite2D" parent="Wall4"]
-position = Vector2(-448, -64)
-rotation = -1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+polygon = PackedVector2Array(-440, -128, -384, -128, -384, -384, 384, -384, 384, 384, -384, 384, -384, 128, -440, 128)
 
-[node name="Wall6" type="Sprite2D" parent="Wall4"]
-position = Vector2(-448, 320)
-rotation = -1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_dkfm2")
-
-[node name="Wall" type="StaticBody2D" parent="."]
-
-[node name="Right" type="CollisionShape2D" parent="Wall"]
-y_sort_enabled = true
-position = Vector2(832, 384)
-rotation = 1.5708
-scale = Vector2(0.25, 0.25)
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Top" type="CollisionShape2D" parent="Wall"]
-y_sort_enabled = true
-position = Vector2(384, -64)
-shape = SubResource("RectangleShape2D_hl4bd")
-
-[node name="Bottom" type="CollisionShape2D" parent="Wall"]
-y_sort_enabled = true
-position = Vector2(384, 832)
-rotation = -3.14159
-scale = Vector2(0.25, 0.25)
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Left" type="CollisionShape2D" parent="Wall"]
-y_sort_enabled = true
-position = Vector2(-64, 384)
-rotation = -1.5708
-scale = Vector2(0.25, 0.25)
-shape = SubResource("RectangleShape2D_akjok")
-
-[node name="Triggers" type="StaticBody2D" parent="."]
-position = Vector2(384, -64)
-script = ExtResource("3_66key")
-
-[node name="Left" type="CollisionShape2D" parent="Triggers"]
-z_index = 1
-position = Vector2(448, 384)
-shape = SubResource("RectangleShape2D_sp1eu")
-disabled = true
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
