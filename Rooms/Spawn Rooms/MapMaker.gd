@@ -12,12 +12,8 @@ func _ready() -> void:
 		if n == 1:
 			var hall = hall1.instantiate()
 			hall.position = Vector2(door1.x, door1.y)
-			print(hall.global_rotation)
 			hall.global_rotation += deg_to_rad(door1.z)
-			print(hall.rotation)
 			add_child(hall)
-			print("Hall added!")
-			print(hall.rotation)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
