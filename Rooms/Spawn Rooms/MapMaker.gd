@@ -1,5 +1,6 @@
 extends Node2D
 var hall1: PackedScene = preload("res://Rooms/Halls/hall1.tscn")
+var hall2: PackedScene = preload("res://Rooms/Rooms/mainRoom1.tscn")
 func _ready() -> void:
 	var door1 = get_meta("Door1")
 	var door2 = get_meta("Door2")
@@ -8,9 +9,14 @@ func _ready() -> void:
 	if (door1.x == 0 and door1.y == 0):
 		pass
 	else:
-		var n = rand(1, 1)
+		var n = rand(1, 2)
 		if n == 1:
 			var hall = hall1.instantiate()
+			hall.position = Vector2(door1.x, door1.y)
+			hall.global_rotation += deg_to_rad(door1.z)
+			add_child(hall)
+		if n == 2:
+			var hall = hall2.instantiate()
 			hall.position = Vector2(door1.x, door1.y)
 			hall.global_rotation += deg_to_rad(door1.z)
 			add_child(hall)
