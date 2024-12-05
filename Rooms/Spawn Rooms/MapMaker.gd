@@ -1,25 +1,26 @@
 extends Node2D
 var hall1: PackedScene = preload("res://Rooms/Halls/hall1.tscn")
 var hall2: PackedScene = preload("res://Rooms/Rooms/mainRoom1.tscn")
+var x = -1024
+var y = 0
 func _ready() -> void:
 	var door1 = get_meta("Door1")
 	var door2 = get_meta("Door2")
 	var door3 = get_meta("Door3")
 	#addHall(door1.x, door1.y, door1.z)
-	if (door1.x == 0 and door1.y == 0):
-		pass
-	else:
-		var n = rand(1, 2)
-		if n == 1:
-			var hall = hall1.instantiate()
-			hall.position = Vector2(door1.x, door1.y)
-			hall.global_rotation += deg_to_rad(door1.z)
-			add_child(hall)
-		if n == 2:
-			var hall = hall2.instantiate()
-			hall.position = Vector2(door1.x, door1.y)
-			hall.global_rotation += deg_to_rad(door1.z)
-			add_child(hall)
+	for i in 3:
+		if (door1.x == 0 and door1.y == 0):
+			pass
+		else:
+			var n = rand(1, 1)
+			if n == 1:
+				var hall = hall1.instantiate()
+				var rot = deg_to_rad(get_meta("Door1").z)
+				print(rot)
+				hall.position = Vector2(x, y)
+				hall.global_rotation -= rot
+				add_child(hall)
+				x -= 1024
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
