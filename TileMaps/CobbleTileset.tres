@@ -1,12 +1,12 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dw3shrb6t37df"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://dw3shrb6t37df"]
 
 [ext_resource type="Texture2D" uid="uid://c8gr1tseri7t8" path="res://Sprites/CobbleFloor.png" id="1_u2eeb"]
 [ext_resource type="Texture2D" uid="uid://b82hn4wchnfh1" path="res://Sprites/CobbleCorner.png" id="2_4knw2"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_llb4g"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_78081"]
 vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(64, -64, -64, -64, -64, 64, 64, 64)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jks2u"]
@@ -15,16 +15,19 @@ agent_radius = 0.0
 texture = ExtResource("1_u2eeb")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_llb4g")
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_78081")
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 16, 64, 0, -64, 0, -64, 64, 64, 64)
 1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jks2u")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hvdbo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e6lk3"]
 texture = ExtResource("2_4knw2")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -64, -64, -64, -64, 64, 64, 64, 64, 8, -8, 8)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_hvdbo")
 
 [resource]
 tile_shape = 1

@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://tl30q1pom403"]
+[gd_scene load_steps=5 format=4 uid="uid://tl30q1pom403"]
 
 [ext_resource type="Script" path="res://Rooms/Spawn Rooms/MapMaker.gd" id="1_ga3j5"]
 [ext_resource type="Texture2D" uid="uid://dh3a1plb7rqi6" path="res://Sprites/door.png" id="2_40qrl"]
 [ext_resource type="TileSet" uid="uid://dw3shrb6t37df" path="res://TileMaps/CobbleTileset.tres" id="2_w5jst"]
 [ext_resource type="Script" path="res://Scripts/Enemey Spawner.gd" id="3_3u4ce"]
-[ext_resource type="TileSet" uid="uid://dhc0e50stha3c" path="res://TileMaps/Doors.tres" id="5_u7mk2"]
 
 [node name="Spawn Room 1" type="Node2D"]
 script = ExtResource("1_ga3j5")
@@ -35,9 +34,3 @@ texture = ExtResource("2_40qrl")
 
 [node name="Enemey Spawner" type="Node" parent="."]
 script = ExtResource("3_3u4ce")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-texture_filter = 1
-scale = Vector2(8, 8)
-tile_map_data = PackedByteArray("AAD8/wAAAAAAAAAAAFD8////AAAAAAAAAGA=")
-tile_set = ExtResource("5_u7mk2")

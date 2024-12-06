@@ -1,26 +1,12 @@
 extends Node2D
 var hall1: PackedScene = preload("res://Rooms/Halls/hall1.tscn")
-var hall2: PackedScene = preload("res://Rooms/Rooms/mainRoom1.tscn")
-var x = -1024
-var y = 0
+var room1: PackedScene = preload("res://Rooms/Rooms/mainRoom1.tscn")
 func _ready() -> void:
 	var door1 = get_meta("Door1")
 	var door2 = get_meta("Door2")
 	var door3 = get_meta("Door3")
 	#addHall(door1.x, door1.y, door1.z)
-	for i in 3:
-		if (door1.x == 0 and door1.y == 0):
-			pass
-		else:
-			var n = rand(1, 1)
-			if n == 1:
-				var hall = hall1.instantiate()
-				var rot = deg_to_rad(get_meta("Door1").z)
-				print(rot)
-				hall.position = Vector2(x, y)
-				hall.global_rotation -= rot
-				add_child(hall)
-				x -= 1024
+	spawnRoom1(-1152, 0, 90)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,15 +20,18 @@ func _on_area_2d_body_exited(_body: Node2D) -> void:
 func rand(low, high):
 	return(RandomNumberGenerator.new().randi_range(low, high))
 	
-func addHall(x, y, rot):
-	if (x == 0 and y == 0):
-		pass
-	else:
-		var n = rand(1, 1)
-		if n == 1:
-			var hall = hall1.instantiate()
-			hall.position = Vector2(x, y)
-			hall.global_rotation -= rot
-			print(hall.rotation)
-			add_child(hall)
-			print("Hall added!")
+func spawnHall1(x, y, rot):
+	var hall = hall1.instantiate()
+	hall.position = Vector2(x, y)
+	hall.rotation = deg_to_rad(rot)
+	add_child(hall)
+			
+func spawnRoom1(x, y, rot):
+	var room = room1.instantiate()
+	room.position = Vector2(x, y)
+	room.rotation = deg_to_rad(rot)
+	add_child(room)
+	spawnHall1(x, y - 1280, 0)
+	spawnHall1(x - 1280, y, 90)
+	spawnHall1(x, y + 1280, 0)
+	

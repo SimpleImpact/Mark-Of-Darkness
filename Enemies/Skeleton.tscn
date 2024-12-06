@@ -135,8 +135,8 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4lcp"]
-size = Vector2(80, 100)
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6axu"]
+radius = 56.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lj6og"]
 size = Vector2(80, 100)
@@ -144,7 +144,9 @@ size = Vector2(80, 100)
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
-safe_margin = 2.587
+motion_mode = 1
+wall_min_slide_angle = 0.0
+safe_margin = 1.0
 script = ExtResource("1_65cfn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -152,10 +154,9 @@ z_index = 2
 texture_filter = 1
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_ecbsf")
-animation = &"Death"
+animation = &"Run Left"
 autoplay = "Run Right"
-frame = 3
-frame_progress = 1.0
+frame_progress = 0.260484
 
 [node name="Healthbar" type="AnimatedSprite2D" parent="."]
 z_index = 2
@@ -168,16 +169,23 @@ autoplay = "Spawn Anim"
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 simplify_epsilon = 10.0
-
-[node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_o4lcp")
+debug_enabled = true
+debug_path_custom_line_width = 50.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v6axu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.01
+autostart = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 3
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 shape = SubResource("RectangleShape2D_lj6og")
 metadata/Type = "Attack Detector"
 
