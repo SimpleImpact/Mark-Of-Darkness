@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dp8bmdgw20t85"]
+[gd_scene load_steps=26 format=3 uid="uid://dp8bmdgw20t85"]
 
 [ext_resource type="Texture2D" uid="uid://11na623fi73x" path="res://Sprites/skeleton.png" id="1_0bpre"]
 [ext_resource type="Script" path="res://Scripts/Enemy Scripts/Skeleton.gd" id="1_65cfn"]
@@ -20,6 +20,14 @@ region = Rect2(144, 0, 12, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cdbap"]
 atlas = ExtResource("1_0bpre")
 region = Rect2(156, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrwjt"]
+atlas = ExtResource("1_0bpre")
+region = Rect2(0, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq38u"]
+atlas = ExtResource("1_0bpre")
+region = Rect2(168, 0, 12, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6h6fd"]
 atlas = ExtResource("2_xfew0")
@@ -90,6 +98,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qrwjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq38u")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6h6fd")
 }, {
 "duration": 1.0,
@@ -154,9 +173,8 @@ z_index = 2
 texture_filter = 1
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_ecbsf")
-animation = &"Run Left"
+animation = &"Idle"
 autoplay = "Run Right"
-frame_progress = 0.260484
 
 [node name="Healthbar" type="AnimatedSprite2D" parent="."]
 z_index = 2
@@ -169,8 +187,6 @@ autoplay = "Spawn Anim"
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 simplify_epsilon = 10.0
-debug_enabled = true
-debug_path_custom_line_width = 50.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 

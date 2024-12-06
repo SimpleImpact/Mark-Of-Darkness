@@ -24,21 +24,20 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var direction = Vector3()
 	ray.target_position = player.position - global_position
-	
-	move_and_slide()
-	
-	if ray.is_colliding():
-		if ray.get_collider() == player:
-			nav.target_position = player.position
-
+	nav.target_position = player.position
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	velocity = velocity.lerp(direction * speed, accel * delta)
 	
-	if velocity.x < 1:
-		sprite.play("Run Left")
-	else:
-		sprite.play("Run Right")
+	if ray.is_colliding():
+		if ray.get_collider() == player:
+			move_and_slide()
+			if velocity.x < 1:
+				sprite.play("Run Left")
+			else:
+				sprite.play("Run Right")
+		else:
+			sprite.play("Idle")
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.get_meta("Type") == "Attack":
