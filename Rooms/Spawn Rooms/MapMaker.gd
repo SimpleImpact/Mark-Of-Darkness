@@ -23,27 +23,24 @@ func rand(low, high):
 	return(RandomNumberGenerator.new().randi_range(low, high))
 	
 func spawnHall1(x, y, rot):
-	print(x, y, rot)
 	var hall = hall1.instantiate()
 	hall.position = Vector2(x, y)
 	hall.rotation = deg_to_rad(rot)
 	add_child(hall)
 	
 func spawnHall2(x, y, rot):
-	print(x, y, rot)
 	var hall = hall2.instantiate()
 	hall.position = Vector2(x, y)
 	hall.rotation = deg_to_rad(rot)
 	add_child(hall)
 			
 func spawnRoom1(x, y, rot):
-	var callable = Callable(self, "spawnHall" + str(2))
-	var _1 = 1
+	var callable = Callable(self, "spawnHall" + rand(1, 2)
 	var room = room1.instantiate()
 	room.position = Vector2(x, y)
 	room.rotation = deg_to_rad(rot)
 	add_child(room)
 	callable.call(x, y - 1280, 0)
-	spawnHall1(x - 1280, y, 90)
-	spawnHall1(x, y + 1280, 180)
+	callable.call(x - 1280, y, 90)
+	callable.call(x, y + 1280, 180)
 	
