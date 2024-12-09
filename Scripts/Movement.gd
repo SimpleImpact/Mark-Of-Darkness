@@ -6,7 +6,7 @@ var v = Vector2(0, 0)
 var friction = 0.25
 var dashCof = 8
 
-var speed = 1
+var speed = 2
 var target
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -76,10 +76,11 @@ func _physics_process(_delta: float) -> void:
 				
 	v = v / (friction + 1)
 	if Input.is_action_pressed("Mouse2") and dash:
-		v.x *= dashCof
-		v.y *= dashCof
-		start_timer()
-		dash = false
+		#v.x *= dashCof
+		#v.y *= dashCof
+		#start_timer()
+		#dash = false
+		position = get_global_mouse_position()
 		
 	velocity = v
 	move_and_slide()
