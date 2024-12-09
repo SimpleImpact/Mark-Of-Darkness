@@ -141,6 +141,7 @@ script = ExtResource("1_rjv25")
 [node name="Player Camera" type="Camera2D" parent="Player"]
 position = Vector2(0, -9)
 scale = Vector2(0.85, 0.85)
+zoom = Vector2(0.25, 0.25)
 process_callback = 0
 position_smoothing_enabled = true
 
