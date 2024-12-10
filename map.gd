@@ -1,10 +1,10 @@
 extends TileMap
 
-@export var mapWidth = 10
-@export var mapHeight = 10
+@export var mapWidth = 50
+@export var mapHeight = 50
 
 @export var minRoomSize = 5
-@export var maxRoomSize = 5
+@export var maxRoomSize = 15
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +14,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-func _on_button_pressed() -> void:
+func gen(_e):
 	DungeonGen.generate(self, mapWidth, mapHeight, minRoomSize, maxRoomSize)

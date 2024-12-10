@@ -39,7 +39,7 @@ func generate(map:TileMap, w:int, h:int, minRoomSize, maxRoomSize):
 	# out of bounds.
 	for r in range(-1, h + 1):
 		for c in range (-1, w + 1):
-			map.set_cell(0, Vector2i(c*1.25, r*2), 0, Vector2i(Tiles.SOLID, 0))
+			map.set_cell(0, Vector2i(c, r*2), 0, Vector2i(Tiles.SOLID, 0))
 	
 	# Generate potential rooms.
 	for r in potentialRooms:
@@ -62,8 +62,8 @@ func generate(map:TileMap, w:int, h:int, minRoomSize, maxRoomSize):
 	dugRooms = rooms.values().duplicate()
 	
 	for r in dugRooms.size() - 1:
-		start = Vector2(dugRooms[r].centerpoint.x, dugRooms[r].centerpoint.y)
-		end = Vector2(dugRooms[r + 1].centerpoint.x, dugRooms[r + 1].centerpoint.y)
+		start = round(Vector2(dugRooms[r].centerpoint.x, dugRooms[r].centerpoint.y))
+		end = round(Vector2(dugRooms[r + 1].centerpoint.x, dugRooms[r + 1].centerpoint.y))
 
 		if (start.y < end.y):
 			modifier = 1
@@ -71,7 +71,7 @@ func generate(map:TileMap, w:int, h:int, minRoomSize, maxRoomSize):
 			modifier = -1
 
 		for row in range(start.y, end.y, modifier):
-			digCell(map, Vector2(start.x, row))
+			digCell(map, round(Vector2(start.x, row)))
 
 		if (start.x < end.x):
 			modifier = 1
@@ -85,11 +85,9 @@ func generate(map:TileMap, w:int, h:int, minRoomSize, maxRoomSize):
 func digRoom(map, room):
 	for x in range(room.position.x, room.position.x + room.dimensions.x - 1):
 		for y in range(room.position.y, room.position.y + room.dimensions.y - 1):
-			digCell(map, Vector2(x, y))
-			print(Vector2(x, y))
+			digCell(map, Vector2(round(x), round(y)))
 
 
 func digCell(map, pos):
 	if ((pos.x < mapWidth) && (pos.y < mapHeight)):
-		map.set_cell(0, Vector2i(pos.x, pos.y), 0, Vector2i(Tiles.EMPTY, 0))
-		print(Vector2(pos.x, pos.y))
+		map.set_cell(0, Vector2i(pos.x, pos.y), -1, Vector2i(Tiles.EMPTY, 0))
