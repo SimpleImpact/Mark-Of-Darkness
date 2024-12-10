@@ -15,12 +15,12 @@ config/features=PackedStringArray("4.3")
 
 [autoload]
 
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 DungeonGen="*res://room.gd"
+CobbleMap="*res://map.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

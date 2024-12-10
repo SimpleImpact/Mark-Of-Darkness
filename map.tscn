@@ -9,14 +9,5 @@ tile_set = ExtResource("1_a7yuw")
 format = 2
 script = ExtResource("1_kri8y")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Button" type="Button" parent="MarginContainer"]
-layout_mode = 2
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
-
-[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]
