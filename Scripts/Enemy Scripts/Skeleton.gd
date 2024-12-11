@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
 @onready var sprite = $Sprite
-@onready var player
+@onready var player = get_parent().get_parent().get_parent().get_child(0)
 var rng = RandomNumberGenerator.new()
 const speed = 200
 const accel = 10
@@ -22,10 +22,9 @@ func _process(_delta: float) -> void:
 	$Healthbar.frame = round(float(health) / (float(maxHealth) / 30))
 
 func _physics_process(delta: float) -> void:
-	var playerPos = Player.pos()
 	var direction = Vector3()
-	ray.target_position = playerPos - global_position
-	nav.target_position = playerPos
+	ray.target_position = player.position - global_position
+	nav.target_position = player.position
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	velocity = velocity.lerp(direction * speed, accel * delta)

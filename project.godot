@@ -17,7 +17,6 @@ config/features=PackedStringArray("4.3")
 
 DungeonGen="*res://room.gd"
 CobbleMap="*res://map.gd"
-Player="*res://Scripts/Movement.gd"
 
 [editor_plugins]
 

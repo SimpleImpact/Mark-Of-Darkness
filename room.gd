@@ -2,8 +2,6 @@ extends Node
 
 enum Tiles { EMPTY, SOLID }
 
-var skeletonObject: PackedScene = preload("res://Enemies/Skeleton.tscn")
-
 class Room:
 	var position:Vector2
 	var dimensions:Vector2
@@ -66,7 +64,6 @@ func generate(map:TileMap, w:int, h:int, minRoomSize, maxRoomSize):
 	for r in dugRooms.size() - 1:
 		start = round(Vector2(dugRooms[r].centerpoint.x, dugRooms[r].centerpoint.y))
 		end = round(Vector2(dugRooms[r + 1].centerpoint.x, dugRooms[r + 1].centerpoint.y))
-		
 
 		if (start.y < end.y):
 			modifier = 1
@@ -83,17 +80,6 @@ func generate(map:TileMap, w:int, h:int, minRoomSize, maxRoomSize):
 
 		for col in range(start.x, end.x, modifier):           
 			digCell(map, Vector2(col, end.y))
-			
-	#-----------------------------------------------
-	#------------ | Object Spawning | --------------
-	#-----------------------------------------------
-	var spawnableSpaces = map.get_used_cells(-1)
-	print(len(spawnableSpaces))
-	for i in spawnableSpaces:
-		if true:
-			var skeleton = skeletonObject.instantiate()
-			skeleton.position = (map.map_to_local(i))
-			add_child(skeleton)
 
 
 func digRoom(map, room):
@@ -105,7 +91,3 @@ func digRoom(map, room):
 func digCell(map, pos):
 	if ((pos.x < mapWidth) && (pos.y < mapHeight)):
 		map.set_cell(0, Vector2i(pos.x, pos.y), -1, Vector2i(Tiles.EMPTY, 0))
-
-func rand(minimum, maximum):
-	return(rng.randi_range(minimum, maximum))
-	

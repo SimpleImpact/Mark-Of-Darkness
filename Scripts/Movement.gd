@@ -95,9 +95,7 @@ func start_timer():
 func timeout_function():
 	dash = true
 
+
 func _on_button_pressed() -> void:
 	CobbleMap.gen(1)
 	pass # Replace with function body.
-
-func pos():
-	return(position)
