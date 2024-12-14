@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci73nbj57ejif"]
+
+[ext_resource type="TileSet" uid="uid://dw3shrb6t37df" path="res://TileMaps/CobbleTileset.tres" id="1_a7yuw"]
+[ext_resource type="Script" path="res://map.gd" id="1_kri8y"]
+
+[node name="TileMap" type="TileMap"]
+scale = Vector2(4, 4)
+tile_set = ExtResource("1_a7yuw")
+format = 2
+script = ExtResource("1_kri8y")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
