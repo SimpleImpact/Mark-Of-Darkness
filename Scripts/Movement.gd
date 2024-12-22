@@ -2,13 +2,18 @@ extends CharacterBody2D
 
 @onready var _animated_sprite = $"Player Sprite"
 var dash = true
-var v = Vector2(0, 0)
-var friction = 0.25
-var dashCof = 8
 
-var speed = 2
-var target
-# Called when the node enters the scene tree for the first time.
+@export var maxSpeed = 500
+
+#time to reach max speed 
+@export var accel = 0.5
+#Time to go back from max to zero
+@export var decel = 0.25
+#How smooth and round to make turns
+@export var turnWeight = 5
+
+var curSpeed = 0
+var lastVelo = Vector2(0,0)
 func _ready() -> void:
 	print("Animations Initalized")
 	pass # Replace with function body.
@@ -54,27 +59,40 @@ func _process(_delta: float) -> void:
 		_animated_sprite.play("Rouge Idle")
 	pass
 	
-func _physics_process(_delta: float) -> void:
+
+#Func for input directions
+func get_input():
+	var input_dir = Input.get_vector("Left", "Right", "Up", "Down")
+	if input_dir:
+		#Smooth the direction change out by avg last direction with input and use turnWeight
+		lastVelo = ((lastVelo*turnWeight)+input_dir)/(turnWeight+1)
+	print(lastVelo)
+	return input_dir
+
+#Move func
+func _physics_process(delta):
+	var input_dir = get_input()
 	
-	if v.x < 400 * speed:
-		if Input.is_action_pressed("Right"):
-			v.x = 400 * speed
-	if v.x > -400 * speed:
-		if Input.is_action_pressed("Left"):
-			v.x = -400 * speed
-	if v.y > -400 * speed:
-		if Input.is_action_pressed("Up"):
-			v.y = -400 * speed
-	if v.y < 400 * speed:
-		if Input.is_action_pressed("Down"):
-			v.y = 400 * speed
-			
-	if Input.is_action_pressed("Down") and Input.is_action_pressed("Up"):
-			v.y = 0
-	if Input.is_action_pressed("Right") and Input.is_action_pressed("Left"):
-			v.x = 0
-				
-	v = v / (friction + 1)
+	#Increase current speed when given input
+	if lastVelo and input_dir and curSpeed<maxSpeed:
+		curSpeed += maxSpeed*delta/accel
+	#If no input decrease speed
+	elif curSpeed>0:
+		curSpeed -= maxSpeed*delta/decel
+	
+	#Reset last velocity if not moving or input
+	if curSpeed == 0 and not input_dir:
+		lastVelo = Vector2(0,0)
+	
+	#Ensures speed doesnt go above max or below zero
+	if curSpeed<0:
+		curSpeed = 0
+	elif curSpeed>maxSpeed:
+		curSpeed = maxSpeed
+	
+	#Apply input and speed to velocity and move
+	velocity = lastVelo*curSpeed
+	move_and_slide()
 	if Input.is_action_pressed("Mouse2") and dash:
 		#v.x *= dashCof
 		#v.y *= dashCof
@@ -82,11 +100,8 @@ func _physics_process(_delta: float) -> void:
 		#dash = false
 		position = get_global_mouse_position()
 		
-	velocity = v
-	move_and_slide()
 
-func get_input():
-	pass
+
 
 func start_timer():
 	var timer = get_tree().create_timer(1.0)
