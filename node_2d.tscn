@@ -138,6 +138,8 @@ script = ExtResource("5_abbcs")
 [node name="Player" type="CharacterBody2D" parent="."]
 texture_filter = 1
 script = ExtResource("1_rjv25")
+maxSpeed = 1250
+accel = 0.25
 
 [node name="Player Camera" type="Camera2D" parent="Player"]
 position = Vector2(0, -9)
