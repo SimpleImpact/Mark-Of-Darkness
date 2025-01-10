@@ -1,0 +1,11 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dhc0e50stha3c"]
+
+[ext_resource type="Texture2D" uid="uid://dh3a1plb7rqi6" path="res://Sprites/door.png" id="1_215os"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o0b2n"]
+texture = ExtResource("1_215os")
+texture_region_size = Vector2i(17, 17)
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_o0b2n")
