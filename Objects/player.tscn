@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://bq2s8jhja8833"]
+[gd_scene load_steps=27 format=3 uid="uid://bq2s8jhja8833"]
 
 [ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_lkuwi"]
 [ext_resource type="Script" path="res://Scripts/Attack Handler.gd" id="2_80hox"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="3_6nkus"]
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="4_th4xs"]
 [ext_resource type="Script" path="res://button.gd" id="5_110jt"]
+[ext_resource type="FontFile" uid="uid://dq01esfdmcdl5" path="res://Fonts/BetterPixels.ttf" id="7_y5q3y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ph2tk"]
 atlas = ExtResource("3_6nkus")
@@ -134,7 +135,45 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
+[sub_resource type="GDScript" id="GDScript_rx6ub"]
+resource_local_to_scene = true
+script/source = "extends CanvasLayer
+
+# Initialize the container and label using @onready
+@onready var textbox_container = $textboxContainer
+@onready var Hp_label = $textboxContainer/MarginContainer/HBoxContainer/HP/Label  # Ensure this is the actual Label node
+
+func _ready() -> void:
+	Hp_label.text = \"hp:100\"  # Assigning text to the Hp_label 
+
+
+func _process(delta: float) -> void:
+	pass
+
+# Function to hide the textbox and clear text
+func hide_textbox():
+	textbox_container.text = \"\"  # Clear the text on the textbox_container 
+	Hp_label.text = \"\"  # Clear the Hp_label text 
+	textbox_container.hide()  # Hide the container
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86kuh"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6luu"]
+line_spacing = 4.0
+font = ExtResource("7_y5q3y")
+font_size = 30
+shadow_size = 0
+shadow_color = Color(0.20871, 0.20871, 0.20871, 1)
+
 [node name="Player" type="CharacterBody2D"]
+visible = false
 texture_filter = 1
 scale = Vector2(1.56308, 1.72667)
 script = ExtResource("1_lkuwi")
@@ -142,21 +181,25 @@ maxSpeed = 1250
 accel = 0.25
 
 [node name="Player Camera" type="Camera2D" parent="."]
+visible = false
 position = Vector2(0, -9)
 scale = Vector2(0.85, 0.85)
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.1, 0.1)
 process_callback = 0
 limit_smoothed = true
 
 [node name="Attack Handler" type="Node2D" parent="."]
+visible = false
 script = ExtResource("2_80hox")
 
 [node name="Player Collider" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(0, -4)
 scale = Vector2(0.998497, 1.01744)
 polygon = PackedVector2Array(-40, -56, 40, -56, 40, 39, -40, 39)
 
 [node name="Player Sprite" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 1
 texture_filter = 1
 position = Vector2(0, -16)
@@ -164,6 +207,7 @@ sprite_frames = SubResource("SpriteFrames_u676e")
 animation = &"Rouge Run Left"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
 offset_left = -2304.0
 offset_top = -1304.0
 offset_right = -2264.0
@@ -173,16 +217,65 @@ offset_bottom = -1264.0
 layout_mode = 2
 script = ExtResource("5_110jt")
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-scale = Vector2(4, 4)
-blend_mode = 1
-range_z_max = 0
-
 [node name="Lamp" type="PointLight2D" parent="."]
+visible = false
 scale = Vector2(4, 4)
 energy = 2.37
 range_z_max = 0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_kv3fc")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+blend_mode = 1
+range_z_max = 0
+
+[node name="stats" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_rx6ub")
+
+[node name="textboxContainer" type="MarginContainer" parent="stats"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -188.0
+offset_top = -18.0
+offset_right = -33.0
+offset_bottom = 331.0
+grow_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = -26
+theme_override_constants/margin_bottom = 26
+
+[node name="Panel" type="Panel" parent="stats/textboxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_86kuh")
+
+[node name="MarginContainer" type="MarginContainer" parent="stats/textboxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_top = 13
+theme_override_constants/margin_right = 13
+theme_override_constants/margin_bottom = 13
+
+[node name="Panel" type="Panel" parent="stats/textboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="stats/textboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HP" type="Label" parent="stats/textboxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_fonts/font = ExtResource("7_y5q3y")
+theme_override_font_sizes/font_size = 30
+text = "HP: "
+label_settings = SubResource("LabelSettings_g6luu")
+autowrap_mode = 3
+uppercase = true
+text_direction = 1
 
 [connection signal="pressed" from="MarginContainer/Button" to="MarginContainer/Button" method="_on_pressed"]
