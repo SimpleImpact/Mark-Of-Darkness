@@ -10,15 +10,16 @@ class Room:
 
 var dugRooms = []
 var rng = RandomNumberGenerator.new()
-
+var n = 0
 var mapWidth
 var mapHeight
 
 func _ready():
-	rng.randomize()
+	pass
 
 
 func generate(map:TileMap, w:int, h:int, minRoomSize, maxRoomSize):
+	print("Map Generated")
 	
 	var potentialRooms:int = (w / maxRoomSize) * (h / maxRoomSize)
 	var rooms:Dictionary
@@ -80,14 +81,11 @@ func generate(map:TileMap, w:int, h:int, minRoomSize, maxRoomSize):
 
 		for col in range(start.x, end.x, modifier):           
 			digCell(map, Vector2(col, end.y))
-
-
+	
 func digRoom(map, room):
 	for x in range(room.position.x, room.position.x + room.dimensions.x - 1):
 		for y in range(room.position.y, room.position.y + room.dimensions.y - 1):
 			digCell(map, Vector2(round(x), round(y)))
-
-
 func digCell(map, pos):
 	if ((pos.x < mapWidth) && (pos.y < mapHeight)):
 		map.set_cell(0, Vector2i(pos.x, pos.y), -1, Vector2i(Tiles.EMPTY, 0))

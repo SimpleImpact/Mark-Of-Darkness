@@ -1,128 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://c0wsv0wn7obag"]
+[gd_scene load_steps=9 format=3 uid="uid://c0wsv0wn7obag"]
 
-[ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="1_dgash"]
-[ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="1_o3uii"]
-[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_rjv25"]
 [ext_resource type="Script" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
 [ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="6_d4b3v"]
-[ext_resource type="Script" path="res://button.gd" id="6_xihq0"]
-[ext_resource type="Script" path="res://Scripts/Attack Handler.gd" id="7_8eboh"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ph2tk"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(0, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b505h"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(96, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0h1e1"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1760, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aj2rv"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1664, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0ljc"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1568, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lcen8"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1472, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d3ond"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1376, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7py14"]
-atlas = ExtResource("1_dgash")
-region = Rect2(1280, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ree64"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(192, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v6wqy"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(288, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d3p0a"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(384, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgv0l"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(480, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_el4fa"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(576, 121, 96, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pd83d"]
-atlas = ExtResource("1_o3uii")
-region = Rect2(672, 121, 96, 120)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xfc0c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ph2tk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b505h")
-}],
-"loop": true,
-"name": &"Rouge Idle",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0h1e1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aj2rv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e0ljc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lcen8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d3ond")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7py14")
-}],
-"loop": true,
-"name": &"Rouge Run Left",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ree64")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v6wqy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d3p0a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vgv0l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_el4fa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pd83d")
-}],
-"loop": true,
-"name": &"Rouge Run Right",
-"speed": 10.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_egwdq"]
 atlas = ExtResource("6_d4b3v")
@@ -131,47 +10,22 @@ margin = Rect2(0, 0, -1, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfyvs"]
 
+[sub_resource type="Gradient" id="Gradient_omw7s"]
+offsets = PackedFloat32Array(0.512987)
+colors = PackedColorArray(0.548963, 0.548963, 0.548963, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ymckn"]
+gradient = SubResource("Gradient_omw7s")
+
+[sub_resource type="Gradient" id="Gradient_1poxb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a4loa"]
+gradient = SubResource("Gradient_1poxb")
+
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
 script = ExtResource("5_abbcs")
-
-[node name="Player" type="CharacterBody2D" parent="."]
-texture_filter = 1
-script = ExtResource("1_rjv25")
-maxSpeed = 1250
-accel = 0.25
-
-[node name="Player Camera" type="Camera2D" parent="Player"]
-position = Vector2(0, -9)
-scale = Vector2(0.85, 0.85)
-zoom = Vector2(0.25, 0.25)
-process_callback = 0
-position_smoothing_enabled = true
-
-[node name="Attack Handler" type="Node2D" parent="Player"]
-script = ExtResource("7_8eboh")
-
-[node name="Player Collider" type="CollisionPolygon2D" parent="Player"]
-position = Vector2(0, -4)
-polygon = PackedVector2Array(-40, -56, 40, -56, 40, 39, -40, 39)
-
-[node name="Player Sprite" type="AnimatedSprite2D" parent="Player"]
-z_index = 1
-texture_filter = 1
-position = Vector2(0, -16)
-sprite_frames = SubResource("SpriteFrames_xfc0c")
-animation = &"Rouge Run Left"
-frame_progress = 0.441745
-
-[node name="MarginContainer" type="MarginContainer" parent="Player"]
-offset_left = -2304.0
-offset_top = -1304.0
-offset_right = -2264.0
-offset_bottom = -1264.0
-
-[node name="Button" type="Button" parent="Player/MarginContainer"]
-layout_mode = 2
-script = ExtResource("6_xihq0")
 
 [node name="Touchscreen Inputs" type="Node" parent="."]
 
@@ -218,5 +72,15 @@ shape = SubResource("RectangleShape2D_sfyvs")
 action = "Right"
 visibility_mode = 1
 
-[connection signal="pressed" from="Player/MarginContainer/Button" to="Player" method="_on_button_pressed"]
-[connection signal="pressed" from="Player/MarginContainer/Button" to="Player/MarginContainer/Button" method="_on_pressed"]
+[node name="Background" type="Node" parent="."]
+
+[node name="Black" type="Sprite2D" parent="Background"]
+z_index = -2
+scale = Vector2(500, 500)
+texture = SubResource("GradientTexture2D_ymckn")
+
+[node name="Layer 1 Light" type="PointLight2D" parent="."]
+scale = Vector2(700, 700)
+range_z_min = 1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_a4loa")

@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @onready var _animated_sprite = $"Player Sprite"
+@onready var camera = $'Player Camera'
+@onready var collider = $'Player Collider'
 var dash = true
 
 @export var maxSpeed = 500
@@ -15,7 +17,7 @@ var dash = true
 var curSpeed = 0
 var lastVelo = Vector2(0,0)
 func _ready() -> void:
-	print("Animations Initalized")
+	print("Movement Initalized")
 	pass # Replace with function body.
 
 
@@ -24,7 +26,6 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("Down") and Input.is_action_pressed("Left") and Input.is_action_pressed("Up") and Input.is_action_pressed("Right"):
 		_animated_sprite.play("Rouge Idle")
-	
 	elif Input.is_action_pressed("Up") and Input.is_action_pressed("Down"):
 		if Input.is_action_pressed("Right"):
 			_animated_sprite.play("Rouge Run Right")
@@ -32,33 +33,37 @@ func _process(_delta: float) -> void:
 			_animated_sprite.play("Rouge Run Left")
 		else:
 			_animated_sprite.play("Rouge Idle")
-	
 	elif Input.is_action_pressed("Left") and Input.is_action_pressed("Right"):
 		if Input.is_action_pressed("Down"):
 			_animated_sprite.play("Rouge Run Left")
-			
 		elif Input.is_action_pressed("Up"):
 			_animated_sprite.play("Rouge Run Right")
-		
 		else:
 			_animated_sprite.play("Rouge Idle")
-		
 	elif Input.is_action_pressed("Right") and Input.is_action_pressed("Left"):
 		_animated_sprite.play("Rouge Idle")
-		
 	elif Input.is_action_pressed("Up") and Input.is_action_pressed("Left"):
 		_animated_sprite.play("Rouge Run Left")
-		
 	elif Input.is_action_pressed("Right") or Input.is_action_pressed("Up"):
 		_animated_sprite.play("Rouge Run Right")
-		
 	elif Input.is_action_pressed("Left") or Input.is_action_pressed("Down"):
 		_animated_sprite.play("Rouge Run Left")
-		
 	else:
 		_animated_sprite.play("Rouge Idle")
+		pass
 	pass
 	
+	camera.make_current()
+	
+	if Input.is_action_just_released("C"):
+		if collider.is_disabled():
+			collider.disabled = false
+			$Lamp.enabled = true
+			$DirectionalLight2D.enabled = true
+		else:
+			collider.disabled = true
+			$DirectionalLight2D.enabled = false
+			$Lamp.enabled = false
 
 #Func for input directions
 func get_input():
@@ -66,7 +71,6 @@ func get_input():
 	if input_dir:
 		#Smooth the direction change out by avg last direction with input and use turnWeight
 		lastVelo = ((lastVelo*turnWeight)+input_dir)/(turnWeight+1)
-	print(lastVelo)
 	return input_dir
 
 #Move func
@@ -112,5 +116,4 @@ func timeout_function():
 
 
 func _on_button_pressed() -> void:
-	CobbleMap.gen(1)
 	pass # Replace with function body.
