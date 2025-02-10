@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0wsv0wn7obag"]
+
+[ext_resource type="Script" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
+[ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="6_d4b3v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egwdq"]
+atlas = ExtResource("6_d4b3v")
+region = Rect2(0, 0, 32, 32)
+margin = Rect2(0, 0, -1, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfyvs"]
+
+[sub_resource type="Gradient" id="Gradient_omw7s"]
+offsets = PackedFloat32Array(0.512987)
+colors = PackedColorArray(0.548963, 0.548963, 0.548963, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ymckn"]
+gradient = SubResource("Gradient_omw7s")
+
+[sub_resource type="Gradient" id="Gradient_1poxb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a4loa"]
+gradient = SubResource("Gradient_1poxb")
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+script = ExtResource("5_abbcs")
+
+[node name="Touchscreen Inputs" type="Node" parent="."]
+
+[node name="Down" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
+texture_filter = 1
+position = Vector2(-870.4, 99.8)
+scale = Vector2(5.6491, 5.6491)
+texture_normal = SubResource("AtlasTexture_egwdq")
+shape = SubResource("RectangleShape2D_sfyvs")
+action = "Down"
+visibility_mode = 1
+
+[node name="Up" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
+texture_filter = 1
+position = Vector2(-695.538, 72.6)
+rotation = 3.14159
+scale = Vector2(5.6491, 5.6491)
+texture_normal = SubResource("AtlasTexture_egwdq")
+shape = SubResource("RectangleShape2D_sfyvs")
+action = "Up"
+visibility_mode = 1
+
+[node name="Left" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
+texture_filter = 1
+position = Vector2(-797.279, -2.2)
+rotation = 1.5708
+scale = Vector2(5.6491, 5.6491)
+texture_normal = SubResource("AtlasTexture_egwdq")
+shape = SubResource("RectangleShape2D_sfyvs")
+action = "Left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="Touchscreen Inputs"]
+visible = false
+texture_filter = 1
+position = Vector2(-769.327, 173.805)
+rotation = -1.5708
+scale = Vector2(5.6491, 5.6491)
+texture_normal = SubResource("AtlasTexture_egwdq")
+shape = SubResource("RectangleShape2D_sfyvs")
+action = "Right"
+visibility_mode = 1
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Black" type="Sprite2D" parent="Background"]
+z_index = -2
+scale = Vector2(500, 500)
+texture = SubResource("GradientTexture2D_ymckn")
+
+[node name="Layer 1 Light" type="PointLight2D" parent="."]
+scale = Vector2(700, 700)
+range_z_min = 1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_a4loa")
