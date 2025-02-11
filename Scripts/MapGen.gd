@@ -12,13 +12,14 @@ class Room:
 
 var rooms = []
 @export var roomCount = 5
-
+var start = randi_range(0,1)
 #X is min, Y is max
 @export var roomSizeRange = Vector2i(8,20)
 @export var posRange = Vector2i(10,100)
 @export var minRoomOffset = 10
-
+@export var enableRoomDebugLines = true
 @export var hallWidth = 3
+var holder = hallWidth
 #unused for now:
 var maxRoomOffset = 50
 
@@ -26,7 +27,7 @@ var mapBorder = 50
 
 var availableTiles = []
 
-func generate_rooms():
+func generate_roomsPoints():
 	#generate room positions and sizes
 	while rooms.size() < roomCount:
 		var size = Vector2(rng.randi_range(roomSizeRange.x, roomSizeRange.y), rng.randi_range(roomSizeRange.x, roomSizeRange.y))
@@ -37,20 +38,23 @@ func generate_rooms():
 			rooms.append(new_room)
 	
 	#create big block ༼ つ ◕_◕ ༽つ
-	for h in range(posRange.x - mapBorder,posRange.y + mapBorder):
-		for k in range(posRange.x-mapBorder,posRange.y+mapBorder):
-			set_cell(Vector2i(h,k), 0, Vector2i(1,0))
-			print(Vector2(h,k))
 	
-	#Draw out rooms
+func roomGen():
 	for room in rooms:
 		var pos = room.rect.position
+		var size = Vector2(room.rect.size.x +2, room.rect.size.y +2)
+		for h in range(size.x):
+			for k in range(size.y):
+				set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(1,0))
+				
+	for room in rooms:
+		var pos = Vector2(room.rect.position.x +1, room.rect.position.y+1)
 		var size = room.rect.size
 		for h in range(size.x):
 			for k in range(size.y):
-				set_cell(Vector2i(pos.x+h,pos.y+k), -1)
-			
-	
+				set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(0,0))
+				
+
 #func for overlap check
 func room_overlaps(new_room: Room) -> bool:
 	for room in rooms:
@@ -109,10 +113,10 @@ func generateMst(edges):
 	return mst
 
 #use mst to dig halls
-func halls(mst):
+func halls(mst, mod):
 	#rng to vary hallway direction
-	var start = randi_range(0,1)
-	
+	hallWidth = holder
+	hallWidth += mod
 	for line in mst:
 		var yDir = 1
 		var yStart
@@ -135,7 +139,10 @@ func halls(mst):
 		#Dig vertical halls
 		for vert in range(firstY, lastY, yDir):
 			for i in range(hallWidth):
-				set_cell(Vector2i(yStart-(hallWidth-1)/2+i, vert), -1)
+				if mod == 0:
+					set_cell(Vector2i(yStart-(hallWidth-1)/2+i, vert), 0, Vector2i(0,0))
+				else:
+					set_cell(Vector2i(yStart-(hallWidth-1)/2+i, vert), 0, Vector2i(1,0))
 		
 		#same for horizontals
 		var xDir = 1
@@ -157,17 +164,24 @@ func halls(mst):
 		
 		for hor in range(firstX, lastX, xDir):
 			for i in range(hallWidth):
-				set_cell(Vector2i(hor, xStart-(hallWidth-1)/2+i), -1)
+				if mod == 0:
+					set_cell(Vector2i(hor, xStart-(hallWidth-1)/2+i), 0, Vector2i(0,0))
+				else:
+					set_cell(Vector2i(hor, xStart-(hallWidth-1)/2+i), 0, Vector2i(1,0))
 
 func _ready() -> void:
-	generate_rooms()
+	generate_roomsPoints()
 	var edges = delauney()
 	var mst = generateMst(edges)
 	
-	for line in mst:
-		var trace = Line2D.new()
-		add_child(trace)
-		trace.add_point(line[0]*16)
-		trace.add_point(line[1]*16)
+	if enableRoomDebugLines:
+		for line in mst:
+			var trace = Line2D.new()
+			add_child(trace)
+			trace.add_point(line[0]*64)
+			trace.add_point(line[1]*64)
 	
-	halls(mst)
+	halls(mst, 2)
+	roomGen()
+	halls(mst, 0)
+	
