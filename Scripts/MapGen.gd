@@ -53,6 +53,8 @@ func roomGen():
 		for h in range(size.x):
 			for k in range(size.y):
 				set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(0,0))
+    availableTiles.append(Vector(pos.x+h, pos.y+k))
+ print(availableTiles)
 				
 
 #func for overlap check
