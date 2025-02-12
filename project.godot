@@ -13,6 +13,11 @@ config_version=5
 run/main_scene="res://node_2d.tscn"
 config/features=PackedStringArray("4.3")
 
+[autoload]
+
+Globals="*res://globals.gd"
+MapGen="*res://Scripts/MapGen.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray()
