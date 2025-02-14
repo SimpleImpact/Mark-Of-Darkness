@@ -7,7 +7,7 @@ func _ready() -> void:
 	var spawn = Spawn_room.instantiate()
 	var player = player_obj.instantiate()
 	add_child(spawn)
-	add_child(player)
+	#add_child(player)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

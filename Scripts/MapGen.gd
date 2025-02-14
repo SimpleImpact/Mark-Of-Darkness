@@ -21,6 +21,7 @@ var start = randi_range(0,1)
 var holder = hallWidth
 
 func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize:int, debugLines:bool):
+	Globals.mapGenerated = false
 	#generate room positions and sizes
 	while rooms.size() < roomNumber:
 		var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
@@ -35,6 +36,7 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 	halls(mst, 2, map)
 	roomGen(map)
 	halls(mst, 0, map)
+	Globals.mapGenerated = true
 	debugLineGen(mst, debugLines)
 func roomGen(map):
 	for room in rooms:

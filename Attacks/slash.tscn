@@ -76,7 +76,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Slash",
-"speed": 10.0
+"speed": 60.0
 }, {
 "frames": [],
 "loop": true,

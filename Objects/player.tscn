@@ -1,11 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://bq2s8jhja8833"]
+[gd_scene load_steps=27 format=3 uid="uid://bq2s8jhja8833"]
 
 [ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_lkuwi"]
 [ext_resource type="Script" path="res://Scripts/Attack Handler.gd" id="2_80hox"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="3_6nkus"]
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="4_th4xs"]
 [ext_resource type="Script" path="res://button.gd" id="5_110jt"]
-[ext_resource type="FontFile" uid="uid://b75wn5elgg7um" path="res://Fonts/TimesNewPixel.ttf" id="6_7l465"]
+[ext_resource type="Shader" path="res://test.gdshader" id="6_03up6"]
+[ext_resource type="Shader" path="res://Objects/light.gdshader" id="6_mrbcm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ph2tk"]
 atlas = ExtResource("3_6nkus")
@@ -123,8 +124,13 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42k1w"]
+render_priority = 0
+shader = ExtResource("6_mrbcm")
+
 [sub_resource type="Gradient" id="Gradient_qu6a2"]
-offsets = PackedFloat32Array(0, 0.714286)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.720779)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kv3fc"]
@@ -135,17 +141,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qw8i2"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_blvoq"]
-font = ExtResource("6_7l465")
-font_size = 40
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_empod"]
+shader = ExtResource("6_03up6")
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
@@ -174,7 +171,7 @@ z_index = 1
 texture_filter = 1
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_u676e")
-animation = &"Rouge Idle"
+animation = &"Rouge Run Left"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = -2304.0
@@ -187,7 +184,7 @@ layout_mode = 2
 script = ExtResource("5_110jt")
 
 [node name="Lamp" type="PointLight2D" parent="."]
-position = Vector2(4.47834, -11.583)
+material = SubResource("ShaderMaterial_42k1w")
 scale = Vector2(4, 4)
 energy = 2.37
 range_z_max = 0
@@ -195,51 +192,8 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_kv3fc")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+material = SubResource("ShaderMaterial_empod")
 blend_mode = 1
 range_z_max = 0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -206.0
-offset_top = -13.0
-offset_right = 15.0
-offset_bottom = 386.0
-grow_horizontal = 0
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qw8i2")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
-clip_contents = true
-layout_mode = 2
-theme_override_fonts/font = ExtResource("6_7l465")
-theme_override_font_sizes/font_size = 40
-text = "hp"
-label_settings = SubResource("LabelSettings_blvoq")
-uppercase = true
-text_direction = 1
 
 [connection signal="pressed" from="MarginContainer/Button" to="MarginContainer/Button" method="_on_pressed"]

@@ -94,6 +94,7 @@ func _physics_process(delta):
 	elif curSpeed>maxSpeed:
 		curSpeed = maxSpeed
 	
+	Globals.playerPos = position
 	#Apply input and speed to velocity and move
 	velocity = lastVelo*curSpeed
 	move_and_slide()
