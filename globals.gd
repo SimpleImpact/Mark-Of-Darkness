@@ -1,9 +1,15 @@
 extends Node
 
-var openTiles:Array
+# ==================================> IMPORTANT <=======================================
+# ==========> This script if for storing global variables and functions ONLY<===========
+# ===============> Do not attatch this script anywhere, call it globaly <===============
+# ======================================================================================
+
+var openTiles:Dictionary #Dictionary to hold all spawnable tiles, specile(idk) rooms will not be here. The data is stored like this "roomNumber:Vector2i(69, 420)"
 var mapGenerated:bool = false
 var playerPos:Vector2
-# Called when the node enters the scene tree for the first time.
+var debug = false
+
 func _ready() -> void:
 	pass # Replace with function body.
 

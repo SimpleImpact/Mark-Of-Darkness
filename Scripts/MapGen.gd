@@ -13,11 +13,14 @@ class Room:
 var rooms = []
 @export var roomCount = 5
 var start = randi_range(0,1)
+
 #X is min, Y is max
-@export var roomSizeRange = Vector2i(8, 20)
 @export var posRange = Vector2i(10, 100)
 @export var minRoomOffset = 10
 @export var hallWidth = 3
+
+var roomTiles:Array
+var roomNumber = 0
 var holder = hallWidth
 
 func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize:int, debugLines:bool):
@@ -52,7 +55,10 @@ func roomGen(map):
 		for h in range(size.x):
 			for k in range(size.y):
 				map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(0,0))
-				Globals.openTiles.append(Vector2i(pos.x+h,pos.y+k))
+				roomTiles.append(Vector2i(pos.x+h,pos.y+k))
+		Globals.openTiles[roomNumber] = roomTiles
+		roomNumber += 1
+
 # Check for overlapping rooms
 func room_overlaps(new_room: Room) -> bool:
 	for room in rooms:
@@ -165,6 +171,3 @@ func debugLineGen(mst, enableRoomDebugLines):
 			add_child(trace)
 			trace.add_point(line[0]*64)
 			trace.add_point(line[1]*64)
-
-func _ready() -> void:
-	generate_roomsPoints(self, roomCount, roomSizeRange.x, roomSizeRange.y, true)

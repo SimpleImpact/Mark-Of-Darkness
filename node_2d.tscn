@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://c0wsv0wn7obag"]
 
-[ext_resource type="Shader" path="res://test.gdshader" id="3_dsjy8"]
+[ext_resource type="Shader" uid="uid://e42rg5ljlc2g" path="res://test.gdshader" id="3_dsjy8"]
 [ext_resource type="Texture2D" uid="uid://5j08mm3pctx5" path="res://Sprites/light.webp" id="4_sot1f"]
-[ext_resource type="Script" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
+[ext_resource type="Script" uid="uid://wbsbh72jp1u0" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
 [ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="6_d4b3v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_egwdq"]

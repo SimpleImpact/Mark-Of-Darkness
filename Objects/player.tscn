@@ -1,12 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://bq2s8jhja8833"]
+[gd_scene load_steps=26 format=3 uid="uid://bq2s8jhja8833"]
 
-[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_lkuwi"]
-[ext_resource type="Script" path="res://Scripts/Attack Handler.gd" id="2_80hox"]
+[ext_resource type="Script" uid="uid://c0luklt8h3fvk" path="res://Scripts/Movement.gd" id="1_lkuwi"]
+[ext_resource type="Script" uid="uid://cafikea3xywt0" path="res://Scripts/Attack Handler.gd" id="2_80hox"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="3_6nkus"]
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="4_th4xs"]
-[ext_resource type="Script" path="res://button.gd" id="5_110jt"]
-[ext_resource type="Shader" path="res://test.gdshader" id="6_03up6"]
-[ext_resource type="Shader" path="res://Objects/light.gdshader" id="6_mrbcm"]
+[ext_resource type="Shader" uid="uid://e42rg5ljlc2g" path="res://test.gdshader" id="6_03up6"]
+[ext_resource type="Shader" uid="uid://cgl8hhac2mt4q" path="res://Objects/light.gdshader" id="6_mrbcm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ph2tk"]
 atlas = ExtResource("3_6nkus")
@@ -130,7 +129,7 @@ shader = ExtResource("6_mrbcm")
 
 [sub_resource type="Gradient" id="Gradient_qu6a2"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.720779)
+offsets = PackedFloat32Array(0, 0.220779)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kv3fc"]
@@ -146,17 +145,17 @@ shader = ExtResource("6_03up6")
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
-scale = Vector2(1.56308, 1.72667)
 script = ExtResource("1_lkuwi")
-maxSpeed = 1250
+maxSpeed = 500
 accel = 0.25
 
 [node name="Player Camera" type="Camera2D" parent="."]
 position = Vector2(0, -9)
 scale = Vector2(0.85, 0.85)
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.5, 0.5)
 process_callback = 0
 limit_smoothed = true
+position_smoothing_enabled = true
 
 [node name="Attack Handler" type="Node2D" parent="."]
 script = ExtResource("2_80hox")
@@ -173,16 +172,6 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_u676e")
 animation = &"Rouge Run Left"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_left = -2304.0
-offset_top = -1304.0
-offset_right = -2264.0
-offset_bottom = -1264.0
-
-[node name="Button" type="Button" parent="MarginContainer"]
-layout_mode = 2
-script = ExtResource("5_110jt")
-
 [node name="Lamp" type="PointLight2D" parent="."]
 material = SubResource("ShaderMaterial_42k1w")
 scale = Vector2(4, 4)
@@ -195,5 +184,3 @@ texture = SubResource("GradientTexture2D_kv3fc")
 material = SubResource("ShaderMaterial_empod")
 blend_mode = 1
 range_z_max = 0
-
-[connection signal="pressed" from="MarginContainer/Button" to="MarginContainer/Button" method="_on_pressed"]
