@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ci73nbj57ejif"]
 
 [ext_resource type="TileSet" uid="uid://dw3shrb6t37df" path="res://TileMaps/CobbleTileset.tres" id="1_a7yuw"]
-[ext_resource type="Script" path="res://test.gd" id="2_8wx6a"]
+[ext_resource type="Script" uid="uid://b0vib4v2lsqns" path="res://test.gd" id="2_8wx6a"]
 
 [node name="TileMapLayer" type="TileMapLayer"]
 tile_set = ExtResource("1_a7yuw")

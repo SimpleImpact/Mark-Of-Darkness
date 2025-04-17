@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @onready var _animated_sprite = $"Player Sprite"
-@onready var camera = $'Player Camera'
 @onready var collider = $'Player Collider'
 var dash = true
 
@@ -26,7 +25,6 @@ func _ready() -> void:
 		maxSpeed = 1500
 		$Lamp.enabled = false
 		$DirectionalLight2D.enabled = false
-		$"Player Camera".zoom = Vector2(0.25, 0.25)
 		collider.disabled = true
 	
 	print("Movement Initalized")
@@ -64,9 +62,7 @@ func _process(_delta: float) -> void:
 		pass
 	pass
 	
-	camera.make_current()
-	
-	if Input.is_action_just_released("C") and !Globals.debug:
+	if Input.is_action_just_released("C") and false:
 		if collider.is_disabled():
 			collider.disabled = false
 			$Lamp.enabled = true

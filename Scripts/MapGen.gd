@@ -55,7 +55,8 @@ func roomGen(map):
 		for h in range(size.x):
 			for k in range(size.y):
 				map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(0,0))
-				roomTiles.append(Vector2i(pos.x+h,pos.y+k))
+				if k != 0:
+					roomTiles.append(Vector2i(pos.x+h,pos.y+k))
 		Globals.openTiles[roomNumber] = roomTiles
 		roomNumber += 1
 

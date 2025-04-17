@@ -9,6 +9,8 @@ var openTiles:Dictionary #Dictionary to hold all spawnable tiles, specile(idk) r
 var mapGenerated:bool = false
 var playerPos:Vector2
 var debug = false
+var CamPos:Vector2
+var CamZoom = Vector2(0.75, 0.75)
 
 func _ready() -> void:
 	pass # Replace with function body.

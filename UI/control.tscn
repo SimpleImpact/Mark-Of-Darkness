@@ -1,18 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqb56r75g4aq2"]
+[gd_scene load_steps=4 format=3 uid="uid://cqb56r75g4aq2"]
 
-[ext_resource type="SpriteFrames" uid="uid://o2rwj156dhip" path="res://Animations/Health Bar.tres" id="1_iyd4l"]
+[ext_resource type="Script" uid="uid://bemve265qu7h6" path="res://Scripts/UI/Player UI.gd" id="1_filc1"]
+[ext_resource type="Script" uid="uid://cwdbtshylh4kv" path="res://UI/CardOrganizer.gd" id="2_nh5hm"]
+
+[sub_resource type="Theme" id="Theme_nh5hm"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+size_flags_stretch_ratio = 29.05
+theme = SubResource("Theme_nh5hm")
+script = ExtResource("1_filc1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(256, 32)
-scale = Vector2(16, 16)
-sprite_frames = ExtResource("1_iyd4l")
-animation = &"Spawn Anim"
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_right = 590.0
+offset_bottom = 128.0
+script = ExtResource("2_nh5hm")
