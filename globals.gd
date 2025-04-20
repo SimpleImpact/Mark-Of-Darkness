@@ -5,12 +5,16 @@ extends Node
 # ===============> Do not attatch this script anywhere, call it globaly <===============
 # ======================================================================================
 
-var openTiles:Dictionary #Dictionary to hold all spawnable tiles, specile(idk) rooms will not be here. The data is stored like this "roomNumber:Vector2i(69, 420)"
+var openTiles:Dictionary #Dictionary to hold all spawnable tiles, custom rooms will not be here. The data is stored like this "roomNumber:Vector2i(69, 420)"
 var mapGenerated:bool = false
 var playerPos:Vector2
 var debug = false
 var CamPos:Vector2
 var CamZoom = Vector2(0.75, 0.75)
+var playerHealth = 100
+var maxPlayerHealth = 100
+var playerMana = 100
+var maxPlayerMana = 100
 
 func _ready() -> void:
 	pass # Replace with function body.

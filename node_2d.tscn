@@ -88,11 +88,18 @@ z_index = -2
 scale = Vector2(500, 500)
 texture = SubResource("GradientTexture2D_ymckn")
 
-[node name="Layer 1 Light" type="PointLight2D" parent="."]
+[node name="Layer 0 Light" type="PointLight2D" parent="."]
 material = SubResource("ShaderMaterial_k1gt1")
 scale = Vector2(700, 700)
 range_z_min = 1
 range_z_max = 1
+texture = SubResource("GradientTexture2D_a4loa")
+
+[node name="Layer 1000 Light" type="PointLight2D" parent="."]
+material = SubResource("ShaderMaterial_k1gt1")
+scale = Vector2(700, 700)
+range_z_min = 1000
+range_z_max = 1001
 texture = SubResource("GradientTexture2D_a4loa")
 
 [node name="Light" type="Sprite2D" parent="."]

@@ -1,9 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqb56r75g4aq2"]
+[gd_scene load_steps=10 format=3 uid="uid://cqb56r75g4aq2"]
 
 [ext_resource type="Script" uid="uid://bemve265qu7h6" path="res://Scripts/UI/Player UI.gd" id="1_filc1"]
+[ext_resource type="Texture2D" uid="uid://dwus6mp3tdblk" path="res://Sprites/grey.png" id="2_er0wr"]
 [ext_resource type="Script" uid="uid://cwdbtshylh4kv" path="res://UI/CardOrganizer.gd" id="2_nh5hm"]
+[ext_resource type="Texture2D" uid="uid://b3tkrijbxqtwg" path="res://Sprites/red.png" id="3_c20no"]
 
 [sub_resource type="Theme" id="Theme_nh5hm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_er0wr"]
+
+[sub_resource type="Gradient" id="Gradient_er0wr"]
+colors = PackedColorArray(0.260016, 0.479397, 1, 1, 0.258824, 0.478431, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c20no"]
+gradient = SubResource("Gradient_er0wr")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_er0wr"]
+bg_color = Color(0.336608, 0.336608, 0.336608, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,9 +25,45 @@ size_flags_stretch_ratio = 29.05
 theme = SubResource("Theme_nh5hm")
 script = ExtResource("1_filc1")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-clip_contents = true
+[node name="Mana Bar" type="TextureProgressBar" parent="."]
+z_index = 1000
+material = SubResource("ShaderMaterial_er0wr")
+layout_mode = 2
+offset_left = -383.0
+offset_top = 312.0
+offset_right = 385.0
+offset_bottom = 332.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_er0wr")
+texture_progress = SubResource("GradientTexture1D_c20no")
+
+[node name="Cards" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 590.0
-offset_bottom = 128.0
+offset_left = -384.0
+offset_top = 80.0
+offset_right = 384.0
+offset_bottom = 240.0
+alignment = 2
 script = ExtResource("2_nh5hm")
+card_count = 8
+
+[node name="Health Bar" type="TextureProgressBar" parent="."]
+z_index = 1000
+material = SubResource("ShaderMaterial_er0wr")
+layout_mode = 2
+offset_left = -383.0
+offset_top = 283.0
+offset_right = 385.0
+offset_bottom = 303.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_er0wr")
+texture_progress = ExtResource("3_c20no")
+
+[node name="Decor Panel 1" type="Panel" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = -390.0
+offset_top = 277.0
+offset_right = 390.0
+offset_bottom = 337.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_er0wr")
