@@ -1,11 +1,10 @@
 extends CharacterBody2D
 
 @onready var _animated_sprite = $"Player Sprite"
-@onready var camera = $'Player Camera'
 @onready var collider = $'Player Collider'
 var dash = true
 
-@export var maxSpeed = 500
+@export var maxSpeed = 100
 
 #time to reach max speed 
 @export var accel = 0.5
@@ -13,17 +12,28 @@ var dash = true
 @export var decel = 0.25
 #How smooth and round to make turns
 @export var turnWeight = 5
+#Varible to change dash factor
+@export var dashCof = 100
+var decay = 0
+
+
 
 var curSpeed = 0
 var lastVelo = Vector2(0,0)
 func _ready() -> void:
+	await get_tree().process_frame
+	if Globals.debug == true:
+		maxSpeed = 1500
+		$Lamp.enabled = false
+		$DirectionalLight2D.enabled = false
+		collider.disabled = true
+	
 	print("Movement Initalized")
-	pass # Replace with function body.
+	Globals.player = self
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	
 	if Input.is_action_pressed("Down") and Input.is_action_pressed("Left") and Input.is_action_pressed("Up") and Input.is_action_pressed("Right"):
 		_animated_sprite.play("Rouge Idle")
 	elif Input.is_action_pressed("Up") and Input.is_action_pressed("Down"):
@@ -53,9 +63,7 @@ func _process(_delta: float) -> void:
 		pass
 	pass
 	
-	camera.make_current()
-	
-	if Input.is_action_just_released("C"):
+	if Input.is_action_just_released("C") and false:
 		if collider.is_disabled():
 			collider.disabled = false
 			$Lamp.enabled = true
@@ -89,23 +97,26 @@ func _physics_process(delta):
 		lastVelo = Vector2(0,0)
 	
 	#Ensures speed doesnt go above max or below zero
-	if curSpeed<0:
+	if curSpeed<0.5:
 		curSpeed = 0
 	elif curSpeed>maxSpeed:
 		curSpeed = maxSpeed
-	
 	#Apply input and speed to velocity and move
 	velocity = lastVelo*curSpeed
-	move_and_slide()
 	if Input.is_action_pressed("Mouse2") and dash:
-		#v.x *= dashCof
-		#v.y *= dashCof
-		#start_timer()
-		#dash = false
-		position = get_global_mouse_position()
-		
-
-
+		if dash and !Globals.debug:
+			dash = false
+			decay = 10
+			start_timer()
+		else:
+			position = get_global_mouse_position()
+			
+	if decay != 0:
+		velocity *= decay
+		decay -= 1
+				
+	Globals.playerPos = position
+	move_and_slide()
 
 func start_timer():
 	var timer = get_tree().create_timer(1.0)
@@ -113,7 +124,5 @@ func start_timer():
 
 func timeout_function():
 	dash = true
-
-
 func _on_button_pressed() -> void:
 	pass # Replace with function body.

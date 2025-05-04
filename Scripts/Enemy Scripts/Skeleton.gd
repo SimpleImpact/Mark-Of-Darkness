@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
 @onready var sprite = $Sprite
-@onready var player = get_parent().get_parent().get_parent().get_child(0)
+@onready var player = Globals.player
 var rng = RandomNumberGenerator.new()
 const speed = 200
 const accel = 10
@@ -23,14 +23,14 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3()
-	ray.target_position = player.position - global_position
-	nav.target_position = player.position
+	ray.target_position = Globals.playerPos - global_position
+	nav.target_position = Globals.playerPos
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	velocity = velocity.lerp(direction * speed, accel * delta)
 	
 	if ray.is_colliding():
-		if ray.get_collider() == player:
+		if ray.get_collider() == Globals.player:
 			move_and_slide()
 			if velocity.x < 1:
 				sprite.play("Run Left")

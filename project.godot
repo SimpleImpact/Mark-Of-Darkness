@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 run/main_scene="res://node_2d.tscn"
-config/features=PackedStringArray("4.3")
+config/features=PackedStringArray("4.4")
 
 [autoload]
 
-DungeonGen="*res://room.gd"
-CobbleMap="*res://map.gd"
+Globals="*res://globals.gd"
+MapGen="*res://Scripts/MapGen.gd"
+EnemySpawner="*res://Scripts/EnemySpawner.gd"
 
 [editor_plugins]
 
@@ -72,3 +73,8 @@ C={
 [physics]
 
 2d/default_gravity=0.0
+
+[rendering]
+
+anti_aliasing/quality/msaa_2d=3
+occlusion_culling/use_occlusion_culling=true
