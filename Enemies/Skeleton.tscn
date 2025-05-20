@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://dp8bmdgw20t85"]
 
 [ext_resource type="Texture2D" uid="uid://11na623fi73x" path="res://Sprites/skeleton.png" id="1_0bpre"]
-[ext_resource type="Script" uid="uid://g7h66uowjaav" path="res://Scripts/Enemy Scripts/Skeleton.gd" id="1_65cfn"]
+[ext_resource type="Script" path="res://Scripts/Enemy Scripts/Skeleton.gd" id="1_65cfn"]
 [ext_resource type="Texture2D" uid="uid://do48k6umxschx" path="res://Sprites/skeletonFlipped.png" id="2_xfew0"]
 [ext_resource type="SpriteFrames" uid="uid://o2rwj156dhip" path="res://Animations/Health Bar.tres" id="4_ossgy"]
 

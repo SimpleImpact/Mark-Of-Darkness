@@ -17,7 +17,6 @@ var dash = true
 var decay = 0
 
 
-
 var curSpeed = 0
 var lastVelo = Vector2(0,0)
 func _ready() -> void:

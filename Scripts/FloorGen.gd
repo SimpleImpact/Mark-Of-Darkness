@@ -12,7 +12,7 @@ func _ready() -> void:
 	#add_child(player)
 	EnemySpawner.genEnemies(EnemySpawner.test)
 	if debug:
-		$"Layer 0 Light".enabled = false
+		$"Layer 1 Light".enabled = false
 		$"Player Camera".zoom = Vector2(0.25, 0.25)
 	else:
 		$"Player Camera".zoom = Globals.CamZoom
