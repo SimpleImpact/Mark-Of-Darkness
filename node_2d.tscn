@@ -35,6 +35,7 @@ shader = ExtResource("3_dsjy8")
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
 script = ExtResource("5_abbcs")
+debug = true
 
 [node name="Touchscreen Inputs" type="Node" parent="."]
 

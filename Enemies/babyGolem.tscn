@@ -1,0 +1,155 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8ic2rfyuceyi"]
+
+[ext_resource type="Texture2D" uid="uid://bvk45815yrr8a" path="res://Sprites/babyGolemSprite.png" id="1_e6p8m"]
+[ext_resource type="Script" uid="uid://deh42tmtgsh4d" path="res://Scripts/Enemy Scripts/babyGolem.gd" id="1_n3jmf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d1yc6"]
+radius = 56.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yoxf4"]
+atlas = ExtResource("1_e6p8m")
+region = Rect2(11, 10, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw33w"]
+atlas = ExtResource("1_e6p8m")
+region = Rect2(44, 10, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxw4e"]
+atlas = ExtResource("1_e6p8m")
+region = Rect2(143, 10, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgd2f"]
+atlas = ExtResource("1_e6p8m")
+region = Rect2(5, 15, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i1fo"]
+atlas = ExtResource("1_e6p8m")
+region = Rect2(25, 13, 7, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpv7u"]
+animations = [{
+"frames": [{
+"duration": 15.0,
+"texture": SubResource("AtlasTexture_yoxf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw33w")
+}],
+"loop": true,
+"name": &"BodyNorm",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxw4e")
+}],
+"loop": true,
+"name": &"BodySpin",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgd2f")
+}],
+"loop": true,
+"name": &"LeftHand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i1fo")
+}],
+"loop": true,
+"name": &"RightHand",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_guwph"]
+
+[node name="BabyGolem" type="Node2D"]
+
+[node name="Main" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+script = ExtResource("1_n3jmf")
+maxSpeed = 300
+turnWeight = 10
+stopDist = 10
+sight = 10
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="Main"]
+radius = 5.0
+debug_enabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Main"]
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main"]
+shape = SubResource("CircleShape2D_d1yc6")
+
+[node name="Body" type="AnimatedSprite2D" parent="Main/CollisionShape2D"]
+z_index = 1
+texture_filter = 1
+scale = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_mpv7u")
+animation = &"BodyNorm"
+
+[node name="Timer" type="Timer" parent="Main"]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
+[node name="HealthbarBorder" type="Line2D" parent="Main"]
+position = Vector2(0, -55)
+points = PackedVector2Array(-34, 0, 34, 0)
+default_color = Color(0, 0, 0, 1)
+
+[node name="Healthbar" type="Line2D" parent="Main/HealthbarBorder"]
+points = PackedVector2Array(-32, 0, 32, 0)
+width = 7.0
+default_color = Color(0.958424, 0, 0.141896, 1)
+
+[node name="Hitbox" type="Area2D" parent="Main"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Hitbox"]
+shape = SubResource("CircleShape2D_d1yc6")
+
+[node name="LeftHand" type="CharacterBody2D" parent="."]
+position = Vector2(-80, 20)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand"]
+rotation = 2.98277
+scale = Vector2(1.75, 1.75)
+skew = 0.261799
+shape = SubResource("CircleShape2D_guwph")
+
+[node name="LeftHandSprite" type="AnimatedSprite2D" parent="LeftHand/CollisionShape2D"]
+z_index = 1
+texture_filter = 1
+rotation = -2.98391
+scale = Vector2(4.17091, 4.11108)
+skew = -0.261409
+sprite_frames = SubResource("SpriteFrames_mpv7u")
+animation = &"LeftHand"
+
+[node name="RightHand" type="CharacterBody2D" parent="."]
+position = Vector2(80, 20)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightHand"]
+rotation = 2.53073
+scale = Vector2(2.45, 2.45)
+skew = 0.261799
+shape = SubResource("CircleShape2D_guwph")
+
+[node name="RightHandSprite" type="AnimatedSprite2D" parent="RightHand/CollisionShape2D"]
+z_index = 1
+texture_filter = 1
+rotation = -2.59357
+scale = Vector2(3.25643, 2.62572)
+skew = -0.152497
+sprite_frames = SubResource("SpriteFrames_mpv7u")
+animation = &"RightHand"
+
+[connection signal="area_shape_entered" from="Main/Hitbox" to="Main" method="_on_hitbox_area_shape_entered"]

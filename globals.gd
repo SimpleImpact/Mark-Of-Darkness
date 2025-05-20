@@ -8,6 +8,7 @@ extends Node
 var openTiles:Dictionary #Dictionary to hold all spawnable tiles, custom rooms will not be here. The data is stored like this "roomNumber:Vector2i(69, 420)"
 var mapGenerated:bool = false
 var playerPos:Vector2
+var player
 var debug = false
 var CamPos:Vector2
 var CamZoom = Vector2(0.75, 0.75)

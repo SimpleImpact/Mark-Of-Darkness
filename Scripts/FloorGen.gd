@@ -10,6 +10,7 @@ func _ready() -> void:
 	var ui = ui_obj.instantiate()
 	add_child(spawn)
 	#add_child(player)
+	EnemySpawner.genEnemies(EnemySpawner.test)
 	if debug:
 		$"Layer 1 Light".enabled = false
 		$"Player Camera".zoom = Vector2(0.25, 0.25)

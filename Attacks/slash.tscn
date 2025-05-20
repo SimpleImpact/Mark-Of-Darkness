@@ -1,6 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://drer37xha7mfv"]
 
 [ext_resource type="Texture2D" uid="uid://cpkg7p7xd8gk8" path="res://Sprites/Attacks/Slash.png" id="1_p55mk"]
+
 [ext_resource type="Script" path="res://Scripts/Attacks/slash.gd" id="2_efym2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tr32"]
