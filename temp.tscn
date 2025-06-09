@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://clwvc2vhuhorx"]
 
-[ext_resource type="Script" uid="uid://cwdbtshylh4kv" path="res://UI/CardOrganizer.gd" id="1_pippe"]
+[ext_resource type="Script" uid="uid://cwdbtshylh4kv" path="res://UI/Player UI/CardOrganizer.gd" id="1_pippe"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

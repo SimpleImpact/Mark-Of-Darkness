@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bum6ukwr1trip"]
+
+[ext_resource type="Script" uid="uid://bmi83pmy48d" path="res://Dev Tools/Test Scenes/Map Importer.gd" id="1_7hjwe"]
+
+[node name="MapMakerTestScene" type="Node2D"]
+script = ExtResource("1_7hjwe")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]

@@ -1,13 +1,40 @@
 [gd_scene load_steps=14 format=3 uid="uid://c0wsv0wn7obag"]
 
-[ext_resource type="Shader" uid="uid://e42rg5ljlc2g" path="res://test.gdshader" id="3_dsjy8"]
-[ext_resource type="Texture2D" uid="uid://5j08mm3pctx5" path="res://Sprites/light.webp" id="4_sot1f"]
-[ext_resource type="Script" uid="uid://wbsbh72jp1u0" path="res://Scripts/FloorGen.gd" id="5_abbcs"]
-[ext_resource type="Script" uid="uid://dvw21crtojnxh" path="res://Scripts/Player Camera.gd" id="5_q6r6c"]
-[ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="6_d4b3v"]
+[ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="1_0hol4"]
+[ext_resource type="Shader" uid="uid://e42rg5ljlc2g" path="res://test.gdshader" id="2_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://5j08mm3pctx5" path="res://Sprites/light.webp" id="3_kdubu"]
+[ext_resource type="Script" uid="uid://dvw21crtojnxh" path="res://Scripts/Player Scripts/Player Camera.gd" id="4_d21ai"]
+
+[sub_resource type="GDScript" id="GDScript_0hol4"]
+script/source = "extends Node
+var Spawn_room: PackedScene = preload(\"res://map.tscn\")
+var player_obj: PackedScene = preload(\"res://Objects/player.tscn\")
+var ui_obj: PackedScene = preload(\"res://UI/Player UI/playerUI.tscn\")
+@export var debug = false
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var spawn = Spawn_room.instantiate()
+	var player = player_obj.instantiate()
+	var ui = ui_obj.instantiate()
+	add_child(spawn)
+	#add_child(player)
+	EnemySpawner.genEnemies(EnemySpawner.test)
+	if debug:
+		$\"Layer 0 Light\".enabled = false
+		$\"Player Camera\".zoom = Vector2(0.25, 0.25)
+	else:
+		$\"Player Camera\".zoom = Globals.CamZoom
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	Globals.debug = debug
+	Globals.CamPos = Globals.playerPos
+	$\"Player Camera\".position = Globals.CamPos
+	pass
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_egwdq"]
-atlas = ExtResource("6_d4b3v")
+atlas = ExtResource("1_0hol4")
 region = Rect2(0, 0, 32, 32)
 margin = Rect2(0, 0, -1, 3)
 
@@ -21,7 +48,7 @@ colors = PackedColorArray(0.548963, 0.548963, 0.548963, 1)
 gradient = SubResource("Gradient_omw7s")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k1gt1"]
-shader = ExtResource("3_dsjy8")
+shader = ExtResource("2_q6r6c")
 
 [sub_resource type="Gradient" id="Gradient_1poxb"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -30,11 +57,11 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_1poxb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_op1yf"]
-shader = ExtResource("3_dsjy8")
+shader = ExtResource("2_q6r6c")
 
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
-script = ExtResource("5_abbcs")
+script = SubResource("GDScript_0hol4")
 debug = true
 
 [node name="Touchscreen Inputs" type="Node" parent="."]
@@ -106,7 +133,7 @@ texture = SubResource("GradientTexture2D_a4loa")
 [node name="Light" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_op1yf")
 position = Vector2(595, 376)
-texture = ExtResource("4_sot1f")
+texture = ExtResource("3_kdubu")
 
 [node name="Player Camera" type="Camera2D" parent="."]
-script = ExtResource("5_q6r6c")
+script = ExtResource("4_d21ai")

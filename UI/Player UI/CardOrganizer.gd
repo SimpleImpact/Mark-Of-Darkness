@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-@export var card_scene: PackedScene = preload("res://UI/blankCard.tscn") # Assuming you have a Card scene
+@export var card_scene: PackedScene = preload("res://UI/Player UI/blankCard.tscn") # Assuming you have a Card scene
 @export var card_count: int = 100
 @export var overlap_amount: int = 20  # Amount of overlap in pixels
 

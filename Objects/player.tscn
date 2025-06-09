@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://bq2s8jhja8833"]
 
-[ext_resource type="Script" uid="uid://c0luklt8h3fvk" path="res://Scripts/Movement.gd" id="1_lkuwi"]
-[ext_resource type="Script" uid="uid://cafikea3xywt0" path="res://Scripts/Attack Handler.gd" id="2_80hox"]
+[ext_resource type="Script" uid="uid://c0luklt8h3fvk" path="res://Scripts/Player Scripts/Movement.gd" id="1_lkuwi"]
+[ext_resource type="Script" uid="uid://cafikea3xywt0" path="res://Scripts/Attacks/Attack Handler.gd" id="2_80hox"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="3_6nkus"]
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="4_th4xs"]
 [ext_resource type="Shader" uid="uid://e42rg5ljlc2g" path="res://test.gdshader" id="6_03up6"]
