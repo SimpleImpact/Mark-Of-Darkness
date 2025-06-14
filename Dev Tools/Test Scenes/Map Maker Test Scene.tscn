@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bum6ukwr1trip"]
+[gd_scene load_steps=3 format=3 uid="uid://bum6ukwr1trip"]
 
 [ext_resource type="Script" uid="uid://bmi83pmy48d" path="res://Dev Tools/Test Scenes/Map Importer.gd" id="1_7hjwe"]
+[ext_resource type="TileSet" uid="uid://dw3shrb6t37df" path="res://TileMaps/CobbleTileset.tres" id="2_sd427"]
 
 [node name="MapMakerTestScene" type="Node2D"]
 script = ExtResource("1_7hjwe")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_sd427")
