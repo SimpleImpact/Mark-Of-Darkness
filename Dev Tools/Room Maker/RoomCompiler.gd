@@ -11,7 +11,7 @@ func _ready() -> void:
 		for e in 8:
 			var index = tilemap.get_cell_atlas_coords(Vector2i(e-4, r-4))
 			if index != Vector2i(-1, -1):
-				room.append(["c" + str(Vector2i(e, r)), "a" + str(index)])
+				room.append(["c" + str(e) + ", " + str(r) +")", "a" + str(index.x) + ", " + str(index.y) +")",])
 	print(room)
 
 	
