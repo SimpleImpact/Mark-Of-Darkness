@@ -23,7 +23,7 @@ var roomTiles:Array
 var roomNumber = 0
 var holder = hallWidth
 
-func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize:int, debugLines:bool):
+func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize:int, debugLines:bool, customRoom:bool, roomName:String):
 	Globals.mapGenerated = false
 	#generate room positions and sizes
 	while rooms.size() < roomNumber:

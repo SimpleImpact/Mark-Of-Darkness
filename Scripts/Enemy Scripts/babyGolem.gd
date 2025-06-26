@@ -122,8 +122,9 @@ func _physics_process(delta):
 
 
 func _on_hitbox_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if area.get_meta("Type") == "Attack":
-		health -= area.get_meta("Damage")
+	if has_meta("Type"):
+		if area.get_meta("Type") == "Attack":
+			health -= area.get_meta("Damage")
 	if health <= 0:
 		set_physics_process(false)
 		await get_tree().create_timer(1).timeout

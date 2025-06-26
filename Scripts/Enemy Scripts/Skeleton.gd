@@ -40,8 +40,9 @@ func _physics_process(delta: float) -> void:
 			sprite.play("Idle")
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
-	if area.get_meta("Type") == "Attack":
-		health -= area.get_meta("Damage")
+	if has_meta("Type"):
+		if area.get_meta("Type") == "Attack":
+			health -= area.get_meta("Damage")
 	if health <= 0:
 		sprite.play("Death")
 		set_physics_process(false)

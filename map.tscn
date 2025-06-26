@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://buflyn610umf0" path="res://Scripts/Enemy Scripts/EnemySpawner.gd" id="3_e0an3"]
 
 [node name="TileMapLayer" type="TileMapLayer"]
+z_index = -2
 tile_set = ExtResource("1_a7yuw")
 script = ExtResource("2_8wx6a")
 

@@ -8,3 +8,8 @@ script = ExtResource("1_7hjwe")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("2_sd427")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-566, -297)
+anchor_mode = 0
+zoom = Vector2(0.5, 0.5)
