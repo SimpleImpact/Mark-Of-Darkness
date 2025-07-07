@@ -26,10 +26,18 @@ var holder = hallWidth
 func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize:int, debugLines:bool, customRoom:bool, roomName:String):
 	Globals.mapGenerated = false
 	#generate room positions and sizes
-	while rooms.size() < roomNumber:
-		var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
-		var position = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y)) # Adjust range as needed
-		var new_room = Room.new(position.x, position.y, size.x, size.y)
+	var customRoomArray:Array
+
+	for i in roomNumber:
+		if i == 0:
+			customRoomArray.append(1)
+		else:
+			customRoomArray.append(0)
+	for i in customRommArray:
+		if i == 0
+			var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
+			var position = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y)) # Adjust range as needed
+			var new_room = Room.new(position.x, position.y, size.x, size.y)
 	#check for overlaps
 		if !room_overlaps(new_room):
 			rooms.append(new_room)
