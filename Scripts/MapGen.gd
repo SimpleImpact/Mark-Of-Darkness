@@ -33,8 +33,8 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 			customRoomArray.append(1)
 		else:
 			customRoomArray.append(0)
-	for i in customRommArray:
-		if i == 0
+	for i in customRoomArray:
+		if i == 0:
 			var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
 			var position = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y)) # Adjust range as needed
 			var new_room = Room.new(position.x, position.y, size.x, size.y)
