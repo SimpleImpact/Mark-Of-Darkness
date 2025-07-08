@@ -10,14 +10,15 @@ config_version=5
 
 [application]
 
-run/main_scene="res://node_2d.tscn"
+run/main_scene="uid://c2dmyadtemn1s"
 config/features=PackedStringArray("4.4")
 
 [autoload]
 
 Globals="*res://globals.gd"
 MapGen="*res://Scripts/MapGen.gd"
-EnemySpawner="*res://Scripts/EnemySpawner.gd"
+EnemySpawner="*res://Scripts/Enemy Scripts/EnemySpawner.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray()
