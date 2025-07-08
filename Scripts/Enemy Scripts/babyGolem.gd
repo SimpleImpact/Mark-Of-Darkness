@@ -47,7 +47,6 @@ func get_input():
 	if ray.is_colliding() and ray.get_collider() == player and player.global_position.distance_to(global_position) <= sight*64:
 		lastSeen = player.position
 		nav.target_position = lastSeen
-	print(player.global_position.distance_to(global_position))
 	var direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	var stopped = false

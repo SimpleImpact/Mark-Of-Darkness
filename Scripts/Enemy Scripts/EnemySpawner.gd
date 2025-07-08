@@ -34,13 +34,10 @@ func genEnemies(enemyPool) -> void:
 			
 			spawn(weightedPool[rng.randi_range(0,len(weightedPool)-1)], newPos*64)
 		#await get_tree().create_timer(0.1).timeout
-	print(Globals.playerPos)
 
 
 func spawn(_enemyPath, pos):
 	var enemyScene: PackedScene = _enemyPath
 	var model = enemyScene.instantiate()
-	print(get_parent())
 	model.global_position = pos
 	get_parent().add_child(model)
-	print("skeleton", model.position)
