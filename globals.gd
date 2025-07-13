@@ -5,7 +5,7 @@ extends Node
 ### ===============> Do not attatch this script anywhere, call it globaly <================ ###
 ### ======================================================================================= ###
 
-var openTiles:Dictionary #Dictionary to hold all spawnable tiles, custom rooms will not be here. The data is stored like this "roomNumber:Vector2i(69, 420)"
+var openTiles:Array #Dictionary to hold all spawnable tiles, custom rooms will not be here. The data is stored like this "roomNumber:Vector2i(69, 420)"
 var mapGenerated:bool = false
 var playerPos:Vector2
 var player

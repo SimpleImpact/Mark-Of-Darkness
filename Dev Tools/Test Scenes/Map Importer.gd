@@ -8,7 +8,7 @@ var room:Array
 var fileName = "Circle"
 var file = FileAccess.open("res://Rooms/" + fileName + ".json", FileAccess.READ)
 var roomData = str_to_var(file.get_file_as_string("res://Rooms/" + fileName + ".json"))
-
+var tmp:Array
 
 func _ready() -> void:
 	arr = roomData.get("_Data")
@@ -23,7 +23,10 @@ func _ready() -> void:
 					break
 	for i in room:
 		tilemap.set_cell(i[0], 0, i[1])
-		
+	print(tmp)
+	print(arr)
 func strToVector(string):
-	var raw = (string.erase(0).erase(4).split(", "))
+	var raw = (string.erase(0).erase(string.length()).split(", "))
+	tmp.append(Vector2i(int(raw[0]), int(raw[1])))
+	
 	return(Vector2i(int(raw[0]), int(raw[1])))

@@ -3,12 +3,11 @@ extends TileMapLayer
 var rng = RandomNumberGenerator.new()
 
 class Room:
-	var rect: Rect2
-	var center: Vector2
-
-	func _init(x: int, y: int, w: int, h: int):
-		rect = Rect2(x, y, w, h)
-		center = rect.position + rect.size / 2
+		var rect: Rect2
+		var center: Vector2
+		func _init(x: int, y: int, w: int, h: int):
+			rect = Rect2(x, y, w, h)
+			center = rect.position + rect.size / 2.
 
 var rooms = []
 @export var roomCount = 5
@@ -22,6 +21,13 @@ var start = randi_range(0,1)
 var roomTiles:Array
 var roomNumber = 0
 var holder = hallWidth
+
+var customRoomAtlas:Array
+var customPos = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y))
+var customSize = Vector2i()
+var arr:Array
+var customRoomPlaced = false
+var customRoomCenter
 
 func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize:int, debugLines:bool, customRoom:bool, roomName:String):
 	Globals.mapGenerated = false
@@ -43,11 +49,15 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 			if !room_overlaps(new_room):
 				rooms.append(new_room)
 		if i == 1:
-			var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
-			var position = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y)) # Adjust range as needed
-			var new_room = Room.new(position.x, position.y, size.x, size.y)
-			if !room_overlaps(new_room):
-				rooms.append(new_room)
+			while !customRoomPlaced:
+				customRoomImport(roomName)
+				await customSize != Vector2i()
+				var size = customSize
+				var position = customPos
+				var new_room = Room.new(position.x, position.y, 0, 0)
+				if !room_overlaps(new_room):
+					rooms.append(new_room)
+					customRoomPlaced = true
 	#check for overlaps
 		
 	# ============= ༼ つ ◕_◕ ༽つ ============= #
@@ -60,21 +70,23 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 	debugLineGen(mst, debugLines)
 func roomGen(map):
 	for room in rooms:
-		var pos = room.rect.position
-		var size = Vector2(room.rect.size.x +2, room.rect.size.y +2)
-		for h in range(size.x):
-			for k in range(size.y):
-				map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(1,0))
-				
+		if room.rect.size != Vector2():
+			var pos = room.rect.position
+			var size = Vector2(room.rect.size.x +2, room.rect.size.y +2)
+			for h in range(size.x):
+				for k in range(size.y):
+					map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(1,0))
+	
 	for room in rooms:
-		var pos = Vector2(room.rect.position.x +1, room.rect.position.y+1)
-		var size = room.rect.size
-		for h in range(size.x):
-			for k in range(size.y):
-				map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(0,0))
-				if k != 0:
-					roomTiles.append(Vector2i(pos.x+h,pos.y+k))
-		Globals.openTiles[roomNumber] = roomTiles
+		if room.rect.size != Vector2():
+			var pos = Vector2(room.rect.position.x +1, room.rect.position.y+1)
+			var size = room.rect.size
+			for h in range(size.x):
+				for k in range(size.y):
+					map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(0,0))
+					if k != 0:
+						roomTiles.append(Vector2i(pos.x+h,pos.y+k))
+		Globals.openTiles += roomTiles
 		roomNumber += 1
 
 # Check for overlapping rooms
@@ -90,6 +102,7 @@ func delauney():
 	var centers = PackedVector2Array()
 	for room in rooms:
 		centers.append(room.center)
+	print(rooms)
 	#Returns triangles by the index of the point in the table
 	var triangulation = Geometry2D.triangulate_delaunay(centers)
 	
@@ -181,6 +194,10 @@ func halls(mst, mod, map):
 					map.set_cell(Vector2i(hor, xStart-(hallWidth-1)/2+i), 0, Vector2i(0,0))
 				else:
 					map.set_cell(Vector2i(hor, xStart-(hallWidth-1)/2+i), 0, Vector2i(1,0))
+		### Place Custom Room ###
+		for e in customRoomAtlas:
+			if map.get_cell_atlas_coords(Vector2i(int(e[0].x) - customRoomCenter.x, int(e[0].y) - customRoomCenter.y)) != Vector2i(0, 0):
+				map.set_cell(Vector2i(int(e[0].x) - customRoomCenter.x, int(e[0].y) - customRoomCenter.y), 0, Vector2i(int(e[1].x), int(e[1].y)))
 # Cool line generator
 func debugLineGen(mst, enableRoomDebugLines):
 	if enableRoomDebugLines:
@@ -189,3 +206,28 @@ func debugLineGen(mst, enableRoomDebugLines):
 			add_child(trace)
 			trace.add_point(line[0]*64)
 			trace.add_point(line[1]*64)
+func customRoomImport(name):
+	var s
+	var cord:Vector2i
+	var file = FileAccess.open("res://Rooms/" + name + ".json", FileAccess.READ)
+	var roomData = str_to_var(file.get_file_as_string("res://Rooms/" + name + ".json"))
+	s = ((roomData.get("Pos").erase(0).erase(roomData.get("Pos").length()).split(", ")))
+	print(customPos)
+	customRoomCenter = Vector2i(int(s[0]), int(s[1]))
+	print(customPos)
+	arr = roomData.get("_Data")
+	customPos
+	for i in arr:
+		for g in i:
+			for e in g:
+				if e == "c":
+					cord = strToVector(g) + Vector2i(customPos.x, customPos.y)
+				if e == "a":
+					customRoomAtlas.append([cord, strToVector(g)])
+					break
+	#customSize = str_to_var(roomData.get("Size").erase(0).erase(length(roomData.get("Size").split(", "))
+	s = ((roomData.get("Size").erase(0).erase(roomData.get("Size").length()).split(", ")))
+	customSize = Vector2i(int(s[0]), int(s[1]))
+func strToVector(string):
+	var raw = (string.erase(0).erase(string.length()).split(", "))
+	return(Vector2i(int(raw[0]), int(raw[1])))
