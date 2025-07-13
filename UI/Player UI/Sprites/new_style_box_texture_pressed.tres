@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cv144aeu42o3x"]
+
+[ext_resource type="Texture2D" uid="uid://cvh25c2x6i0s6" path="res://UI/Player UI/Sprites/pixil-frame-2.png" id="1_x7uxu"]
+
+[resource]
+texture = ExtResource("1_x7uxu")
+expand_margin_left = 100.0
+expand_margin_top = 75.0
+expand_margin_right = 100.0
+expand_margin_bottom = 75.0
+modulate_color = Color(0.552956, 0.552956, 0.552956, 1)
