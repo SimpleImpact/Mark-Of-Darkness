@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2dmyadtemn1s"]
+[gd_scene load_steps=13 format=3 uid="uid://c2dmyadtemn1s"]
 
 [ext_resource type="Script" uid="uid://krmsn6fauqf3" path="res://UI/Player UI/main_menu.gd" id="1_wut1r"]
+[ext_resource type="SpriteFrames" uid="uid://bpplf12ysgqoe" path="res://Animations/Scroll-Open.tres" id="2_dp54x"]
+[ext_resource type="FontFile" uid="uid://b75wn5elgg7um" path="res://Fonts/TimesNewPixel.ttf" id="2_hsuwp"]
 [ext_resource type="StyleBox" uid="uid://2ca6xka04w33" path="res://UI/Player UI/Sprites/new_style_box_texture.tres" id="2_n2hh1"]
 [ext_resource type="StyleBox" uid="uid://cv144aeu42o3x" path="res://UI/Player UI/Sprites/new_style_box_texture_pressed.tres" id="3_v71lm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l1xq8"]
+font = ExtResource("2_hsuwp")
+font_size = 56
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1xq8"]
 bg_color = Color(0.341176, 0.341176, 0.341176, 0.588235)
@@ -28,7 +32,22 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83s16"]
 
+[sub_resource type="Gradient" id="Gradient_dp54x"]
+colors = PackedColorArray(0, 0, 0, 1, 0.497474, 0.497474, 0.497474, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hsuwp"]
+noise_type = 3
+frequency = 0.0977
+cellular_distance_function = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wirme"]
+width = 2048
+height = 2048
+color_ramp = SubResource("Gradient_dp54x")
+noise = SubResource("FastNoiseLite_hsuwp")
+
 [node name="Control" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,6 +69,7 @@ theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 75
 
 [node name="Main" type="VBoxContainer" parent="MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/Main"]
@@ -66,17 +86,37 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 
+[node name="StartScroll" type="AnimatedSprite2D" parent="MarginContainer/Main/VBoxContainer"]
+z_index = -1
+texture_filter = 1
+position = Vector2(474, 35)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("2_dp54x")
+
+[node name="SettingsScroll" type="AnimatedSprite2D" parent="MarginContainer/Main/VBoxContainer"]
+z_index = -1
+texture_filter = 1
+position = Vector2(475, 124)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("2_dp54x")
+
+[node name="QuitScroll" type="AnimatedSprite2D" parent="MarginContainer/Main/VBoxContainer"]
+z_index = -1
+texture_filter = 1
+position = Vector2(477, 215)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("2_dp54x")
+
 [node name="StartButton" type="Button" parent="MarginContainer/Main/VBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(250, 35)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/hover = ExtResource("2_n2hh1")
-theme_override_styles/pressed = ExtResource("3_v71lm")
-theme_override_styles/normal = ExtResource("2_n2hh1")
 text = "Start"
+flat = true
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/Main/VBoxContainer"]
 custom_minimum_size = Vector2(250, 35)
@@ -89,6 +129,7 @@ theme_override_styles/hover = ExtResource("2_n2hh1")
 theme_override_styles/pressed = ExtResource("3_v71lm")
 theme_override_styles/normal = ExtResource("2_n2hh1")
 text = "Settings"
+flat = true
 
 [node name="QuitButton" type="Button" parent="MarginContainer/Main/VBoxContainer"]
 custom_minimum_size = Vector2(250, 35)
@@ -101,6 +142,7 @@ theme_override_styles/hover = ExtResource("2_n2hh1")
 theme_override_styles/pressed = ExtResource("3_v71lm")
 theme_override_styles/normal = ExtResource("2_n2hh1")
 text = "Quit"
+flat = true
 
 [node name="Settings" type="PanelContainer" parent="MarginContainer"]
 visible = false
@@ -163,6 +205,14 @@ text = "Yes (does nothing)"
 layout_mode = 2
 text = "Another yes (does nothing)"
 
+[node name="art" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(601, 324)
+texture = SubResource("NoiseTexture2D_wirme")
+
+[connection signal="animation_finished" from="MarginContainer/Main/VBoxContainer/StartScroll" to="." method="_on_start_scroll_animation_finished"]
+[connection signal="animation_finished" from="MarginContainer/Main/VBoxContainer/SettingsScroll" to="." method="_on_settings_scroll_animation_finished"]
+[connection signal="animation_finished" from="MarginContainer/Main/VBoxContainer/QuitScroll" to="." method="_on_quit_scroll_animation_finished"]
 [connection signal="pressed" from="MarginContainer/Main/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

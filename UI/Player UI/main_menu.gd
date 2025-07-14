@@ -2,15 +2,17 @@ extends Control
 
 @onready var main = $MarginContainer/Main
 @onready var settings = $MarginContainer/Settings
+@onready var startScroll = $MarginContainer/Main/VBoxContainer/StartScroll
+@onready var settingsScroll = $MarginContainer/Main/VBoxContainer/SettingsScroll
+@onready var quitScroll = $MarginContainer/Main/VBoxContainer/QuitScroll
 
 #Start the game
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://node_2d.tscn")
+	startScroll.play()
 
 
 func _on_settings_button_pressed() -> void:
-	main.visible = false
-	settings.visible = true
+	settingsScroll.play()
 
 
 func _on_back_button_pressed() -> void:
@@ -19,4 +21,17 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	quitScroll.play()
+
+
+func _on_settings_scroll_animation_finished() -> void:
+	main.visible = false
+	settings.visible = true
+	settingsScroll.stop()
+	settingsScroll.frame = 0
+
+func _on_start_scroll_animation_finished() -> void:
+	get_tree().change_scene_to_file("res://node_2d.tscn")
+
+func _on_quit_scroll_animation_finished() -> void:
 	get_tree().quit()
