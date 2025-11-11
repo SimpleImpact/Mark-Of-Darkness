@@ -64,19 +64,22 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 	var edges = delauney()
 	var mst = generateMst(edges)
 	halls(mst, 2, map)
-	roomGen(map)
 	halls(mst, 0, map)
+	roomGen(map)
 	Globals.mapGenerated = true
 	debugLineGen(mst, debugLines)
 func roomGen(map):
+	# Wall Gen
 	for room in rooms:
 		if room.rect.size != Vector2():
 			var pos = room.rect.position
 			var size = Vector2(room.rect.size.x +2, room.rect.size.y +2)
 			for h in range(size.x):
 				for k in range(size.y):
-					map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(1,0))
+					if map.get_cell_source_id(Vector2i(pos.x+h,pos.y+k)) == -1:
+						map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(1,0))
 	
+	# Floor Gen
 	for room in rooms:
 		if room.rect.size != Vector2():
 			var pos = Vector2(room.rect.position.x +1, room.rect.position.y+1)

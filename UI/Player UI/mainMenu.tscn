@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2dmyadtemn1s"]
+[gd_scene load_steps=14 format=3 uid="uid://c2dmyadtemn1s"]
 
 [ext_resource type="Script" uid="uid://krmsn6fauqf3" path="res://UI/Player UI/main_menu.gd" id="1_wut1r"]
 [ext_resource type="SpriteFrames" uid="uid://bpplf12ysgqoe" path="res://Animations/Scroll-Open.tres" id="2_dp54x"]
 [ext_resource type="FontFile" uid="uid://b75wn5elgg7um" path="res://Fonts/TimesNewPixel.ttf" id="2_hsuwp"]
 [ext_resource type="StyleBox" uid="uid://2ca6xka04w33" path="res://UI/Player UI/Sprites/new_style_box_texture.tres" id="2_n2hh1"]
 [ext_resource type="StyleBox" uid="uid://cv144aeu42o3x" path="res://UI/Player UI/Sprites/new_style_box_texture_pressed.tres" id="3_v71lm"]
+[ext_resource type="FontFile" uid="uid://w1qpsppepxiv" path="res://Fonts/Debrosee-ALPnL.ttf" id="4_wirme"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l1xq8"]
 font = ExtResource("2_hsuwp")
@@ -33,18 +34,22 @@ anti_aliasing = false
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83s16"]
 
 [sub_resource type="Gradient" id="Gradient_dp54x"]
-colors = PackedColorArray(0, 0, 0, 1, 0.497474, 0.497474, 0.497474, 1)
+colors = PackedColorArray(0.497474, 0.497474, 0.497474, 1, 0, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hsuwp"]
-noise_type = 3
-frequency = 0.0977
+noise_type = 4
+frequency = 0.045
+fractal_type = 2
+fractal_octaves = 10
+fractal_gain = 0.41
+fractal_weighted_strength = 0.02
 cellular_distance_function = 3
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wirme"]
 width = 2048
 height = 2048
-color_ramp = SubResource("Gradient_dp54x")
 noise = SubResource("FastNoiseLite_hsuwp")
+color_ramp = SubResource("Gradient_dp54x")
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -114,7 +119,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("4_wirme")
+theme_override_font_sizes/font_size = 34
 text = "Start"
 flat = true
 
@@ -124,10 +130,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-theme_override_styles/hover = ExtResource("2_n2hh1")
-theme_override_styles/pressed = ExtResource("3_v71lm")
+theme_override_fonts/font = ExtResource("4_wirme")
+theme_override_font_sizes/font_size = 34
 theme_override_styles/normal = ExtResource("2_n2hh1")
+theme_override_styles/pressed = ExtResource("3_v71lm")
+theme_override_styles/hover = ExtResource("2_n2hh1")
 text = "Settings"
 flat = true
 
@@ -137,10 +144,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-theme_override_styles/hover = ExtResource("2_n2hh1")
-theme_override_styles/pressed = ExtResource("3_v71lm")
+theme_override_fonts/font = ExtResource("4_wirme")
+theme_override_font_sizes/font_size = 34
 theme_override_styles/normal = ExtResource("2_n2hh1")
+theme_override_styles/pressed = ExtResource("3_v71lm")
+theme_override_styles/hover = ExtResource("2_n2hh1")
 text = "Quit"
 flat = true
 

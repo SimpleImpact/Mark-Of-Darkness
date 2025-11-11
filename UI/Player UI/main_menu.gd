@@ -31,7 +31,7 @@ func _on_settings_scroll_animation_finished() -> void:
 	settingsScroll.frame = 0
 
 func _on_start_scroll_animation_finished() -> void:
-	get_tree().change_scene_to_file("res://node_2d.tscn")
+	get_tree().change_scene_to_file("res://startNode.tscn")
 
 func _on_quit_scroll_animation_finished() -> void:
 	get_tree().quit()
