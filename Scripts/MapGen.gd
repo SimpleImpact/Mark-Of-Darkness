@@ -26,7 +26,7 @@ var customRoomAtlas:Array
 var customPos = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y))
 var customSize = Vector2i()
 var arr:Array
-var customRoomPlaced = false
+var customRoomPlaced = true
 var customRoomCenter
 
 func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize:int, debugLines:bool, customRoom:bool, roomName:String):
@@ -35,9 +35,11 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 	var customRoomArray:Array
 
 	for i in roomNumber:
-		print(i)
 		if i == 0:
-			customRoomArray.append(1)
+			if customRoom:
+				customRoomArray.append(1)
+			else:
+				customRoomArray.append(0)
 		else:
 			customRoomArray.append(0)
 	for i in customRoomArray:

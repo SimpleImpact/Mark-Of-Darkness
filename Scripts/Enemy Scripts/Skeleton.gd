@@ -37,9 +37,10 @@ func _process(_delta: float) -> void:
 
 func get_input():
 	var player = Globals.player
+	var pPos = Globals.playerPos
 	if not player:
 		return
-	ray.target_position = player.position - global_position
+	ray.target_position = pPos - global_position
 	if ray.is_colliding() and ray.get_collider() == player and player.global_position.distance_to(global_position) <= sight*64:
 		lastSeen = player.position
 		nav.target_position = lastSeen

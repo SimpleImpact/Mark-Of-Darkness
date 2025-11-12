@@ -25,7 +25,7 @@ func _ready() -> void:
 		maxSpeed = 1500
 		$Lamp.enabled = false
 		$DirectionalLight2D.enabled = false
-		collider.disabled = true
+		collider.disabled = false
 	
 	print("Movement Initalized")
 	Globals.player = self
@@ -114,7 +114,7 @@ func _physics_process(delta):
 		velocity *= decay
 		decay -= 1
 				
-	Globals.playerPos = position
+	Globals.playerPos = global_position
 	move_and_slide()
 
 func start_timer():
