@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://c8gr1tseri7t8" path="res://Sprites/CobbleFloor.png" id="1_u2eeb"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_78081"]
-vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h4gvk"]
+vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jks2u"]
@@ -18,7 +18,7 @@ texture = ExtResource("1_u2eeb")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/z_index = -2
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_78081")
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_h4gvk")
 1:0/0 = 0
 1:0/0/z_index = -2
 1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_uo2yj")

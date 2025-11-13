@@ -13,16 +13,13 @@ func _on_start_button_pressed() -> void:
 
 func _on_settings_button_pressed() -> void:
 	settingsScroll.play()
-
+	
+func _on_quit_button_pressed() -> void:
+	quitScroll.play()
 
 func _on_back_button_pressed() -> void:
 	main.visible = true
 	settings.visible = false
-
-
-func _on_quit_button_pressed() -> void:
-	quitScroll.play()
-
 
 func _on_settings_scroll_animation_finished() -> void:
 	main.visible = false
