@@ -42,7 +42,7 @@ func get_input():
 		return
 	ray.target_position = pPos - global_position
 	if ray.is_colliding() and ray.get_collider() == player and player.global_position.distance_to(global_position) <= sight*64:
-		lastSeen = player.position
+		lastSeen = pPos
 		nav.target_position = lastSeen
 	else:
 		sprite.play("Idle")
@@ -50,14 +50,15 @@ func get_input():
 	direction = direction.normalized()
 	var stopped = false
 	#check to see if at last seen
-	if global_position > lastSeen-Vector2(stopDist,stopDist) and global_position < lastSeen+Vector2(stopDist,stopDist):
+	if global_position < lastSeen-Vector2(stopDist,stopDist) and global_position > lastSeen+Vector2(stopDist,stopDist):
 		stopped = true
 
+	print("Last Seen - stop: " + str(lastSeen-Vector2(stopDist,stopDist)) + ", GPos: " + str(global_position))
 	if lastSeen and not stopped:
 		#Smooth the direction change out by avg last direction with input and use turnWeight
 		lastVelo = ((lastVelo*turnWeight)+direction)/(turnWeight+1)
 		return direction
-		
+	
 func _physics_process(delta):
 	var player = Globals.player
 	if not player:

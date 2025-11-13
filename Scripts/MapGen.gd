@@ -36,7 +36,7 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 
 	for i in roomNumber:
 		if i == 0:
-			if customRoom:
+			if !customRoom:
 				customRoomArray.append(1)
 			else:
 				customRoomArray.append(0)

@@ -51,7 +51,7 @@ func get_input():
 	direction = direction.normalized()
 	var stopped = false
 	#check to see if at last seen
-	if global_position > lastSeen-Vector2(stopDist,stopDist) and global_position < lastSeen+Vector2(stopDist,stopDist):
+	if global_position < lastSeen-Vector2(stopDist,stopDist) and global_position > lastSeen+Vector2(stopDist,stopDist):
 		stopped = true
 
 	if lastSeen and not stopped:
