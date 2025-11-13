@@ -17,7 +17,7 @@ REM Add all changes
 git add .
 
 REM Commit changes with message
-git commit -m "Update"
+git commit -m Update
 
 REM Pull latest changes (to avoid conflicts)
 git pull origin master
