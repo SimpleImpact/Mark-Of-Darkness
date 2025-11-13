@@ -53,7 +53,6 @@ func get_input():
 	if global_position < lastSeen-Vector2(stopDist,stopDist) and global_position > lastSeen+Vector2(stopDist,stopDist):
 		stopped = true
 
-	print("Last Seen - stop: " + str(lastSeen-Vector2(stopDist,stopDist)) + ", GPos: " + str(global_position))
 	if lastSeen and not stopped:
 		#Smooth the direction change out by avg last direction with input and use turnWeight
 		lastVelo = ((lastVelo*turnWeight)+direction)/(turnWeight+1)

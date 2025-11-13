@@ -1,10 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2dmyadtemn1s"]
+[gd_scene load_steps=14 format=3 uid="uid://c2dmyadtemn1s"]
 
 [ext_resource type="Script" uid="uid://krmsn6fauqf3" path="res://UI/Player UI/main_menu.gd" id="1_wut1r"]
 [ext_resource type="SpriteFrames" uid="uid://bpplf12ysgqoe" path="res://Animations/Scroll-Open.tres" id="2_dp54x"]
 [ext_resource type="StyleBox" uid="uid://2ca6xka04w33" path="res://UI/Player UI/Sprites/new_style_box_texture.tres" id="2_n2hh1"]
 [ext_resource type="StyleBox" uid="uid://cv144aeu42o3x" path="res://UI/Player UI/Sprites/new_style_box_texture_pressed.tres" id="3_v71lm"]
+[ext_resource type="FontFile" uid="uid://c3ncj1v2hx5kb" path="res://Fonts/MediovintageItalic-YzAPa.otf" id="4_88yda"]
 [ext_resource type="FontFile" uid="uid://w1qpsppepxiv" path="res://Fonts/Debrosee-ALPnL.ttf" id="4_wirme"]
+
+[sub_resource type="FontVariation" id="FontVariation_hsuwp"]
+base_font = ExtResource("4_88yda")
+variation_transform = Transform2D(0.785, -0.17, 0, 1, 0, 0)
+opentype_features = {
+1801810542: 0
+}
+spacing_glyph = -25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1xq8"]
 bg_color = Color(0.341176, 0.341176, 0.341176, 0.588235)
@@ -95,12 +104,44 @@ position = Vector2(474, 35)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("2_dp54x")
 
+[node name="StartButton" type="Button" parent="MarginContainer/Main/VBoxContainer/StartScroll"]
+offset_left = -20.785
+offset_top = -6.91
+offset_right = 617.215
+offset_bottom = 187.09
+scale = Vector2(0.066, 0.061)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_hsuwp")
+theme_override_font_sizes/font_size = 222
+text = "Start"
+flat = true
+
 [node name="SettingsScroll" type="AnimatedSprite2D" parent="MarginContainer/Main/VBoxContainer"]
 z_index = -1
 texture_filter = 1
 position = Vector2(475, 124)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("2_dp54x")
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/Main/VBoxContainer/SettingsScroll"]
+custom_minimum_size = Vector2(250, 35)
+offset_left = -28.105
+offset_top = -8.22
+offset_right = 837.895
+offset_bottom = 222.78
+scale = Vector2(0.066, 0.066)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_hsuwp")
+theme_override_font_sizes/font_size = 222
+theme_override_styles/normal = ExtResource("2_n2hh1")
+theme_override_styles/pressed = ExtResource("3_v71lm")
+theme_override_styles/hover = ExtResource("2_n2hh1")
+text = "Settings"
+flat = true
 
 [node name="QuitScroll" type="AnimatedSprite2D" parent="MarginContainer/Main/VBoxContainer"]
 z_index = -1
@@ -109,40 +150,18 @@ position = Vector2(477, 215)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("2_dp54x")
 
-[node name="StartButton" type="Button" parent="MarginContainer/Main/VBoxContainer"]
-texture_filter = 1
+[node name="QuitButton" type="Button" parent="MarginContainer/Main/VBoxContainer/QuitScroll"]
 custom_minimum_size = Vector2(250, 35)
-layout_mode = 2
+offset_left = -14.3
+offset_top = -6.64
+offset_right = 392.7
+offset_bottom = 179.36
+scale = Vector2(0.066, 0.066)
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_wirme")
-theme_override_font_sizes/font_size = 34
-text = "Start"
-flat = true
-
-[node name="SettingsButton" type="Button" parent="MarginContainer/Main/VBoxContainer"]
-custom_minimum_size = Vector2(250, 35)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_wirme")
-theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = ExtResource("2_n2hh1")
-theme_override_styles/pressed = ExtResource("3_v71lm")
-theme_override_styles/hover = ExtResource("2_n2hh1")
-text = "Settings"
-flat = true
-
-[node name="QuitButton" type="Button" parent="MarginContainer/Main/VBoxContainer"]
-custom_minimum_size = Vector2(250, 35)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_wirme")
-theme_override_font_sizes/font_size = 34
+theme_override_fonts/font = SubResource("FontVariation_hsuwp")
+theme_override_font_sizes/font_size = 222
 theme_override_styles/normal = ExtResource("2_n2hh1")
 theme_override_styles/pressed = ExtResource("3_v71lm")
 theme_override_styles/hover = ExtResource("2_n2hh1")
@@ -212,13 +231,14 @@ text = "Another yes (does nothing)"
 
 [node name="art" type="Sprite2D" parent="."]
 z_index = -2
+texture_filter = 2
 position = Vector2(601, 324)
 texture = SubResource("NoiseTexture2D_wirme")
 
 [connection signal="animation_finished" from="MarginContainer/Main/VBoxContainer/StartScroll" to="." method="_on_start_scroll_animation_finished"]
+[connection signal="button_down" from="MarginContainer/Main/VBoxContainer/StartScroll/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="animation_finished" from="MarginContainer/Main/VBoxContainer/SettingsScroll" to="." method="_on_settings_scroll_animation_finished"]
+[connection signal="button_down" from="MarginContainer/Main/VBoxContainer/SettingsScroll/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="animation_finished" from="MarginContainer/Main/VBoxContainer/QuitScroll" to="." method="_on_quit_scroll_animation_finished"]
-[connection signal="button_down" from="MarginContainer/Main/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="button_down" from="MarginContainer/Main/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="button_down" from="MarginContainer/Main/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="button_down" from="MarginContainer/Main/VBoxContainer/QuitScroll/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Settings/HBoxContainer/PanelContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

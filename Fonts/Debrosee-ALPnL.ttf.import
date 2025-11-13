@@ -14,7 +14,7 @@ dest_files=["res://.godot/imported/Debrosee-ALPnL.ttf-db728eadcbc4890d673331a6da
 
 Rendering=null
 antialiasing=1
-generate_mipmaps=false
+generate_mipmaps=true
 disable_embedded_bitmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
@@ -22,14 +22,14 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
-hinting=0
-subpixel_positioning=3
-keep_rounding_remainders=true
+hinting=1
+subpixel_positioning=1
+keep_rounding_remainders=false
 oversampling=0.0
 Fallbacks=null
 fallbacks=[]
 Compress=null
-compress=true
+compress=false
 preload=[{
 "chars": [],
 "glyphs": [],
