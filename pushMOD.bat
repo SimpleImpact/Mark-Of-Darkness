@@ -20,10 +20,10 @@ REM Commit changes with message
 git commit -m "Update"
 
 REM Pull latest changes (to avoid conflicts)
-git pull origin main
+git pull origin master
 
 REM Push changes to GitHub
-git push origin main
+git push origin master
 
 ECHO.
 ECHO ✅ Push completed successfully!
