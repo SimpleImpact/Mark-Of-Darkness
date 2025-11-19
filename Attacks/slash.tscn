@@ -1,8 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://drer37xha7mfv"]
 
 [ext_resource type="Texture2D" uid="uid://cpkg7p7xd8gk8" path="res://Sprites/Attacks/Slash.png" id="1_p55mk"]
-
-[ext_resource type="Script" path="res://Scripts/Attacks/slash.gd" id="2_efym2"]
+[ext_resource type="Script" uid="uid://3f5u6x3sk3ts" path="res://Scripts/Attacks/slash.gd" id="2_efym2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tr32"]
 atlas = ExtResource("1_p55mk")
@@ -97,6 +96,9 @@ offset = Vector2(4, -24)
 script = ExtResource("2_efym2")
 
 [node name="Area2D2" type="Area2D" parent="."]
+z_index = -1
+collision_layer = 3
+collision_mask = 17
 metadata/Type = "Attack"
 metadata/Damage = 35
 

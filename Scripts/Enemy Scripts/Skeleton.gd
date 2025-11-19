@@ -88,6 +88,7 @@ func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_ind
 	if has_meta("Type"):
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")
+			print("Hit")
 	if health <= 0:
 		sprite.play("Death")
 		set_physics_process(false)
