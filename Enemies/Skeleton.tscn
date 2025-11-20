@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dp8bmdgw20t85"]
+[gd_scene load_steps=26 format=3 uid="uid://dp8bmdgw20t85"]
 
 [ext_resource type="Texture2D" uid="uid://11na623fi73x" path="res://Sprites/skeleton.png" id="1_0bpre"]
 [ext_resource type="Script" uid="uid://g7h66uowjaav" path="res://Scripts/Enemy Scripts/Skeleton.gd" id="1_65cfn"]
@@ -154,22 +154,19 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v6axu"]
-radius = 56.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_db7n3"]
+radius = 41.0
+height = 104.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lj6og"]
 size = Vector2(80, 100)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_db7n3"]
-radius = 20.0
-
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 16
-collision_priority = 0.06
 motion_mode = 1
 wall_min_slide_angle = 0.0
-safe_margin = 1.0
+safe_margin = 38.29
 script = ExtResource("1_65cfn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -195,7 +192,7 @@ simplify_epsilon = 10.0
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="WallCollider" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_v6axu")
+shape = SubResource("CapsuleShape2D_db7n3")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.01
@@ -205,11 +202,9 @@ autostart = true
 collision_layer = 3
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 shape = SubResource("RectangleShape2D_lj6og")
 metadata/Type = "Attack Detector"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_db7n3")
 
 [connection signal="area_shape_entered" from="Hitbox" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

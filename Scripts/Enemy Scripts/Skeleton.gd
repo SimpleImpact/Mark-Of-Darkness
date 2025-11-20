@@ -14,7 +14,7 @@ extends CharacterBody2D
 var health = maxHealth
 
 @export var stopDist = 3
-@export var sight = 100
+@export var sight = 5
 
 @onready var sprite = $Sprite
 
@@ -60,6 +60,7 @@ func get_input():
 	
 func _physics_process(delta):
 	var player = Globals.player
+	var playerDist = Globals.distance(self.position, player.position)
 	if not player:
 		return
 	var input_dir = get_input()
