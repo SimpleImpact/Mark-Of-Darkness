@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var maxHealth = 100
 var health = maxHealth
 
-@export var stopDist = 3
+@export var stopDist = 20
 @export var sight = 5
 
 @onready var sprite = $Sprite
@@ -22,17 +22,18 @@ var curSpeed = 0
 var lastVelo = Vector2(0,0)
 var lastSeen:Vector2
 
-var n = 0
+# Will be this far from the player with a margin of error of abt 5(subject to change)
+var hoverDist = 20
 
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
-#Health Math: round(health ÷ (maxHealth ÷ 30)) = frame number 
 
 func _ready():
 	set_physics_process(false)
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	await get_tree().physics_frame
+	await Globals.player
 	set_physics_process(true)
 
 func _process(_delta: float) -> void:

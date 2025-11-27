@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bq2s8jhja8833"]
+[gd_scene load_steps=31 format=3 uid="uid://bq2s8jhja8833"]
 
 [ext_resource type="Script" uid="uid://c0luklt8h3fvk" path="res://Scripts/Player Scripts/Movement.gd" id="1_lkuwi"]
 [ext_resource type="Script" uid="uid://cafikea3xywt0" path="res://Scripts/Attacks/Attack Handler.gd" id="2_80hox"]
@@ -143,6 +143,30 @@ fill_to = Vector2(1, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_empod"]
 shader = ExtResource("6_03up6")
 
+[sub_resource type="Curve" id="Curve_0ar0x"]
+_data = [Vector2(0, 0), 0.0, -0.022146106, 0, 0, Vector2(0.051470593, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2589166, -0.6723594, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aooha"]
+curve = SubResource("Curve_0ar0x")
+
+[sub_resource type="Gradient" id="Gradient_slvmq"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_txarr"]
+gradient = SubResource("Gradient_slvmq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ng3n2"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 100, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 12.0
+color_initial_ramp = SubResource("GradientTexture1D_txarr")
+alpha_curve = SubResource("CurveTexture_aooha")
+
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 collision_mask = 17
@@ -165,6 +189,7 @@ script = ExtResource("2_80hox")
 position = Vector2(0, -4)
 scale = Vector2(0.998497, 1.01744)
 polygon = PackedVector2Array(-40, -56, 40, -56, 40, 39, -40, 39)
+disabled = true
 
 [node name="Player Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -182,4 +207,14 @@ texture = SubResource("GradientTexture2D_kv3fc")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 material = SubResource("ShaderMaterial_empod")
 blend_mode = 1
+range_z_min = -964
 range_z_max = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+light_mask = 2
+z_index = -100
+z_as_relative = false
+scale = Vector2(20, 20)
+amount = 999
+lifetime = 28.05
+process_material = SubResource("ParticleProcessMaterial_ng3n2")

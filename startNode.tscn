@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0wsv0wn7obag"]
+[gd_scene load_steps=20 format=3 uid="uid://c0wsv0wn7obag"]
 
 [ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="1_q2kc5"]
 [ext_resource type="Shader" uid="uid://e42rg5ljlc2g" path="res://test.gdshader" id="2_dckhu"]
 [ext_resource type="Script" uid="uid://dvw21crtojnxh" path="res://Scripts/Player Scripts/Player Camera.gd" id="3_frdjm"]
+[ext_resource type="Texture2D" uid="uid://dpgaekdsef2tp" path="res://Sprites/Background/black.png" id="4_dckhu"]
 
 [sub_resource type="GDScript" id="GDScript_0hol4"]
 script/source = "extends Node
@@ -57,6 +58,38 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a4loa"]
 gradient = SubResource("Gradient_1poxb")
+
+[sub_resource type="Gradient" id="Gradient_frdjm"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.07333333)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aooha"]
+gradient = SubResource("Gradient_frdjm")
+
+[sub_resource type="Curve" id="Curve_frdjm"]
+_data = [Vector2(0, 0), 0.0, -0.022146106, 0, 0, Vector2(0.051470593, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2589166, -0.6723594, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aooha"]
+curve = SubResource("Curve_frdjm")
+
+[sub_resource type="Gradient" id="Gradient_3iicc"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_txarr"]
+gradient = SubResource("Gradient_3iicc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ygtr5"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(13, 13, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 16.0
+scale_max = 64.0
+color_initial_ramp = SubResource("GradientTexture1D_txarr")
+alpha_curve = SubResource("CurveTexture_aooha")
 
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
@@ -117,6 +150,7 @@ scale = Vector2(50, 50)
 texture = SubResource("GradientTexture2D_dckhu")
 
 [node name="Layer 0 Light" type="PointLight2D" parent="."]
+light_mask = 3
 material = SubResource("ShaderMaterial_k1gt1")
 scale = Vector2(700, 700)
 range_z_min = 1
@@ -131,4 +165,26 @@ range_z_max = 1001
 texture = SubResource("GradientTexture2D_a4loa")
 
 [node name="Player Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.125, 0.125)
 script = ExtResource("3_frdjm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+z_index = -1000
+position = Vector2(17, -12)
+scale = Vector2(50, 50)
+texture = ExtResource("4_dckhu")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D2"]
+scale = Vector2(1000, 1000)
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_aooha")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D2"]
+light_mask = 2
+z_index = 1
+scale = Vector2(20, 20)
+amount = 999
+lifetime = 28.05
+process_material = SubResource("ParticleProcessMaterial_ygtr5")

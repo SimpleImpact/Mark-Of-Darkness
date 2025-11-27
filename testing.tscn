@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cj1jb25kd5qpc"]
+
+[sub_resource type="Curve" id="Curve_v62h7"]
+_data = [Vector2(0, 0), 0.0, -0.022146106, 0, 0, Vector2(0.051470593, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2589166, -0.6723594, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qrja6"]
+curve = SubResource("Curve_v62h7")
+
+[sub_resource type="Gradient" id="Gradient_co24e"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_feb8i"]
+gradient = SubResource("Gradient_co24e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kj3p2"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 100, 100)
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_feb8i")
+alpha_curve = SubResource("CurveTexture_qrja6")
+
+[node name="Testing" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 569
+lifetime = 28.05
+process_material = SubResource("ParticleProcessMaterial_kj3p2")
