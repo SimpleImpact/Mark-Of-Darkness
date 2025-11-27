@@ -1,14 +1,14 @@
 [gd_scene load_steps=14 format=3 uid="uid://c2dmyadtemn1s"]
 
-[ext_resource type="Script" uid="uid://krmsn6fauqf3" path="res://UI/Player UI/main_menu.gd" id="1_wut1r"]
-[ext_resource type="SpriteFrames" uid="uid://bpplf12ysgqoe" path="res://Animations/Scroll-Open.tres" id="2_dp54x"]
-[ext_resource type="StyleBox" uid="uid://2ca6xka04w33" path="res://UI/Player UI/Sprites/new_style_box_texture.tres" id="2_n2hh1"]
-[ext_resource type="StyleBox" uid="uid://cv144aeu42o3x" path="res://UI/Player UI/Sprites/new_style_box_texture_pressed.tres" id="3_v71lm"]
-[ext_resource type="FontFile" uid="uid://c3ncj1v2hx5kb" path="res://Fonts/MediovintageItalic-YzAPa.otf" id="4_88yda"]
-[ext_resource type="FontFile" uid="uid://w1qpsppepxiv" path="res://Fonts/Debrosee-ALPnL.ttf" id="4_wirme"]
+[ext_resource type="Script" uid="uid://krmsn6fauqf3" path="res://UI/main_menu.gd" id="1_j0q2s"]
+[ext_resource type="FontFile" uid="uid://w1qpsppepxiv" path="res://Fonts/Debrosee-ALPnL.ttf" id="2_0f4tj"]
+[ext_resource type="SpriteFrames" uid="uid://bpplf12ysgqoe" path="res://Animations/Scroll-Open.tres" id="3_tgw46"]
+[ext_resource type="FontFile" uid="uid://c3ncj1v2hx5kb" path="res://Fonts/MediovintageItalic-YzAPa.otf" id="4_nxeka"]
+[ext_resource type="StyleBox" uid="uid://2ca6xka04w33" path="res://UI/Player UI/Sprites/new_style_box_texture.tres" id="5_0oiyi"]
+[ext_resource type="StyleBox" uid="uid://cv144aeu42o3x" path="res://UI/Player UI/Sprites/new_style_box_texture_pressed.tres" id="6_ge4e6"]
 
 [sub_resource type="FontVariation" id="FontVariation_hsuwp"]
-base_font = ExtResource("4_88yda")
+base_font = ExtResource("4_nxeka")
 variation_transform = Transform2D(0.785, -0.17, 0, 1, 0, 0)
 opentype_features = {
 1801810542: 0
@@ -63,7 +63,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wut1r")
+script = ExtResource("1_j0q2s")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -86,7 +86,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("4_wirme")
+theme_override_fonts/font = ExtResource("2_0f4tj")
 theme_override_font_sizes/font_size = 119
 text = "Mark of Darkness"
 horizontal_alignment = 1
@@ -102,7 +102,7 @@ z_index = -1
 texture_filter = 1
 position = Vector2(474, 35)
 scale = Vector2(3, 3)
-sprite_frames = ExtResource("2_dp54x")
+sprite_frames = ExtResource("3_tgw46")
 
 [node name="StartButton" type="Button" parent="MarginContainer/Main/VBoxContainer/StartScroll"]
 offset_left = -20.785
@@ -123,7 +123,7 @@ z_index = -1
 texture_filter = 1
 position = Vector2(475, 124)
 scale = Vector2(3, 3)
-sprite_frames = ExtResource("2_dp54x")
+sprite_frames = ExtResource("3_tgw46")
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/Main/VBoxContainer/SettingsScroll"]
 custom_minimum_size = Vector2(250, 35)
@@ -137,9 +137,9 @@ size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_hsuwp")
 theme_override_font_sizes/font_size = 222
-theme_override_styles/normal = ExtResource("2_n2hh1")
-theme_override_styles/pressed = ExtResource("3_v71lm")
-theme_override_styles/hover = ExtResource("2_n2hh1")
+theme_override_styles/normal = ExtResource("5_0oiyi")
+theme_override_styles/pressed = ExtResource("6_ge4e6")
+theme_override_styles/hover = ExtResource("5_0oiyi")
 text = "Settings"
 flat = true
 
@@ -148,7 +148,7 @@ z_index = -1
 texture_filter = 1
 position = Vector2(477, 215)
 scale = Vector2(3, 3)
-sprite_frames = ExtResource("2_dp54x")
+sprite_frames = ExtResource("3_tgw46")
 
 [node name="QuitButton" type="Button" parent="MarginContainer/Main/VBoxContainer/QuitScroll"]
 custom_minimum_size = Vector2(250, 35)
@@ -162,9 +162,9 @@ size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_hsuwp")
 theme_override_font_sizes/font_size = 222
-theme_override_styles/normal = ExtResource("2_n2hh1")
-theme_override_styles/pressed = ExtResource("3_v71lm")
-theme_override_styles/hover = ExtResource("2_n2hh1")
+theme_override_styles/normal = ExtResource("5_0oiyi")
+theme_override_styles/pressed = ExtResource("6_ge4e6")
+theme_override_styles/hover = ExtResource("5_0oiyi")
 text = "Quit"
 flat = true
 

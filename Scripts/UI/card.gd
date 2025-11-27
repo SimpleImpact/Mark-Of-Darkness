@@ -18,9 +18,8 @@ func moveIn():
 	tweenRot = create_tween()
 	tweenScale = create_tween()
 	cardTexture.z_index = 1000
-	tweenPos.tween_property(cardTexture, "position", Vector2(cardTexture.position.x -10, -100), 0.2)
-	tweenRot.tween_property(cardTexture, "rotation", -0.174533, 0.2)
-	tweenScale.tween_property(cardTexture, "scale", Vector2(1.3, 1.3), 0.2)
+	tweenPos.tween_property(cardTexture, "position", Vector2(cardTexture.position.x -10, -20), 0.2)
+	tweenScale.tween_property(cardTexture, "scale", Vector2(1.15, 1.15), 0.2)
 
 func moveOut():
 	tweenPos = create_tween()
@@ -28,7 +27,6 @@ func moveOut():
 	tweenScale = create_tween()
 	cardTexture.z_index = 0
 	tweenPos.tween_property(cardTexture, "position", Vector2(targetPos.x, 0), 0.2)
-	tweenRot.tween_property(cardTexture, "rotation", 0, 0.2)
 	tweenScale.tween_property(cardTexture, "scale", Vector2(1.1, 1.1), 0.2)
 
 func fadeOut():

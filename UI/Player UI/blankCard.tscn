@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://b1i3d34jx3xcq" path="res://Scripts/UI/card.gd" id="1_8t8ul"]
 [ext_resource type="Texture2D" uid="uid://ch0y7tdrv64ss" path="res://Sprites/Cards/Blank.png" id="1_em724"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8t8ul"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_334sn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8t8ul"]
 
 [node name="Card Base" type="Control"]
 layout_mode = 3
@@ -31,8 +31,8 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 144.0
 offset_bottom = 176.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8t8ul")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_334sn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8t8ul")
 flat = true
 expand_icon = true
 

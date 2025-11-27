@@ -100,14 +100,20 @@ wait_time = 3.0
 one_shot = true
 
 [node name="HealthbarBorder" type="Line2D" parent="Main"]
+z_index = 1
 position = Vector2(0, -55)
 points = PackedVector2Array(-34, 0, 34, 0)
 default_color = Color(0, 0, 0, 1)
 
-[node name="Healthbar" type="Line2D" parent="Main/HealthbarBorder"]
+[node name="HealthbarRed" type="Line2D" parent="Main/HealthbarBorder"]
 points = PackedVector2Array(-32, 0, 32, 0)
 width = 7.0
 default_color = Color(0.958424, 0, 0.141896, 1)
+
+[node name="HealthbarGreen" type="Line2D" parent="Main/HealthbarBorder"]
+points = PackedVector2Array(-32, 0, 32, 0)
+width = 7.0
+default_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
 
 [node name="Hitbox" type="Area2D" parent="Main"]
 

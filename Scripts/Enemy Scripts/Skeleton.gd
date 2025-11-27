@@ -22,12 +22,15 @@ var curSpeed = 0
 var lastVelo = Vector2(0,0)
 var lastSeen:Vector2
 
+var n = 0
+
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
 #Health Math: round(health ÷ (maxHealth ÷ 30)) = frame number 
 
 func _ready():
 	set_physics_process(false)
+	await get_tree().physics_frame
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	set_physics_process(true)
@@ -86,7 +89,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
-	if has_meta("Type"):
+	if area.has_meta("Type"):
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")
 			print("Hit")

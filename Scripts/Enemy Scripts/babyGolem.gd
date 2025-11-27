@@ -16,6 +16,8 @@ extends CharacterBody2D
 
 @export var maxHealth = 100
 var health = maxHealth
+@onready var zeroHP = $HealthbarBorder/HealthbarGreen.points[0].x
+@onready var maxHP = $HealthbarBorder/HealthbarGreen.points[1].x
 
 @export var stopDist = 3
 @export var sight = 100
@@ -62,7 +64,7 @@ func get_input():
 
 @onready var body = $CollisionShape2D/Body
 #Time for 1 anim loop
-@export var floatLoop = 2
+@export var floatLoop = 2.0
 @onready var leftHand = self.get_parent().find_child("LeftHand")
 @onready var rightHand = self.get_parent().find_child("RightHand")
 
@@ -77,12 +79,8 @@ func floaty(delta):
 	leftHand.find_child("CollisionShape2D").find_child("LeftHandSprite").position.y += cos(count-15*handDelay)*1/2
 	rightHand.find_child("CollisionShape2D").find_child("RightHandSprite").position.y += cos(count-10*handDelay)*1/2
 	
-
-
 @onready var leftDif = global_position-leftHand.global_position
 @onready var rightDif = global_position-rightHand.global_position
-
-
 
 func _physics_process(delta):
 	var player = Globals.player
@@ -119,9 +117,16 @@ func _physics_process(delta):
 	await get_tree().create_timer(0.1).timeout
 	rightHand.global_position = prevPos-rightDif
 
+func _process(delta: float) -> void:
+	var dist = Globals.distance(Vector2(zeroHP, 0), Vector2(maxHP, 0)) #Returns (64 - health/maxHealth) -32
+	var targetHealth = Vector2(((dist * health/maxHealth) -32), 0)
+	if targetHealth.x < zeroHP:
+		$HealthbarBorder/HealthbarGreen.set_point_position(1, Vector2(zeroHP, 0))
+	else:
+		$HealthbarBorder/HealthbarGreen.set_point_position(1, targetHealth)
 
 func _on_hitbox_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if has_meta("Type"):
+	if area.has_meta("Type"):
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")
 	if health <= 0:
