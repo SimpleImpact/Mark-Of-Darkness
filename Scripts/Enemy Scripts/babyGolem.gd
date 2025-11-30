@@ -117,7 +117,7 @@ func _physics_process(delta):
 	await get_tree().create_timer(0.1).timeout
 	rightHand.global_position = prevPos-rightDif
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var dist = Globals.distance(Vector2(zeroHP, 0), Vector2(maxHP, 0)) #Returns (64 - health/maxHealth) -32
 	var targetHealth = Vector2(((dist * health/maxHealth) -32), 0)
 	if targetHealth.x < zeroHP:
@@ -125,7 +125,7 @@ func _process(delta: float) -> void:
 	else:
 		$HealthbarBorder/HealthbarGreen.set_point_position(1, targetHealth)
 
-func _on_hitbox_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.has_meta("Type"):
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")

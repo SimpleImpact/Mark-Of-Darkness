@@ -28,7 +28,7 @@ script = ExtResource("1_gnatl")
 [node name="Mana Bar" type="TextureProgressBar" parent="."]
 z_index = 1000
 material = SubResource("ShaderMaterial_er0wr")
-layout_mode = 2
+layout_mode = 0
 offset_left = -383.0
 offset_top = 312.0
 offset_right = 385.0
@@ -39,18 +39,18 @@ texture_progress = SubResource("GradientTexture1D_c20no")
 
 [node name="Cards" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = -384.0
-offset_top = 80.0
-offset_right = 384.0
-offset_bottom = 240.0
+offset_left = -308.0
+offset_top = 164.0
+offset_right = 460.0
+offset_bottom = 243.0
 alignment = 2
 script = ExtResource("3_puuxp")
-card_count = 8
+card_count = 4
 
 [node name="Health Bar" type="TextureProgressBar" parent="."]
 z_index = 1000
 material = SubResource("ShaderMaterial_er0wr")
-layout_mode = 2
+layout_mode = 0
 offset_left = -383.0
 offset_top = 283.0
 offset_right = 385.0
@@ -67,3 +67,6 @@ offset_top = 277.0
 offset_right = 390.0
 offset_bottom = 337.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_er0wr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.86, 0.86)

@@ -15,8 +15,6 @@ var superZoom = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var spawn = Spawn_room.instantiate()
-	var player = player_obj.instantiate()
-	var ui = ui_obj.instantiate()
 	add_child(spawn)
 	#add_child(player)
 	EnemySpawner.genEnemies(EnemySpawner.test)

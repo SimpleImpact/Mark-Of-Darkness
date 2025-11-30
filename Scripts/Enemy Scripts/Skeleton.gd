@@ -22,6 +22,8 @@ var curSpeed = 0
 var lastVelo = Vector2(0,0)
 var lastSeen:Vector2
 
+var playerReady:bool = Globals.pReady
+
 # Will be this far from the player with a margin of error of abt 5(subject to change)
 var hoverDist = 20
 
@@ -60,7 +62,6 @@ func get_input():
 		return direction
 func _physics_process(delta):
 	var player = Globals.player
-	var playerDist = Globals.distance(self.position, player.position)
 	if not player:
 		return
 	var input_dir = get_input()
@@ -87,7 +88,6 @@ func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_ind
 	if area.has_meta("Type"):
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")
-			print("Hit")
 	if health <= 0:
 		sprite.play("Death")
 		set_physics_process(false)

@@ -17,6 +17,8 @@ var maxPlayerHealth = 100
 var playerMana = 100
 var maxPlayerMana = 100
 
+var pReady = false
+
 func distance(pos1:Vector2, pos2:Vector2):
 	return(sqrt((pos2.x - pos1.x) **2 + (pos2.y - pos1.y) **2))
 

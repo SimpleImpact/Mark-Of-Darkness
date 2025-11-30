@@ -115,6 +115,7 @@ func _physics_process(delta):
 		decay -= 1
 				
 	Globals.playerPos = global_position
+	Globals.pReady = true
 	move_and_slide()
 
 func start_timer():
