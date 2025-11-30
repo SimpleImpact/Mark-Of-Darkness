@@ -21,16 +21,20 @@ script = ExtResource("1_8t8ul")
 [node name="Texture" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_right = 128.0
-offset_bottom = 160.0
+offset_left = -70.4
+offset_top = -88.0
+offset_right = 57.6
+offset_bottom = 72.0
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("1_em724")
 
 [node name="Card" type="Button" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_right = 144.0
-offset_bottom = 176.0
+offset_left = -70.4
+offset_top = -88.0
+offset_right = 73.6
+offset_bottom = 88.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_334sn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8t8ul")
 flat = true

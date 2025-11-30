@@ -13,7 +13,6 @@ var test = [[preload("res://Enemies/Skeleton.tscn"),3],
 
 
 func genEnemies(enemyPool) -> void:
-	await Globals.mapGenerated == true
 	await get_tree().create_timer(0.1).timeout
 	
 	var rng = MapGen.rng

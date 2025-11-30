@@ -19,7 +19,6 @@ var start = randi_range(0,1)
 @export var hallWidth = 3
 
 var roomTiles:Array
-var roomNumber = 0
 var holder = hallWidth
 
 var customRoomAtlas:Array
@@ -46,17 +45,15 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 		print(i)
 		if i == 0:
 			var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
-			var position = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y)) # Adjust range as needed
-			var new_room = Room.new(position.x, position.y, size.x, size.y)
+			var pos = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y)) # Adjust range as needed
+			var new_room = Room.new(pos.x, pos.y, size.x, size.y)
 			if !room_overlaps(new_room):
 				rooms.append(new_room)
 		if i == 1:
 			while !customRoomPlaced:
 				customRoomImport(roomName)
-				await customSize != Vector2i()
-				var size = customSize
-				var position = customPos
-				var new_room = Room.new(position.x, position.y, 0, 0)
+				var pos = customPos
+				var new_room = Room.new(pos.x, pos.y, 0, 0)
 				if !room_overlaps(new_room):
 					rooms.append(new_room)
 					customRoomPlaced = true
@@ -92,13 +89,12 @@ func roomGen(map):
 					if k != 0:
 						roomTiles.append(Vector2i(pos.x+h,pos.y+k))
 		Globals.openTiles += roomTiles
-		roomNumber += 1
 
 # Check for overlapping rooms
 func room_overlaps(new_room: Room) -> bool:
 	for room in rooms:
-		var expanded = room.rect.grow(minRoomOffset/2)
-		if expanded.intersects(new_room.rect.grow(minRoomOffset/2)):
+		var expanded = room.rect.grow(minRoomOffset/2.0)
+		if expanded.intersects(new_room.rect.grow(minRoomOffset/2.0)):
 			return true
 	return false
 # Do tranglation
@@ -113,7 +109,7 @@ func delauney():
 	
 	#Get all edges
 	var edges = []
-	for i in range(len(triangulation)/3):
+	for i in range(len(triangulation)/3.0):
 		edges.append([triangulation[i*3],triangulation[(i*3)+1]])
 		edges.append([triangulation[i*3+1],triangulation[(i*3)+2]])
 		edges.append([triangulation[i*3+2],triangulation[(i*3)]])
@@ -211,17 +207,13 @@ func debugLineGen(mst, enableRoomDebugLines):
 			add_child(trace)
 			trace.add_point(line[0]*64)
 			trace.add_point(line[1]*64)
-func customRoomImport(name):
+func customRoomImport(roomName):
 	var s
 	var cord:Vector2i
-	var file = FileAccess.open("res://Rooms/" + name + ".json", FileAccess.READ)
-	var roomData = str_to_var(file.get_file_as_string("res://Rooms/" + name + ".json"))
+	var roomData = str_to_var(FileAccess.get_file_as_string("res://Rooms/" + roomName + ".json"))
 	s = ((roomData.get("Pos").erase(0).erase(roomData.get("Pos").length()).split(", ")))
-	print(customPos)
 	customRoomCenter = Vector2i(int(s[0]), int(s[1]))
-	print(customPos)
 	arr = roomData.get("_Data")
-	customPos
 	for i in arr:
 		for g in i:
 			for e in g:

@@ -14,19 +14,13 @@ func _on_card_mouse_exited() -> void:
 	moveOut()
 
 func moveIn():
-	tweenPos = create_tween()
-	tweenRot = create_tween()
 	tweenScale = create_tween()
 	cardTexture.z_index = 1000
-	tweenPos.tween_property(cardTexture, "position", Vector2(cardTexture.position.x -10, -20), 0.2)
 	tweenScale.tween_property(cardTexture, "scale", Vector2(1.15, 1.15), 0.2)
 
 func moveOut():
-	tweenPos = create_tween()
-	tweenRot = create_tween()
 	tweenScale = create_tween()
 	cardTexture.z_index = 0
-	tweenPos.tween_property(cardTexture, "position", Vector2(targetPos.x, 0), 0.2)
 	tweenScale.tween_property(cardTexture, "scale", Vector2(1.1, 1.1), 0.2)
 
 func fadeOut():
