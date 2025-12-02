@@ -8,7 +8,7 @@ extends Node
 var openTiles:Array #Dictionary to hold all spawnable tiles, custom rooms will not be here. The data is stored like this "roomNumber:Vector2i(69, 420)"
 var mapGenerated:bool = false
 var playerPos:Vector2
-var player
+var player:CharacterBody2D
 var debug = false
 var CamPos:Vector2
 var CamZoom = Vector2(0.75, 0.75)
@@ -21,6 +21,9 @@ var pReady = false
 
 func distance(pos1:Vector2, pos2:Vector2):
 	return(sqrt((pos2.x - pos1.x) **2 + (pos2.y - pos1.y) **2))
+
+func logarithm(n, base):
+	return(log(n) / log(base))
 
 ### These are both needed idk why ###
 func _ready() -> void:

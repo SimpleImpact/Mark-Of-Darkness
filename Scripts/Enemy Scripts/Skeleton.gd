@@ -14,7 +14,7 @@ extends CharacterBody2D
 var health = maxHealth
 
 @export var stopDist = 20
-@export var sight = 5
+@export var sight = 500
 
 @onready var sprite = $Sprite
 
@@ -31,7 +31,9 @@ var hoverDist = 20
 @onready var ray = $RayCast2D
 
 func _ready():
-	pass
+	while not Globals.pReady:
+		set_physics_process(false)
+	set_physics_process(true)
 
 func _process(_delta: float) -> void:
 	$Healthbar.frame = round(float(health) / (float(maxHealth) / 30))
@@ -59,31 +61,37 @@ func get_input():
 		lastVelo = ((lastVelo*turnWeight)+direction)/(turnWeight+1)
 		return direction
 	
-func _physics_process(delta):
-	var player = Globals.player
-	if not player:
-		return
-	var input_dir = get_input()
-	#Increase current speed when given input
-	if lastVelo and input_dir and curSpeed<maxSpeed:
-		curSpeed += maxSpeed*delta/accel
-	#If no input decrease speed
-	elif curSpeed>0:
-		curSpeed -= maxSpeed*delta/decel
-	
-	#Reset last velocity if not moving or input
-	if curSpeed == 0 and not input_dir:
-		lastVelo = Vector2(0,0)
-	
-	#Ensures speed doesnt go above max or below zero
-	if curSpeed<0:
-		curSpeed = 0
-	elif curSpeed>maxSpeed:
-		curSpeed = maxSpeed
-	
-	#Apply input and speed to velocity and move
-	velocity = lastVelo*curSpeed
-	move_and_slide()
+func _physics_process(_delta):
+	var pReady = Globals.pReady
+	if pReady:
+		var player = Globals.player
+		var dist = Globals.distance(Globals.playerPos, position)
+		if Globals.distance(Globals.playerPos, position) < sight:
+			print(Globals.distance(Globals.playerPos, position))
+		#velocity = Vector2(Globals.logarithm(dist.x, sight), Globals.logarithm(dist.y, sight))
+		#if not player:
+			#return
+		#var input_dir = get_input()
+		##Increase current speed when given input
+		#if lastVelo and input_dir and curSpeed<maxSpeed:
+			#curSpeed += maxSpeed*delta/accel
+		##If no input decrease speed
+		#elif curSpeed>0:
+			#curSpeed -= maxSpeed*delta/decel
+		#
+		##Reset last velocity if not moving or input
+		#if curSpeed == 0 and not input_dir:
+			#lastVelo = Vector2(0,0)
+		#
+		##Ensures speed doesnt go above max or below zero
+		#if curSpeed<0:
+			#curSpeed = 0
+		#elif curSpeed>maxSpeed:
+			#curSpeed = maxSpeed
+		#
+		##Apply input and speed to velocity and move
+		#velocity = lastVelo*curSpeed
+		move_and_slide()
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.has_meta("Type"):
