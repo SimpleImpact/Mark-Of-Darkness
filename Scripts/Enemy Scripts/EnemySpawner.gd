@@ -37,7 +37,8 @@ func genEnemies(enemyPool) -> void:
 
 
 func spawn(_enemyPath, pos):
-	var enemyScene: PackedScene = _enemyPath
-	var model = enemyScene.instantiate()
-	model.global_position = pos
-	get_parent().add_child(model)
+	if true:
+		var enemyScene: PackedScene = _enemyPath
+		var model = enemyScene.instantiate()
+		model.global_position = pos
+		get_parent().add_child(model)

@@ -14,7 +14,7 @@ extends CharacterBody2D
 var health = maxHealth
 
 @export var stopDist = 20
-@export var sight = 5
+@export var sight = 500
 
 @onready var sprite = $Sprite
 
@@ -29,11 +29,8 @@ var hoverDist = 20
 @onready var ray = $RayCast2D
 
 func _ready():
-	set_physics_process(false)
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	await Globals.player
+	while not Globals.pReady:
+		set_physics_process(false)
 	set_physics_process(true)
 
 func _process(_delta: float) -> void:
@@ -61,7 +58,6 @@ func get_input():
 		#Smooth the direction change out by avg last direction with input and use turnWeight
 		lastVelo = ((lastVelo*turnWeight)+direction)/(turnWeight+1)
 		return direction
-	
 func _physics_process(delta):
 	var player = Globals.player
 	var playerDist = Globals.distance(self.position, player.position)
@@ -88,6 +84,7 @@ func _physics_process(delta):
 	#Apply input and speed to velocity and move
 	velocity = lastVelo*curSpeed
 	move_and_slide()
+
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.has_meta("Type"):
