@@ -70,7 +70,6 @@ func _physics_process(delta):
 	#If no input decrease speed
 	elif curSpeed>0:
 		curSpeed -= maxSpeed*delta/decel
-	
 	#Reset last velocity if not moving or input
 	if curSpeed == 0 and not input_dir:
 		lastVelo = Vector2(0,0)
@@ -84,6 +83,7 @@ func _physics_process(delta):
 	#Apply input and speed to velocity and move
 	velocity = lastVelo*curSpeed
 	move_and_slide()
+
 
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
