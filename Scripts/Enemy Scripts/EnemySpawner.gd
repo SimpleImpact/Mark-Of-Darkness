@@ -32,7 +32,7 @@ func genEnemies(enemyPool) -> void:
 			newPos.y = rng.randf_range(y+wallClearance,y+rooms[index].rect.size.y-wallClearance)
 			
 			spawn(weightedPool[rng.randi_range(0,len(weightedPool)-1)], newPos*64)
-		#await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.1).timeout
 
 
 func spawn(_enemyPath, pos):

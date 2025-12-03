@@ -63,12 +63,13 @@ func get_input():
 	
 func _physics_process(_delta):
 	var pReady = Globals.pReady
+	var pPos = Globals.playerPos
 	if pReady:
 		var player = Globals.player
-		var dist = Globals.distance(Globals.playerPos, position)
+		var dist = Vector2(abs(position.x - pPos.x), abs(position.y - pPos.y))
 		if Globals.distance(Globals.playerPos, position) < sight:
-			print(Globals.distance(Globals.playerPos, position))
-		#velocity = Vector2(Globals.logarithm(dist.x, sight), Globals.logarithm(dist.y, sight))
+			print(Vector2(dist.x, dist.y))
+			#velocity = Vector2(Globals.logarithm(dist.x, sight), Globals.logarithm(dist.y, sight))
 		#if not player:
 			#return
 		#var input_dir = get_input()
