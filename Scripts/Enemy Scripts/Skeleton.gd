@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var maxSpeed = 500
+@export var speed = 250
 
 #time to reach max speed 
 @export var accel = 0.5
@@ -73,7 +73,6 @@ func _physics_process(delta):
 	#Reset last velocity if not moving or input
 	if curSpeed == 0 and not input_dir:
 		lastVelo = Vector2(0,0)
-	
 	#Ensures speed doesnt go above max or below zero
 	if curSpeed<0:
 		curSpeed = 0
@@ -83,8 +82,6 @@ func _physics_process(delta):
 	#Apply input and speed to velocity and move
 	velocity = lastVelo*curSpeed
 	move_and_slide()
-
-
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.has_meta("Type"):

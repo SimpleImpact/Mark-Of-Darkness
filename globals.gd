@@ -20,11 +20,11 @@ var maxPlayerMana = 100
 func distance(pos1:Vector2, pos2:Vector2):
 	return(sqrt((pos2.x - pos1.x) **2 + (pos2.y - pos1.y) **2))
 
-func logarithm(n, base):
-	return(log(n) / log(base))
-
 ### These are both needed idk why ###
 func _ready() -> void:
 	pass
 func _process(_delta: float) -> void:
 	pass
+
+func Round(value, deci):
+	return(round(value * (10 ** deci)) / (10 ** deci))
