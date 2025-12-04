@@ -29,6 +29,7 @@ var lastSeen = Vector2()
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
 
+var hoverDist = 250
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -55,7 +56,8 @@ func get_input():
 	#check to see if at last seen
 	if global_position < lastSeen-Vector2(stopDist,stopDist) and global_position > lastSeen+Vector2(stopDist,stopDist):
 		stopped = true
-
+	if Globals.distance(global_position, player.global_position) < hoverDist:
+		direction = -direction
 	if lastSeen and not stopped:
 		#Smooth the direction change out by avg last direction with input and use turnWeight
 		lastVelo = ((lastVelo*turnWeight)+direction)/(turnWeight+1)

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var speed = 250
+@export var maxSpeed = 250
 
 #time to reach max speed 
 @export var accel = 0.5
@@ -25,7 +25,7 @@ var lastSeen:Vector2
 var playerReady:bool = Globals.pReady
 
 # Will be this far from the player with a margin of error of abt 5(subject to change)
-var hoverDist = 20
+var hoverDist = 100
 
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
@@ -55,6 +55,8 @@ func get_input():
 	#check to see if at last seen
 	if global_position < lastSeen-Vector2(stopDist,stopDist) and global_position > lastSeen+Vector2(stopDist,stopDist):
 		stopped = true
+	if Globals.distance(global_position, player.global_position) < hoverDist:
+		direction = -direction
 
 	if lastSeen and not stopped:
 		#Smooth the direction change out by avg last direction with input and use turnWeight
