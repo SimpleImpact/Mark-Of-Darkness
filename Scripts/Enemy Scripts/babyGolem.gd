@@ -32,15 +32,14 @@ var lastSeen = Vector2()
 var hoverDist = 250
 
 func _ready() -> void:
-	set_physics_process(false)
-	await get_tree().physics_frame
-	await get_tree().physics_frame
+	while not Globals.pReady:
+		set_physics_process(false)
 	set_physics_process(true)
 	ray.add_exception(self)
 	ray.add_exception(left)
 	ray.add_exception(right)
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.1).timeout
 
 func get_input():
 	var player = Globals.player
