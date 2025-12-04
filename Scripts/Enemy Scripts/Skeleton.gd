@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var maxSpeed = 500
+@export var speed = 250
 
 #time to reach max speed 
 @export var accel = 0.5
@@ -21,6 +21,9 @@ var health = maxHealth
 var curSpeed = 0
 var lastVelo = Vector2(0,0)
 var lastSeen:Vector2
+
+#Movement Curve
+var movePattern = preload("res://Enemies/Movement Functions/skeleton.tres")
 
 var playerReady:bool = Globals.pReady
 
@@ -64,34 +67,25 @@ func get_input():
 func _physics_process(_delta):
 	var pReady = Globals.pReady
 	var pPos = Globals.playerPos
+	
+	### HOW TO USE MOVEMENT ###
+	# In res://Enemies/Movement Functions, there are curvs to adjust 
+	# the speed at differant distances (This is to make hovering at a general area easier)
+	
 	if pReady:
 		var player = Globals.player
-		var dist = Vector2(abs(position.x - pPos.x), abs(position.y - pPos.y))
+		var dist = Vector2((position.x - pPos.x) / sight, (position.y - pPos.y) / sight)
 		if Globals.distance(Globals.playerPos, position) < sight:
-			print(Vector2(dist.x, dist.y))
-			#velocity = Vector2(Globals.logarithm(dist.x, sight), Globals.logarithm(dist.y, sight))
-		#if not player:
-			#return
-		#var input_dir = get_input()
-		##Increase current speed when given input
-		#if lastVelo and input_dir and curSpeed<maxSpeed:
-			#curSpeed += maxSpeed*delta/accel
-		##If no input decrease speed
-		#elif curSpeed>0:
-			#curSpeed -= maxSpeed*delta/decel
-		#
-		##Reset last velocity if not moving or input
-		#if curSpeed == 0 and not input_dir:
-			#lastVelo = Vector2(0,0)
-		#
-		##Ensures speed doesnt go above max or below zero
-		#if curSpeed<0:
-			#curSpeed = 0
-		#elif curSpeed>maxSpeed:
-			#curSpeed = maxSpeed
-		#
-		##Apply input and speed to velocity and move
-		#velocity = lastVelo*curSpeed
+			if dist.x < 0:
+				velocity.x = Globals.Round(movePattern.sample_baked(-dist.x), 3) * speed
+			else:
+				velocity.x = -Globals.Round(movePattern.sample_baked(dist.x), 3) * speed
+			if dist.y < 0:
+				velocity.y = Globals.Round(movePattern.sample_baked(-dist.y), 3) * speed
+			else:
+				velocity.y = -Globals.Round(movePattern.sample_baked(dist.y), 3) * speed
+			if velocity.x < 10 and velocity.x > -10: velocity.x = 0.0
+			if velocity.y < 10 and velocity.y > -10: velocity.y = 0.0
 		move_and_slide()
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
