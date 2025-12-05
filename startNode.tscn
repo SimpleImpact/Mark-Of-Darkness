@@ -1,7 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0wsv0wn7obag"]
+[gd_scene load_steps=18 format=3 uid="uid://c0wsv0wn7obag"]
 
 [ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="1_q2kc5"]
-[ext_resource type="Shader" uid="uid://e42rg5ljlc2g" path="res://test.gdshader" id="2_dckhu"]
 [ext_resource type="Script" uid="uid://dvw21crtojnxh" path="res://Scripts/Player Scripts/Player Camera.gd" id="3_frdjm"]
 [ext_resource type="Texture2D" uid="uid://dpgaekdsef2tp" path="res://Sprites/Background/black.png" id="4_dckhu"]
 
@@ -45,9 +44,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dckhu"]
 gradient = SubResource("Gradient_q2kc5")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1gt1"]
-shader = ExtResource("2_dckhu")
 
 [sub_resource type="Gradient" id="Gradient_1poxb"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -147,14 +143,12 @@ texture = SubResource("GradientTexture2D_dckhu")
 
 [node name="Layer 0 Light" type="PointLight2D" parent="."]
 light_mask = 3
-material = SubResource("ShaderMaterial_k1gt1")
 scale = Vector2(700, 700)
 range_z_min = 1
 range_z_max = 1
 texture = SubResource("GradientTexture2D_a4loa")
 
 [node name="Layer 1000 Light" type="PointLight2D" parent="."]
-material = SubResource("ShaderMaterial_k1gt1")
 scale = Vector2(700, 700)
 range_z_min = 1000
 range_z_max = 1001

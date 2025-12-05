@@ -1,10 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://bq2s8jhja8833"]
+[gd_scene load_steps=29 format=3 uid="uid://bq2s8jhja8833"]
 
 [ext_resource type="Script" uid="uid://c0luklt8h3fvk" path="res://Scripts/Player Scripts/Movement.gd" id="1_lkuwi"]
 [ext_resource type="Script" uid="uid://cafikea3xywt0" path="res://Scripts/Attacks/Attack Handler.gd" id="2_80hox"]
 [ext_resource type="Texture2D" uid="uid://bwwvuafk8l37c" path="res://Sprites/rogue.png" id="3_6nkus"]
 [ext_resource type="Texture2D" uid="uid://bifcuycrhu4v2" path="res://Sprites/rogueFlipped.png" id="4_th4xs"]
-[ext_resource type="Shader" uid="uid://e42rg5ljlc2g" path="res://test.gdshader" id="6_03up6"]
 [ext_resource type="Shader" uid="uid://cgl8hhac2mt4q" path="res://Objects/light.gdshader" id="6_mrbcm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ph2tk"]
@@ -140,9 +139,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_empod"]
-shader = ExtResource("6_03up6")
-
 [sub_resource type="Curve" id="Curve_0ar0x"]
 _data = [Vector2(0, 0), 0.0, -0.022146106, 0, 0, Vector2(0.051470593, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2589166, -0.6723594, 0, 0]
 point_count = 3
@@ -204,7 +200,6 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_kv3fc")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-material = SubResource("ShaderMaterial_empod")
 blend_mode = 1
 range_z_min = -964
 range_z_max = 0
