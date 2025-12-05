@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var speed = 250
+@export var maxSpeed = 250
 
 #time to reach max speed 
 @export var accel = 0.5
@@ -22,13 +22,10 @@ var curSpeed = 0
 var lastVelo = Vector2(0,0)
 var lastSeen:Vector2
 
-#Movement Curve
-var movePattern = preload("res://Enemies/Movement Functions/skeleton.tres")
-
 var playerReady:bool = Globals.pReady
 
 # Will be this far from the player with a margin of error of abt 5(subject to change)
-var hoverDist = 20
+var hoverDist = 100
 
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
@@ -58,35 +55,37 @@ func get_input():
 	#check to see if at last seen
 	if global_position < lastSeen-Vector2(stopDist,stopDist) and global_position > lastSeen+Vector2(stopDist,stopDist):
 		stopped = true
+	if Globals.distance(global_position, player.global_position) < hoverDist:
+		direction = -direction
 
 	if lastSeen and not stopped:
 		#Smooth the direction change out by avg last direction with input and use turnWeight
 		lastVelo = ((lastVelo*turnWeight)+direction)/(turnWeight+1)
 		return direction
+
+func _physics_process(delta):
+	var player = Globals.player
+	if not player:
+		return
+	var input_dir = get_input()
+	#Increase current speed when given input
+	if lastVelo and input_dir and curSpeed<maxSpeed:
+		curSpeed += maxSpeed*delta/accel
+	#If no input decrease speed
+	elif curSpeed>0:
+		curSpeed -= maxSpeed*delta/decel
+	#Reset last velocity if not moving or input
+	if curSpeed == 0 and not input_dir:
+		lastVelo = Vector2(0,0)
+	#Ensures speed doesnt go above max or below zero
+	if curSpeed<0:
+		curSpeed = 0
+	elif curSpeed>maxSpeed:
+		curSpeed = maxSpeed
 	
-func _physics_process(_delta):
-	var pReady = Globals.pReady
-	var pPos = Globals.playerPos
-	
-	### HOW TO USE MOVEMENT ###
-	# In res://Enemies/Movement Functions, there are curvs to adjust 
-	# the speed at differant distances (This is to make hovering at a general area easier)
-	
-	if pReady:
-		var player = Globals.player
-		var dist = Vector2((position.x - pPos.x) / sight, (position.y - pPos.y) / sight)
-		if Globals.distance(Globals.playerPos, position) < sight:
-			if dist.x < 0:
-				velocity.x = Globals.Round(movePattern.sample_baked(-dist.x), 3) * speed
-			else:
-				velocity.x = -Globals.Round(movePattern.sample_baked(dist.x), 3) * speed
-			if dist.y < 0:
-				velocity.y = Globals.Round(movePattern.sample_baked(-dist.y), 3) * speed
-			else:
-				velocity.y = -Globals.Round(movePattern.sample_baked(dist.y), 3) * speed
-			if velocity.x < 10 and velocity.x > -10: velocity.x = 0.0
-			if velocity.y < 10 and velocity.y > -10: velocity.y = 0.0
-		move_and_slide()
+	#Apply input and speed to velocity and move
+	velocity = lastVelo*curSpeed
+	move_and_slide()
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.has_meta("Type"):
