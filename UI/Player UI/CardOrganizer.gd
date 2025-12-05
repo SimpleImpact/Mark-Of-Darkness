@@ -23,4 +23,3 @@ func _ready():
 				add_theme_constant_override("separation", 0)
 			else:
 				add_theme_constant_override("separation", -(18 *(card_count - 5)))
-		print(get_theme_constant("separation"))

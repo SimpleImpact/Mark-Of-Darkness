@@ -23,8 +23,6 @@ func _ready() -> void:
 					break
 	for i in room:
 		tilemap.set_cell(i[0], 0, i[1])
-	print(tmp)
-	print(arr)
 func strToVector(string):
 	var raw = (string.erase(0).erase(string.length()).split(", "))
 	tmp.append(Vector2i(int(raw[0]), int(raw[1])))

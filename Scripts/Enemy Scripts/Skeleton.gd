@@ -22,6 +22,8 @@ var curSpeed = 0
 var lastVelo = Vector2(0,0)
 var lastSeen:Vector2
 
+var dead = false
+
 var playerReady:bool = Globals.pReady
 
 # Will be this far from the player with a margin of error of abt 5(subject to change)
@@ -37,6 +39,13 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	$Healthbar.frame = round(float(health) / (float(maxHealth) / 30))
+	if !dead:
+		if velocity.x > 5 or (velocity.y < -5 and velocity.x > 5):
+			sprite.play("Run Right")
+		elif velocity.x < -5 or (velocity.y > 5 and velocity.x < -5):
+			sprite.play("Run Left")
+		else:
+			sprite.play("Idle")
 
 func get_input():
 	var player = Globals.player
@@ -47,13 +56,11 @@ func get_input():
 	if ray.is_colliding() and ray.get_collider() == player and player.global_position.distance_to(global_position) <= sight*64:
 		lastSeen = pPos
 		nav.target_position = lastSeen
-	else:
-		sprite.play("Idle")
 	var direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	var stopped = false
 	#check to see if at last seen
-	if global_position < lastSeen-Vector2(stopDist,stopDist) and global_position > lastSeen+Vector2(stopDist,stopDist):
+	if Globals.distance(global_position, player.global_position) > sight  or Globals.distance(global_position, player.global_position) < hoverDist:
 		stopped = true
 	if Globals.distance(global_position, player.global_position) < hoverDist:
 		direction = -direction
@@ -92,5 +99,6 @@ func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_ind
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")
 	if health <= 0:
-		sprite.play("Death")
+		dead = true
 		set_physics_process(false)
+		sprite.play("Death")

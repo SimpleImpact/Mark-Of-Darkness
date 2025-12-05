@@ -41,7 +41,6 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 		else:
 			customRoomArray.append(0)
 	for i in customRoomArray:
-		print(i)
 		if i == 0:
 			var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
 			var pos = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y)) # Adjust range as needed
@@ -102,7 +101,6 @@ func delauney():
 	var centers = PackedVector2Array()
 	for room in rooms:
 		centers.append(room.center)
-	print(rooms)
 	#Returns triangles by the index of the point in the table
 	var triangulation = Geometry2D.triangulate_delaunay(centers)
 	

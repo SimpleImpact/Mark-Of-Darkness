@@ -57,7 +57,10 @@ func get_input():
 		stopped = true
 	if Globals.distance(global_position, player.global_position) < hoverDist:
 		direction = -direction
-	if lastSeen and not stopped:
+	if Globals.distance(global_position, player.global_position) > hoverDist - 10 and Globals.distance(global_position, player.global_position) < hoverDist + 10:
+		stopped = true
+	
+	if lastSeen and !stopped:
 		#Smooth the direction change out by avg last direction with input and use turnWeight
 		lastVelo = ((lastVelo*turnWeight)+direction)/(turnWeight+1)
 		return direction
@@ -107,6 +110,7 @@ func _physics_process(delta):
 	
 	#Apply input and speed to velocity and move
 	velocity = lastVelo*curSpeed
+	print(velocity)
 	move_and_slide()
 	floaty(delta)
 	
