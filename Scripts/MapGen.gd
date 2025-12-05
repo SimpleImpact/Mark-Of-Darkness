@@ -34,12 +34,13 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 
 	for i in roomNumber:
 		if i == 0:
-			if !customRoom:
+			if customRoom:
 				customRoomArray.append(1)
 			else:
 				customRoomArray.append(0)
 		else:
 			customRoomArray.append(0)
+	print(customRoomArray)
 	for i in customRoomArray:
 		if i == 0:
 			var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
@@ -64,7 +65,7 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 	halls(mst, 0, map)
 	roomGen(map)
 	Globals.mapGen.emit()
-	debugLineGen(mst, debugLines)
+	#debugLineGen(mst, debugLines)
 func roomGen(map):
 	# Wall Gen
 	for room in rooms:
@@ -75,6 +76,7 @@ func roomGen(map):
 				for k in range(size.y):
 					if map.get_cell_source_id(Vector2i(pos.x+h,pos.y+k)) == -1:
 						map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(1,0))
+	print(rooms)
 	
 	# Floor Gen
 	for room in rooms:

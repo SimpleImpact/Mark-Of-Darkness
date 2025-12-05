@@ -110,12 +110,10 @@ func _physics_process(delta):
 	
 	#Apply input and speed to velocity and move
 	velocity = lastVelo*curSpeed
-	print(velocity)
 	move_and_slide()
 	floaty(delta)
 	
 	#Hands stuff
-	
 	var prevPos = global_position
 	await get_tree().create_timer(handDelay).timeout
 	leftHand.global_position = prevPos-leftDif
