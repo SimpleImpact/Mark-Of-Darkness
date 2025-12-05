@@ -5,8 +5,10 @@ extends Node
 ### ===============> Do not attatch this script anywhere, call it globaly <================ ###
 ### ======================================================================================= ###
 
+signal mapGen
+signal playerSpawned
+
 var openTiles:Array #Dictionary to hold all spawnable tiles, custom rooms will not be here. The data is stored like this "roomNumber:Vector2i(69, 420)"
-var mapGenerated:bool = false
 var playerPos:Vector2
 var player:CharacterBody2D
 var debug = false
@@ -16,6 +18,8 @@ var playerHealth = 100
 var maxPlayerHealth = 100
 var playerMana = 100
 var maxPlayerMana = 100
+
+var spawnReady = true
 
 var pReady = false
 

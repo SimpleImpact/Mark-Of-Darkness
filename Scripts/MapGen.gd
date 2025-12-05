@@ -29,7 +29,6 @@ var customRoomPlaced = true
 var customRoomCenter
 
 func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize:int, debugLines:bool, customRoom:bool, roomName:String):
-	Globals.mapGenerated = false
 	#generate room positions and sizes
 	var customRoomArray:Array
 
@@ -65,7 +64,7 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 	halls(mst, 2, map)
 	halls(mst, 0, map)
 	roomGen(map)
-	Globals.mapGenerated = true
+	Globals.mapGen.emit()
 	debugLineGen(mst, debugLines)
 func roomGen(map):
 	# Wall Gen

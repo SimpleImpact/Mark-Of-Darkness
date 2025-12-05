@@ -7,17 +7,15 @@
 
 [sub_resource type="GDScript" id="GDScript_0hol4"]
 script/source = "extends Node
-var Spawn_room: PackedScene = preload(\"res://map.tscn\")
+var loadScript = preload(\"res://Scripts/loader.gd\")
 var player_obj: PackedScene = preload(\"res://Objects/player.tscn\")
 var ui_obj: PackedScene = preload(\"res://UI/Player UI/playerUI.tscn\")
 var superZoom = true
 @export var debug = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var spawn = Spawn_room.instantiate()
-	add_child(spawn)
-	#add_child(player)
-	EnemySpawner.genEnemies(EnemySpawner.test)
+	var loader = loadScript.new()
+	add_child(loader)
 	if debug:
 		$\"Layer 0 Light\".enabled = false
 		if superZoom:
