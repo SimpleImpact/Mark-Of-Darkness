@@ -14,7 +14,7 @@ var rooms = []
 var start = randi_range(0,1)
 
 #X is min, Y is max
-@export var posRange = Vector2i(10, 100)
+@export var posRange = Vector2i(0, 100)
 @export var minRoomOffset = 10
 @export var hallWidth = 3
 
@@ -43,11 +43,16 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 	print(customRoomArray)
 	for i in customRoomArray:
 		if i == 0:
-			var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
-			var pos = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y)) # Adjust range as needed
-			var new_room = Room.new(pos.x, pos.y, size.x, size.y)
-			if !room_overlaps(new_room):
-				rooms.append(new_room)
+			var overflowCount = 0
+			while overflowCount <= 100:
+				var size = Vector2(rng.randi_range(minSize, maxSize), rng.randi_range(minSize, maxSize))
+				var pos = Vector2(rng.randi_range(posRange.x, posRange.y), rng.randi_range(posRange.x, posRange.y)) # Adjust range as needed
+				var new_room = Room.new(pos.x, pos.y, size.x, size.y)
+				if !room_overlaps(new_room):
+					rooms.append(new_room)
+					break
+				else:
+					overflowCount+=1
 		if i == 1:
 			while !customRoomPlaced:
 				customRoomImport(roomName)
@@ -93,8 +98,8 @@ func roomGen(map):
 # Check for overlapping rooms
 func room_overlaps(new_room: Room) -> bool:
 	for room in rooms:
-		var expanded = room.rect.grow(minRoomOffset/2.0)
-		if expanded.intersects(new_room.rect.grow(minRoomOffset/2.0)):
+		var expanded = room.rect.grow(minRoomOffset)
+		if expanded.intersects(new_room.rect.grow(minRoomOffset)):
 			return true
 	return false
 # Do tranglation

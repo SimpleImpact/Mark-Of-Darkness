@@ -86,6 +86,7 @@ alpha_curve = SubResource("CurveTexture_aooha")
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
 script = SubResource("GDScript_0hol4")
+debug = true
 
 [node name="Touchscreen Inputs" type="Node" parent="."]
 
