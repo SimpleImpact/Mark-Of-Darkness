@@ -8,7 +8,4 @@ var player_obj: PackedScene = preload("res://Objects/player.tscn")
 
 func _ready() -> void:
 	await get_tree().process_frame
-	
-	MapGen.generate_roomsPoints(self, roomNum, minSize, maxSize, true, false, "Silly Dude")
-
-	
+	MapGen.generate_roomsPoints(self, roomNum, minSize, maxSize, false, false, "Silly Dude")

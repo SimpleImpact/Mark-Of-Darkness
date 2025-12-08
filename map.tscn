@@ -8,7 +8,7 @@
 z_index = -2
 tile_set = ExtResource("1_a7yuw")
 script = ExtResource("2_8wx6a")
-roomNum = 7
+roomNum = 9
 
 [node name="enemySpawner" type="Node" parent="."]
 script = ExtResource("3_e0an3")

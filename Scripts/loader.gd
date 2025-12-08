@@ -8,8 +8,8 @@ var dungeonScene = dungeon.instantiate()
 var player_obj: PackedScene = preload("res://Objects/player.tscn")
 
 func _ready() -> void:
-	Globals.mapGen.connect(mapGenerated)
-	Globals.playerSpawned.connect(playerSpawned)
+	Globals._mapGen.connect(mapGenerated)
+	Globals._playerSpawned.connect(playerSpawned)
 	add_child(dungeonScene)
 
 func mapGenerated():

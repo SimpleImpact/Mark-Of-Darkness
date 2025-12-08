@@ -209,6 +209,6 @@ light_mask = 2
 z_index = -100
 z_as_relative = false
 scale = Vector2(20, 20)
-amount = 999
+amount = 2000
 lifetime = 28.05
 process_material = SubResource("ParticleProcessMaterial_ng3n2")

@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 	print("Movement Initalized")
 	Globals.player = self
-	Globals.playerSpawned.emit()
+	Globals._playerSpawned.emit()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

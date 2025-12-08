@@ -69,8 +69,8 @@ func generate_roomsPoints(map:TileMapLayer, roomNumber:int, minSize:int, maxSize
 	halls(mst, 2, map)
 	halls(mst, 0, map)
 	roomGen(map)
-	Globals.mapGen.emit()
-	#debugLineGen(mst, debugLines)
+	Globals._mapGen.emit()
+	debugLineGen(mst, debugLines)
 func roomGen(map):
 	# Wall Gen
 	for room in rooms:
@@ -101,6 +101,7 @@ func room_overlaps(new_room: Room) -> bool:
 		var expanded = room.rect.grow(minRoomOffset)
 		if expanded.intersects(new_room.rect.grow(minRoomOffset)):
 			return true
+			print("Room Collision Detected")
 	return false
 # Do tranglation
 func delauney():
