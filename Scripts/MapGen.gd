@@ -101,7 +101,6 @@ func room_overlaps(new_room: Room) -> bool:
 		var expanded = room.rect.grow(minRoomOffset)
 		if expanded.intersects(new_room.rect.grow(minRoomOffset)):
 			return true
-			print("Room Collision Detected")
 	return false
 # Do tranglation
 func delauney():
