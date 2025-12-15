@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh3a1plb7rqi6"
-path="res://.godot/imported/door.png-9739efc2d47d51e842a8bb16f46c0245.ctex"
+uid="uid://74nyeyo5o3lc"
+path="res://.godot/imported/cobbleV2.png-00228e372975151c44ab126956b6b02b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/door.png"
-dest_files=["res://.godot/imported/door.png-9739efc2d47d51e842a8bb16f46c0245.ctex"]
+source_file="res://Sprites/cobbleV2.png"
+dest_files=["res://.godot/imported/cobbleV2.png-00228e372975151c44ab126956b6b02b.ctex"]
 
 [params]
 
