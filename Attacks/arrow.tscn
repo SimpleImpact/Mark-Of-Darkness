@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsogchcua6aic"]
+
+[ext_resource type="Texture2D" uid="uid://cjcsbu53kltvl" path="res://Sprites/Attacks/bow/arrow.png" id="1_i4m1i"]
+
+[node name="Arrow" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(64, 0)
+scale = Vector2(8, 8)
+texture = ExtResource("1_i4m1i")

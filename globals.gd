@@ -18,6 +18,7 @@ var playerHealth = 100
 var maxPlayerHealth = 100
 var playerMana = 100
 var maxPlayerMana = 100
+var projectileContainer:Node
 
 var spawnReady = true
 

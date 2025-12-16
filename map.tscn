@@ -13,4 +13,6 @@ roomNum = 9
 [node name="enemySpawner" type="Node" parent="."]
 script = ExtResource("3_e0an3")
 
+[node name="Projectile Container" type="Node" parent="."]
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
