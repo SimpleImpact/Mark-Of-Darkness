@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bta0tv40raa81"]
+
+[ext_resource type="SpriteFrames" uid="uid://dtt0juo6b13df" path="res://Sprites/Attacks/bow/bowSpriteFrames.tres" id="1_2l2of"]
+[ext_resource type="Script" uid="uid://bly855su1gmvs" path="res://Scripts/Attacks/bow.gd" id="1_2of8d"]
+
+[node name="Bow" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_2of8d")
+
+[node name="BowSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(16, 16)
+sprite_frames = ExtResource("1_2l2of")
+animation = &"Shoot"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1k8pft8nw4fb"]
+[gd_scene load_steps=13 format=3 uid="uid://boho8h033lkd5"]
 
 [ext_resource type="Texture2D" uid="uid://dfw6x1tpso0lf" path="res://Sprites/Attacks/bow/bow.png" id="1_f2awj"]
 [ext_resource type="Script" uid="uid://bly855su1gmvs" path="res://Scripts/Attacks/bow.gd" id="2_t7xuw"]
