@@ -2,13 +2,6 @@ extends AnimatedSprite2D
 
 var cooldown = true
 
-<<<<<<< Updated upstream
-func _process(_delta: float) -> void:
-	if Input.is_action_pressed("Attack") and cooldown:
-		look_at(get_global_mouse_position())
-		rotation_degrees += 90
-		play("shoot")
-=======
 @onready var sprite = $AnimatedSprite2D
 @onready var arrowScene = preload("res://Attacks/arrow.tscn")
 
@@ -20,7 +13,6 @@ func _process(_delta: float) -> void:
 		print("Bow Attack")
 		look_at(get_global_mouse_position())
 		sprite.play("fire")
->>>>>>> Stashed changes
 		cooldown = false
 		start_timer()
 
