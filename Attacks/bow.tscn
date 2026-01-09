@@ -1,93 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://boho8h033lkd5"]
+[gd_scene load_steps=3 format=3 uid="uid://bta0tv40raa81"]
 
-[ext_resource type="Texture2D" uid="uid://dfw6x1tpso0lf" path="res://Sprites/Attacks/bow/bow.png" id="1_f2awj"]
+[ext_resource type="SpriteFrames" uid="uid://dtt0juo6b13df" path="res://Sprites/Attacks/bow/bowSpriteFrames.tres" id="1_f2awj"]
 [ext_resource type="Script" uid="uid://bly855su1gmvs" path="res://Scripts/Attacks/bow.gd" id="2_t7xuw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t7xuw"]
-atlas = ExtResource("1_f2awj")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qn3s2"]
-atlas = ExtResource("1_f2awj")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n1u5e"]
-atlas = ExtResource("1_f2awj")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bw1pq"]
-atlas = ExtResource("1_f2awj")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xx7nk"]
-atlas = ExtResource("1_f2awj")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pp2w3"]
-atlas = ExtResource("1_f2awj")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rdpo8"]
-atlas = ExtResource("1_f2awj")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c36ps"]
-atlas = ExtResource("1_f2awj")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ahweb"]
-atlas = ExtResource("1_f2awj")
-region = Rect2(112, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_aapee"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t7xuw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qn3s2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n1u5e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bw1pq")
-}],
-"loop": false,
-"name": &"prep",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xx7nk")
-}],
-"loop": true,
-"name": &"ready",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pp2w3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rdpo8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c36ps")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ahweb")
-}],
-"loop": true,
-"name": &"shoot",
-"speed": 5.0
-}]
-
-[node name="Bow" type="AnimatedSprite2D"]
-texture_filter = 1
-position = Vector2(8, 0)
-sprite_frames = SubResource("SpriteFrames_aapee")
-animation = &"ready"
-autoplay = "ready"
+[node name="Node2D" type="Node2D"]
 script = ExtResource("2_t7xuw")
+
+[node name="BowSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(64, 0)
+scale = Vector2(8, 8)
+sprite_frames = ExtResource("1_f2awj")
+animation = &"Ready"
