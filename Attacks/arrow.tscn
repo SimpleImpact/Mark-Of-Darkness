@@ -1,11 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsogchcua6aic"]
+[gd_scene load_steps=4 format=3 uid="uid://bsogchcua6aic"]
 
+[ext_resource type="Script" uid="uid://48vmsss5u5iu" path="res://Scripts/Attacks/projectiles/arrow.gd" id="1_3kknh"]
 [ext_resource type="Texture2D" uid="uid://cjcsbu53kltvl" path="res://Sprites/Attacks/bow/arrow.png" id="1_i4m1i"]
 
-[node name="Arrow" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5dvg"]
+size = Vector2(112, 24)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_3kknh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(64, 0)
 scale = Vector2(8, 8)
 texture = ExtResource("1_i4m1i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64, 4)
+shape = SubResource("RectangleShape2D_y5dvg")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(64, 4)
+shape = SubResource("RectangleShape2D_y5dvg")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgxur70v1vclu"]
+
+[ext_resource type="Texture2D" uid="uid://cjcsbu53kltvl" path="res://Sprites/Attacks/bow/arrow.png" id="1_bh3ud"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_bh3ud")

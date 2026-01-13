@@ -200,6 +200,7 @@ autostart = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 3
+metadata/Enemy = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 visible = false

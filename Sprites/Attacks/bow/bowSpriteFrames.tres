@@ -1,0 +1,79 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://dtt0juo6b13df"]
+
+[ext_resource type="Texture2D" uid="uid://dfw6x1tpso0lf" path="res://Sprites/Attacks/bow/bow.png" id="1_2wehn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctv88"]
+atlas = ExtResource("1_2wehn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se0r1"]
+atlas = ExtResource("1_2wehn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw1qc"]
+atlas = ExtResource("1_2wehn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykb8h"]
+atlas = ExtResource("1_2wehn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3yk3"]
+atlas = ExtResource("1_2wehn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbnrr"]
+atlas = ExtResource("1_2wehn")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfp24"]
+atlas = ExtResource("1_2wehn")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oliu7"]
+atlas = ExtResource("1_2wehn")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrlx7"]
+atlas = ExtResource("1_2wehn")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctv88")
+}],
+"loop": true,
+"name": &"Ready",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se0r1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw1qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykb8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3yk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbnrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfp24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oliu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrlx7")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 5.0
+}]
