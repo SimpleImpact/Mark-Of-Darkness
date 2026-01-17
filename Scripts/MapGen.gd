@@ -80,7 +80,7 @@ func roomGen(map):
 			for h in range(size.x):
 				for k in range(size.y):
 					if map.get_cell_source_id(Vector2i(pos.x+h,pos.y+k)) == -1:
-						map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(1,0))
+						map.set_cell(Vector2i(pos.x+h,pos.y+k), 0, Vector2i(5,0))
 	print(rooms)
 	
 	# Floor Gen
@@ -174,7 +174,7 @@ func halls(mst, mod, map):
 				if mod == 0:
 					map.set_cell(Vector2i(yStart-(hallWidth-1)/2+i, vert), 0, Vector2i(0,0))
 				else:
-					map.set_cell(Vector2i(yStart-(hallWidth-1)/2+i, vert), 0, Vector2i(1,0))
+					map.set_cell(Vector2i(yStart-(hallWidth-1)/2+i, vert), 0, Vector2i(5,0))
 
 		#same for horizontals
 		var xDir = 1
@@ -198,7 +198,7 @@ func halls(mst, mod, map):
 				if mod == 0:
 					map.set_cell(Vector2i(hor, xStart-(hallWidth-1)/2+i), 0, Vector2i(0,0))
 				else:
-					map.set_cell(Vector2i(hor, xStart-(hallWidth-1)/2+i), 0, Vector2i(1,0))
+					map.set_cell(Vector2i(hor, xStart-(hallWidth-1)/2+i), 0, Vector2i(5,0))
 		### Place Custom Room ###
 		for e in customRoomAtlas:
 			if map.get_cell_atlas_coords(Vector2i(int(e[0].x) - customRoomCenter.x, int(e[0].y) - customRoomCenter.y)) != Vector2i(0, 0):

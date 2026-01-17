@@ -1,12 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci73nbj57ejif"]
+[gd_scene load_steps=7 format=3 uid="uid://ci73nbj57ejif"]
 
-[ext_resource type="TileSet" uid="uid://dw3shrb6t37df" path="res://TileMaps/CobbleTileset.tres" id="1_a7yuw"]
+[ext_resource type="Texture2D" uid="uid://bh3d3fo1h4lnf" path="res://Sprites/FloorSprites/cobbleFloor.png" id="1_e0an3"]
 [ext_resource type="Script" uid="uid://b0vib4v2lsqns" path="res://Scripts/map.gd" id="2_8wx6a"]
 [ext_resource type="Script" uid="uid://buflyn610umf0" path="res://Scripts/Enemy Scripts/EnemySpawner.gd" id="3_e0an3"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_p5pve"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_urblq"]
+texture = ExtResource("1_e0an3")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_p5pve")
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_iw27f"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 0
+navigation_layer_0/layers = 1
+custom_data_layer_0/name = "Wall"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_urblq")
+
 [node name="TileMapLayer" type="TileMapLayer"]
 z_index = -2
-tile_set = ExtResource("1_a7yuw")
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_iw27f")
 script = ExtResource("2_8wx6a")
 roomNum = 9
 
