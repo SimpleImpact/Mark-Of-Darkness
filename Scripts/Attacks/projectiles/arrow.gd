@@ -3,12 +3,9 @@ extends CharacterBody2D
 var yFactor = sin(rotation)
 var xFactor = cos(rotation)
 
-var baseSpeed = 100
+@export var baseSpeed = 1500
 
 @onready var sprite = $Sprite2D
-
-func _ready() -> void:
-	pass
 	
 func _physics_process(_delta: float) -> void:
 	yFactor = sin(rotation)
@@ -19,6 +16,7 @@ func _physics_process(_delta: float) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.has_meta("Enemy"):
 		if !area.get_meta("Enemy"):
+			print("Arrow hit enemy")
 			hitWall()
 
 func hitWall():
