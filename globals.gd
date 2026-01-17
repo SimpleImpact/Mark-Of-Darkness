@@ -24,6 +24,12 @@ var spawnReady = true
 
 var pReady = false
 
+
+#Collision layer reference: 
+#1:character 2: enemy 3: enemy projectile/dmg of some sort
+#4: ? 5: walls
+
+
 func distance(pos1:Vector2, pos2:Vector2):
 	return(sqrt((pos2.x - pos1.x) **2 + (pos2.y - pos1.y) **2))
 

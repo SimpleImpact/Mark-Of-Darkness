@@ -116,6 +116,8 @@ width = 7.0
 default_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
 
 [node name="Hitbox" type="Area2D" parent="Main"]
+collision_layer = 2
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Hitbox"]
 shape = SubResource("CircleShape2D_d1yc6")

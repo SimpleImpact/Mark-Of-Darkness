@@ -13,13 +13,18 @@ func _physics_process(_delta: float) -> void:
 	velocity = Vector2(xFactor*ProjectileGlobals.speedFactor, yFactor*ProjectileGlobals.speedFactor) *baseSpeed
 	move_and_slide()
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.has_meta("Enemy"):
-		if !area.get_meta("Enemy"):
-			print("Arrow hit enemy")
-			hitWall()
-
 func hitWall():
+	print("hit wall")
 	set_physics_process(false)
+	var ogScale = sprite.scale
 	for i in 10:
-		sprite.scale -= 1
+		sprite.scale = ogScale * 1/i
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("hit smth")
+	if body.has_meta("Enemy"):
+		print("Arrow hit enemy")
+	else:
+		print("hit not an enemy")
+		hitWall()
