@@ -162,8 +162,8 @@ height = 104.0
 size = Vector2(80, 100)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 16
+collision_layer = 34
+collision_mask = 48
 motion_mode = 1
 wall_min_slide_angle = 0.0
 safe_margin = 38.29

@@ -21,6 +21,7 @@ var health = maxHealth
 var curSpeed = 0
 var lastVelo = Vector2(0,0)
 var lastSeen:Vector2
+var knockback = Vector2.ZERO
 
 var dead = false
 
@@ -58,6 +59,8 @@ func get_input():
 		nav.target_position = lastSeen
 	var direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
+	if knockback != Vector2.ZERO:
+		direction = (global_position -Globals.playerPos).normalized()
 	var stopped = false
 	#check to see if at last seen
 	if Globals.distance(global_position, player.global_position) > sight  or Globals.distance(global_position, player.global_position) < hoverDist:
@@ -89,6 +92,11 @@ func _physics_process(delta):
 		curSpeed = 0
 	elif curSpeed>maxSpeed:
 		curSpeed = maxSpeed
+		
+	if knockback != Vector2.ZERO:
+		lastVelo += +Vector2.ONE
+		lastVelo *= -knockback
+		knockback = Vector2.ZERO
 	
 	#Apply input and speed to velocity and move
 	velocity = lastVelo*curSpeed
@@ -98,7 +106,9 @@ func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_ind
 	if area.has_meta("Type"):
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")
+			knockback = Vector2.ONE *area.get_meta("Knockback")
 	if health <= 0:
 		dead = true
 		set_physics_process(false)
+		print(collision_mask)
 		sprite.play("Death")

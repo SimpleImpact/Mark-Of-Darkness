@@ -8,10 +8,12 @@ var tweenSpriteScale : Tween
 var tweenSpritePos : Tween
 @onready var sprite = $Sprite2D
 
-func _physics_process(_delta: float) -> void:
+func _ready() -> void:
 	yFactor = sin(rotation)
 	xFactor = cos(rotation)
 	velocity = Vector2(xFactor*ProjectileGlobals.speedFactor, yFactor*ProjectileGlobals.speedFactor) *baseSpeed
+
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func hitWall():
