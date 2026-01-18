@@ -26,8 +26,8 @@ var pReady = false
 
 
 #Collision layer reference: 
-#1:character 2: enemy 3: enemy projectile/dmg of some sort
-#4: ? 5: walls
+#1:character 2: char projectile 3: enemy 4: enemy projectile/dmg of some sort
+#5: walls
 
 
 func distance(pos1:Vector2, pos2:Vector2):

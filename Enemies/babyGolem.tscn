@@ -75,7 +75,6 @@ script = ExtResource("1_n3jmf")
 maxSpeed = 300
 turnWeight = 10
 stopDist = 10
-sight = 10
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="Main"]
 radius = 5.0
@@ -86,13 +85,6 @@ collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main"]
 shape = SubResource("CircleShape2D_d1yc6")
-
-[node name="Body" type="AnimatedSprite2D" parent="Main/CollisionShape2D"]
-z_index = 1
-texture_filter = 1
-scale = Vector2(7, 7)
-sprite_frames = SubResource("SpriteFrames_mpv7u")
-animation = &"BodyNorm"
 
 [node name="Timer" type="Timer" parent="Main"]
 process_callback = 0
@@ -122,6 +114,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Hitbox"]
 shape = SubResource("CircleShape2D_d1yc6")
 
+[node name="Body" type="AnimatedSprite2D" parent="Main"]
+z_index = 1
+texture_filter = 1
+scale = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_mpv7u")
+animation = &"BodyNorm"
+
 [node name="LeftHand" type="CharacterBody2D" parent="."]
 position = Vector2(-80, 20)
 collision_layer = 4
@@ -132,12 +131,10 @@ scale = Vector2(1.75, 1.75)
 skew = 0.261799
 shape = SubResource("CircleShape2D_guwph")
 
-[node name="LeftHandSprite" type="AnimatedSprite2D" parent="LeftHand/CollisionShape2D"]
+[node name="LeftHandSprite" type="AnimatedSprite2D" parent="LeftHand"]
 z_index = 1
 texture_filter = 1
-rotation = -2.98391
-scale = Vector2(4.17091, 4.11108)
-skew = -0.261409
+scale = Vector2(6.9999924, 7.0000033)
 sprite_frames = SubResource("SpriteFrames_mpv7u")
 animation = &"LeftHand"
 
@@ -151,12 +148,10 @@ scale = Vector2(2.45, 2.45)
 skew = 0.261799
 shape = SubResource("CircleShape2D_guwph")
 
-[node name="RightHandSprite" type="AnimatedSprite2D" parent="RightHand/CollisionShape2D"]
+[node name="RightHandSprite" type="AnimatedSprite2D" parent="RightHand"]
 z_index = 1
 texture_filter = 1
-rotation = -2.59357
-scale = Vector2(3.25643, 2.62572)
-skew = -0.152497
+scale = Vector2(7.000002, 7.0000067)
 sprite_frames = SubResource("SpriteFrames_mpv7u")
 animation = &"RightHand"
 

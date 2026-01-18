@@ -39,7 +39,8 @@ func _ready() -> void:
 	ray.add_exception(left)
 	ray.add_exception(right)
 	
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(randf_range(0,1)).timeout
+	floaty()
 
 func get_input():
 	var player = Globals.player
@@ -69,22 +70,22 @@ func get_input():
 @onready var body = $CollisionShape2D/Body
 #Time for 1 anim loop
 @export var floatLoop = 2.0
-@onready var leftHand = self.get_parent().find_child("LeftHand")
-@onready var rightHand = self.get_parent().find_child("RightHand")
-
-@export var handDelay = 0.1
-var count = 0
-func floaty(delta):
-	# p = 2pi/b, delta is basically x and we want p to be floatLoop
-	count += delta*2*PI/floatLoop
-	if count == floatLoop:
-		count = 0
-	body.position.y -= cos(count)
-	leftHand.find_child("CollisionShape2D").find_child("LeftHandSprite").position.y += cos(count-15*handDelay)*1/2
-	rightHand.find_child("CollisionShape2D").find_child("RightHandSprite").position.y += cos(count-10*handDelay)*1/2
-	
+@onready var leftHand = self.get_parent().find_child("LeftHand").find_child("LeftHandSprite")
+@onready var rightHand = self.get_parent().find_child("RightHand").find_child("RightHandSprite")
 @onready var leftDif = global_position-leftHand.global_position
 @onready var rightDif = global_position-rightHand.global_position
+@export var handDelay = 0.5
+func floaty():
+	var tween = get_tree().create_tween().set_parallel(true)
+	var sub = create_tween().set_loops()
+	sub.tween_property(rightHand,"position",rightHand.position + (Vector2.DOWN*rightDif),floatLoop/2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	sub.tween_property(rightHand,"position",rightHand.position + (Vector2.UP*rightDif),floatLoop/2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	var sub2 = create_tween().set_loops()
+	sub2.tween_property(leftHand,"position",leftHand.position + (Vector2.DOWN*leftDif),floatLoop/2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	sub2.tween_property(leftHand,"position",leftHand.position + (Vector2.UP*leftDif),floatLoop/2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_subtween(sub)
+	tween.tween_subtween(sub2).set_delay(handDelay)
+	tween.play()
 
 func _physics_process(delta):
 	var player = Globals.player
@@ -111,16 +112,19 @@ func _physics_process(delta):
 	#Apply input and speed to velocity and move
 	velocity = lastVelo*curSpeed
 	move_and_slide()
-	floaty(delta)
+	
 	
 	#Hands stuff
 	var prevPos = global_position
-	await get_tree().create_timer(handDelay).timeout
-	leftHand.global_position = prevPos-leftDif
-	await get_tree().create_timer(0.1).timeout
-	rightHand.global_position = prevPos-rightDif
-
+	if curSpeed != 0:
+		await get_tree().create_timer(0.2).timeout
+		self.get_parent().find_child("LeftHand").global_position = prevPos-leftDif
+		await get_tree().create_timer(0.1).timeout
+		self.get_parent().find_child("RightHand").global_position = prevPos-rightDif
+	
 func _process(_delta: float) -> void:
+
+		
 	var dist = Globals.distance(Vector2(zeroHP, 0), Vector2(maxHP, 0)) #Returns (64 - health/maxHealth) -32
 	var targetHealth = Vector2(((dist * health/maxHealth) -32), 0)
 	if targetHealth.x < zeroHP:
