@@ -65,9 +65,7 @@ func get_input():
 		#Smooth the direction change out by avg last direction with input and use turnWeight
 		lastVelo = ((lastVelo*turnWeight)+direction)/(turnWeight+1)
 		return direction
-		
 
-@onready var body = $CollisionShape2D/Body
 #Time for 1 anim loop
 @export var floatLoop = 2.0
 @onready var leftHand = self.get_parent().find_child("LeftHand").find_child("LeftHandSprite")

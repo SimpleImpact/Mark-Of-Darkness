@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=33 format=3 uid="uid://o2rwj156dhip"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://o2rwj156dhip"]
 
 [ext_resource type="Texture2D" uid="uid://c5w6odmr0pxyd" path="res://Sprites/healthBar.png" id="1_hmnan"]
 
