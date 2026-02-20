@@ -67,7 +67,7 @@ func get_input():
 		return direction
 
 #Time for 1 anim loop
-@export var floatLoop = 2.0
+@export var floatLoop = 1.0
 @onready var leftHand = self.get_parent().find_child("LeftHand").find_child("LeftHandSprite")
 @onready var rightHand = self.get_parent().find_child("RightHand").find_child("RightHandSprite")
 @onready var leftDif = global_position-leftHand.global_position
@@ -76,11 +76,11 @@ func get_input():
 func floaty():
 	var tween = get_tree().create_tween().set_parallel(true)
 	var sub = create_tween().set_loops()
-	sub.tween_property(rightHand,"position",rightHand.position + (Vector2.DOWN*rightDif),floatLoop/2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	sub.tween_property(rightHand,"position",rightHand.position + (Vector2.UP*rightDif),floatLoop/2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	sub.tween_property(rightHand,"position",rightHand.position + (Vector2.DOWN*rightDif),floatLoop).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	sub.tween_property(rightHand,"position",rightHand.position + (Vector2.UP*rightDif),floatLoop).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	var sub2 = create_tween().set_loops()
-	sub2.tween_property(leftHand,"position",leftHand.position + (Vector2.DOWN*leftDif),floatLoop/2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	sub2.tween_property(leftHand,"position",leftHand.position + (Vector2.UP*leftDif),floatLoop/2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	sub2.tween_property(leftHand,"position",leftHand.position + (Vector2.DOWN*leftDif),floatLoop).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	sub2.tween_property(leftHand,"position",leftHand.position + (Vector2.UP*leftDif),floatLoop).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween.tween_subtween(sub)
 	tween.tween_subtween(sub2).set_delay(handDelay)
 	tween.play()
