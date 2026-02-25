@@ -111,7 +111,7 @@ func _physics_process(delta):
 	velocity = lastVelo*curSpeed
 	move_and_slide()
 	
-	
+func _process(_delta: float) -> void:
 	#Hands stuff
 	var prevPos = global_position
 	if curSpeed != 0:
@@ -119,21 +119,17 @@ func _physics_process(delta):
 		self.get_parent().find_child("LeftHand").global_position = prevPos-leftDif
 		await get_tree().create_timer(0.1).timeout
 		self.get_parent().find_child("RightHand").global_position = prevPos-rightDif
-	
-func _process(_delta: float) -> void:
-
-		
-	var dist = Globals.distance(Vector2(zeroHP, 0), Vector2(maxHP, 0)) #Returns (64 - health/maxHealth) -32
-	var targetHealth = Vector2(((dist * health/maxHealth) -32), 0)
-	if targetHealth.x < zeroHP:
-		$HealthbarBorder/HealthbarGreen.set_point_position(1, Vector2(zeroHP, 0))
-	else:
-		$HealthbarBorder/HealthbarGreen.set_point_position(1, targetHealth)
 
 func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area.has_meta("Type"):
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")
+			var dist = Globals.distance(Vector2(zeroHP, 0), Vector2(maxHP, 0)) #Returns (64 - health/maxHealth) -32
+			var targetHealth = Vector2(((dist * health/maxHealth) -32), 0)
+			if targetHealth.x < zeroHP:
+				$HealthbarBorder/HealthbarGreen.set_point_position(1, Vector2(zeroHP, 0))
+			else:
+				$HealthbarBorder/HealthbarGreen.set_point_position(1, targetHealth)
 	if health <= 0:
 		set_physics_process(false)
 		await get_tree().create_timer(1).timeout
