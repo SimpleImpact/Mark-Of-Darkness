@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dp8bmdgw20t85"]
+[gd_scene format=3 uid="uid://dp8bmdgw20t85"]
 
 [ext_resource type="Texture2D" uid="uid://11na623fi73x" path="res://Sprites/skeleton.png" id="1_0bpre"]
 [ext_resource type="Script" uid="uid://g7h66uowjaav" path="res://Scripts/Enemy Scripts/Skeleton.gd" id="1_65cfn"]
@@ -161,15 +161,16 @@ height = 104.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lj6og"]
 size = Vector2(80, 100)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=148282864]
 collision_layer = 34
 collision_mask = 48
 motion_mode = 1
 wall_min_slide_angle = 0.0
 safe_margin = 38.29
 script = ExtResource("1_65cfn")
+sight = 30
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1070356438]
 z_index = -2
 texture_filter = 1
 scale = Vector2(7, 7)
@@ -177,7 +178,7 @@ sprite_frames = SubResource("SpriteFrames_ecbsf")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="Healthbar" type="AnimatedSprite2D" parent="."]
+[node name="Healthbar" type="AnimatedSprite2D" parent="." unique_id=1378444976]
 z_index = -1
 texture_filter = 1
 position = Vector2(0, -55)
@@ -186,24 +187,24 @@ sprite_frames = ExtResource("4_ossgy")
 animation = &"Spawn Anim"
 autoplay = "Spawn Anim"
 
-[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent" type="NavigationAgent2D" parent="." unique_id=977953280]
 simplify_epsilon = 10.0
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=764941910]
 
-[node name="WallCollider" type="CollisionShape2D" parent="."]
+[node name="WallCollider" type="CollisionShape2D" parent="." unique_id=32858846]
 shape = SubResource("CapsuleShape2D_db7n3")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1974505223]
 wait_time = 0.01
 autostart = true
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=309683271]
 collision_layer = 0
 collision_mask = 2
 metadata/Enemy = true
 
-[node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=1403815873]
 visible = false
 shape = SubResource("RectangleShape2D_lj6og")
 metadata/Type = "Attack Detector"

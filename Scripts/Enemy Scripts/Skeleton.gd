@@ -53,8 +53,9 @@ func get_input():
 	var pPos = Globals.playerPos
 	if not player:
 		return
-	ray.target_position = pPos - global_position
-	if ray.is_colliding() and ray.get_collider() == player and player.global_position.distance_to(global_position) <= sight*64:
+	if player.global_position.distance_to(global_position) <= sight*32:
+		ray.target_position = pPos - global_position
+	if ray.is_colliding() and ray.get_collider() == player:
 		lastSeen = pPos
 		nav.target_position = lastSeen
 	var direction = nav.get_next_path_position() - global_position
@@ -63,7 +64,7 @@ func get_input():
 		direction = (global_position -Globals.playerPos).normalized()
 	var stopped = false
 	#check to see if at last seen
-	if Globals.distance(global_position, player.global_position) > sight  or Globals.distance(global_position, player.global_position) < hoverDist:
+	if Globals.distance(global_position, player.global_position) > sight*32  or Globals.distance(global_position, player.global_position) < hoverDist:
 		stopped = true
 	if Globals.distance(global_position, player.global_position) < hoverDist:
 		direction = -direction

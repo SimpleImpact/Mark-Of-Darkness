@@ -16,6 +16,8 @@ var dash = true
 @export var dashCof = 100
 var decay = 0
 
+#seconds of i frames after hit
+@export var iframes = 1.5
 
 var curSpeed = 0
 var lastVelo = Vector2(0,0)
@@ -82,8 +84,13 @@ func get_input():
 	return input_dir
 
 #Move func
+
+var invFrames = 0
 func _physics_process(delta):
 	var input_dir = get_input()
+	
+	if invFrames > 0:
+		invFrames -= delta
 	
 	#Increase current speed when given input
 	if lastVelo and input_dir and curSpeed<maxSpeed:
@@ -127,3 +134,20 @@ func timeout_function():
 	dash = true
 func _on_button_pressed() -> void:
 	pass # Replace with function body.
+
+
+
+func hurt(body):
+	if body.get_collision_layer_value(4) and invFrames <= 0:
+		invFrames = iframes
+		Globals.playerHealth -= body.get_meta("dmg")
+
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	
+	hurt(area)
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	hurt(body)

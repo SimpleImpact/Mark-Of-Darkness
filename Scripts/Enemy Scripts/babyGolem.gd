@@ -29,7 +29,10 @@ var lastSeen = Vector2()
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
 
+@export var dmg = 5.0
+
 var hoverDist = 250
+var attacking = false
 
 func _ready() -> void:
 	while not Globals.pReady:
@@ -38,6 +41,7 @@ func _ready() -> void:
 	ray.add_exception(self)
 	ray.add_exception(left)
 	ray.add_exception(right)
+	self.get_parent().find_child("Hands").set_meta("dmg", dmg)
 	
 	await get_tree().create_timer(randf_range(0,1)).timeout
 	floaty()
@@ -46,8 +50,9 @@ func get_input():
 	var player = Globals.player
 	if not player:
 		return
-	ray.target_position = player.position - global_position
-	if ray.is_colliding() and ray.get_collider() == player and player.global_position.distance_to(global_position) <= sight*64:
+	if player.global_position.distance_to(global_position) <= sight*32:
+		ray.target_position = player.position - global_position
+	if ray.is_colliding() and ray.get_collider() == player:
 		lastSeen = player.position
 		nav.target_position = lastSeen
 	var direction = nav.get_next_path_position() - global_position
@@ -56,9 +61,9 @@ func get_input():
 	#check to see if at last seen
 	if global_position < lastSeen-Vector2(stopDist,stopDist) and global_position > lastSeen+Vector2(stopDist,stopDist):
 		stopped = true
-	if Globals.distance(global_position, player.global_position) < hoverDist:
+	if !attacking and Globals.distance(global_position, player.global_position) < hoverDist:
 		direction = -direction
-	if Globals.distance(global_position, player.global_position) > hoverDist - 10 and Globals.distance(global_position, player.global_position) < hoverDist + 10:
+	if !attacking and Globals.distance(global_position, player.global_position) > hoverDist - 10 and Globals.distance(global_position, player.global_position) < hoverDist + 10:
 		stopped = true
 	
 	if lastSeen and !stopped:
@@ -68,8 +73,8 @@ func get_input():
 
 #Time for 1 anim loop
 @export var floatLoop = 1.0
-@onready var leftHand = self.get_parent().find_child("LeftHand").find_child("LeftHandSprite")
-@onready var rightHand = self.get_parent().find_child("RightHand").find_child("RightHandSprite")
+@onready var leftHand = self.get_parent().find_child("LeftHandSprite", true)
+@onready var rightHand = self.get_parent().find_child("RightHandSprite",true)
 @onready var leftDif = global_position-leftHand.global_position
 @onready var rightDif = global_position-rightHand.global_position
 @export var handDelay = 0.5
@@ -85,6 +90,10 @@ func floaty():
 	tween.tween_subtween(sub2).set_delay(handDelay)
 	tween.play()
 
+var prevPos = global_position
+@export var attackDist = 2 #number of tiles
+@export var spinCool = 1.5
+var cool = 0
 func _physics_process(delta):
 	var player = Globals.player
 	if not player:
@@ -92,6 +101,8 @@ func _physics_process(delta):
 	var input_dir = get_input()
 	#Increase current speed when given input
 	if lastVelo and input_dir and curSpeed<maxSpeed:
+		if attacking:
+			curSpeed += maxSpeed*delta/accel/2
 		curSpeed += maxSpeed*delta/accel
 	#If no input decrease speed
 	elif curSpeed>0:
@@ -104,6 +115,8 @@ func _physics_process(delta):
 	#Ensures speed doesnt go above max or below zero
 	if curSpeed<0:
 		curSpeed = 0
+	elif attacking and curSpeed > maxSpeed/2:
+		curSpeed = maxSpeed/2
 	elif curSpeed>maxSpeed:
 		curSpeed = maxSpeed
 	
@@ -111,15 +124,28 @@ func _physics_process(delta):
 	velocity = lastVelo*curSpeed
 	move_and_slide()
 	
+	if global_position.distance_to(player.global_position) <= attackDist*32 and cool == 0:
+		attacking = true
+		cool = spinCool
+		self.get_parent().find_child("Hands").set_collision_layer_value(4,true)
+		self.get_parent().find_child("Hands").set_collision_mask_value(1,true)
+		
+	if attacking:
+		attack(delta)
+		
+	if cool > 0 and !attacking:
+		cool -= delta
+		if cool < 0:
+			cool = 0
 	
 	#Hands stuff
-	var prevPos = global_position
-	if curSpeed != 0:
+	var offset = global_position - prevPos
+	prevPos = global_position
+	if curSpeed != 0 and !attacking:
 		await get_tree().create_timer(0.2).timeout
-		self.get_parent().find_child("LeftHand").global_position = prevPos-leftDif
-		await get_tree().create_timer(0.1).timeout
-		self.get_parent().find_child("RightHand").global_position = prevPos-rightDif
-	
+		self.get_parent().find_child("Hands").global_position += offset
+		
+
 func _process(_delta: float) -> void:
 
 		
@@ -138,3 +164,35 @@ func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_ind
 		set_physics_process(false)
 		await get_tree().create_timer(1).timeout
 		get_parent().queue_free()
+
+var step = 0;
+var spinCount = 0
+@export var SpinSpeed:float = 12
+@export var SpinRad:float = 1.5
+@export var attackSpins = 25
+func attack(delta):
+	var hands = self.get_parent().find_child("Hands")
+	var leftHand = hands.find_child("LeftHand",true)
+	var rightHand = hands.find_child("RightHand",true)
+	leftHand.global_position = global_position + Vector2.from_angle(step)*leftDif.length()*SpinRad
+	rightHand.global_position = global_position + Vector2.from_angle(step+PI)*rightDif.length()*SpinRad
+	step += delta*SpinSpeed
+	if step >= 2*PI:
+		step = 0
+		spinCount += 1
+		if spinCount >= attackSpins:
+			spinCount = 0
+			attacking = false
+			leftHand.global_position = global_position + Vector2.from_angle(0)*leftDif.length()
+			rightHand.global_position = global_position + Vector2.from_angle(PI)*rightDif.length()
+			hands.set_collision_layer_value(4,false)
+			hands.set_collision_mask_value(1,false)
+			
+
+
+func hit(body):
+	pass
+	#print("Hit something: ",body)
+
+func _on_left_hand_body_entered(body: Node2D) -> void:
+	hit(body)

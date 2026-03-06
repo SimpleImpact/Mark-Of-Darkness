@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8ic2rfyuceyi"]
+[gd_scene format=3 uid="uid://b8ic2rfyuceyi"]
 
 [ext_resource type="Texture2D" uid="uid://bvk45815yrr8a" path="res://Sprites/babyGolemSprite.png" id="1_e6p8m"]
 [ext_resource type="Script" uid="uid://deh42tmtgsh4d" path="res://Scripts/Enemy Scripts/babyGolem.gd" id="1_n3jmf"]
@@ -66,93 +66,102 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_guwph"]
 
-[node name="BabyGolem" type="Node2D"]
+[node name="BabyGolem" type="Node2D" unique_id=343649341]
 
-[node name="Main" type="CharacterBody2D" parent="."]
+[node name="Main" type="CharacterBody2D" parent="." unique_id=1505516941]
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_n3jmf")
 maxSpeed = 300
 turnWeight = 10
 stopDist = 10
+sight = 30
+attackDist = 10
+spinCool = 3.0
+SpinSpeed = 15.0
+attackSpins = 10
 
-[node name="NavigationAgent" type="NavigationAgent2D" parent="Main"]
+[node name="NavigationAgent" type="NavigationAgent2D" parent="Main" unique_id=613841916]
 radius = 5.0
 debug_enabled = true
 
-[node name="RayCast2D" type="RayCast2D" parent="Main"]
+[node name="RayCast2D" type="RayCast2D" parent="Main" unique_id=1578596667]
 collision_mask = 17
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main" unique_id=675899521]
 shape = SubResource("CircleShape2D_d1yc6")
 
-[node name="Timer" type="Timer" parent="Main"]
+[node name="Timer" type="Timer" parent="Main" unique_id=1292759030]
 process_callback = 0
 wait_time = 3.0
 one_shot = true
 
-[node name="HealthbarBorder" type="Line2D" parent="Main"]
+[node name="HealthbarBorder" type="Line2D" parent="Main" unique_id=2076211670]
 z_index = 1
 position = Vector2(0, -55)
 points = PackedVector2Array(-34, 0, 34, 0)
 default_color = Color(0, 0, 0, 1)
 
-[node name="HealthbarRed" type="Line2D" parent="Main/HealthbarBorder"]
+[node name="HealthbarRed" type="Line2D" parent="Main/HealthbarBorder" unique_id=304186576]
 points = PackedVector2Array(-32, 0, 32, 0)
 width = 7.0
 default_color = Color(0.958424, 0, 0.141896, 1)
 
-[node name="HealthbarGreen" type="Line2D" parent="Main/HealthbarBorder"]
+[node name="HealthbarGreen" type="Line2D" parent="Main/HealthbarBorder" unique_id=560966279]
 points = PackedVector2Array(-32, 0, 32, 0)
 width = 7.0
 default_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
 
-[node name="Hitbox" type="Area2D" parent="Main"]
+[node name="Hitbox" type="Area2D" parent="Main" unique_id=977315648]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Hitbox" unique_id=1991563031]
 shape = SubResource("CircleShape2D_d1yc6")
 
-[node name="Body" type="AnimatedSprite2D" parent="Main"]
+[node name="Body" type="AnimatedSprite2D" parent="Main" unique_id=1681510429]
 z_index = 1
 texture_filter = 1
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_mpv7u")
 animation = &"BodyNorm"
 
-[node name="LeftHand" type="CharacterBody2D" parent="."]
+[node name="Hands" type="Area2D" parent="." unique_id=197581871]
 position = Vector2(-80, 20)
-collision_layer = 4
+collision_layer = 0
+collision_mask = 0
+metadata/dmg = 5.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand"]
+[node name="LeftHand" type="CollisionShape2D" parent="Hands" unique_id=1205131844]
 rotation = 2.98277
 scale = Vector2(1.75, 1.75)
-skew = 0.261799
+skew = 0.2617991
 shape = SubResource("CircleShape2D_guwph")
 
-[node name="LeftHandSprite" type="AnimatedSprite2D" parent="LeftHand"]
+[node name="LeftHandSprite" type="AnimatedSprite2D" parent="Hands/LeftHand" unique_id=263643388]
 z_index = 1
 texture_filter = 1
-scale = Vector2(6.9999924, 7.0000033)
+rotation = -2.9839144
+scale = Vector2(4.170905, 4.1110854)
+skew = -0.26140928
 sprite_frames = SubResource("SpriteFrames_mpv7u")
 animation = &"LeftHand"
 
-[node name="RightHand" type="CharacterBody2D" parent="."]
-position = Vector2(80, 20)
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightHand"]
+[node name="RightHand" type="CollisionShape2D" parent="Hands" unique_id=1970911452]
+position = Vector2(160, 0)
 rotation = 2.53073
-scale = Vector2(2.45, 2.45)
-skew = 0.261799
+scale = Vector2(2.4500005, 2.45)
+skew = 0.26179898
 shape = SubResource("CircleShape2D_guwph")
 
-[node name="RightHandSprite" type="AnimatedSprite2D" parent="RightHand"]
+[node name="RightHandSprite" type="AnimatedSprite2D" parent="Hands/RightHand" unique_id=42254542]
 z_index = 1
 texture_filter = 1
-scale = Vector2(7.000002, 7.0000067)
+rotation = -2.5935724
+scale = Vector2(3.2564282, 2.625721)
+skew = -0.15249705
 sprite_frames = SubResource("SpriteFrames_mpv7u")
 animation = &"RightHand"
 
 [connection signal="area_shape_entered" from="Main/Hitbox" to="Main" method="_on_hitbox_area_shape_entered"]
+[connection signal="body_entered" from="Hands" to="Main" method="_on_left_hand_body_entered"]
