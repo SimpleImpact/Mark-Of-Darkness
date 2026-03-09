@@ -19,7 +19,7 @@ var health = maxHealth
 @onready var sprite = $Sprite
 
 @onready var zeroHP = $HealthbarBorder/HealthbarGreen.points[0].x
-@onready var maxHP = $HealthbarBorder/HealthbarGreen.points[1].xw
+@onready var maxHP = $HealthbarBorder/HealthbarGreen.points[1].x
 
 var curSpeed = 0
 var lastVelo = Vector2(0,0)
@@ -40,6 +40,7 @@ func _ready():
 	while not Globals.pReady:
 		set_physics_process(false)
 	set_physics_process(true)
+	ray.add_exception(self)
 
 func get_input():
 	var player = Globals.player

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0wsv0wn7obag"]
+[gd_scene format=3 uid="uid://c0wsv0wn7obag"]
 
 [ext_resource type="Texture2D" uid="uid://wocwbukm0scn" path="res://Sprites/Touchscreen Inputs/1731604114024.png" id="1_q2kc5"]
 [ext_resource type="Script" uid="uid://dvw21crtojnxh" path="res://Scripts/Player Scripts/Player Camera.gd" id="3_frdjm"]
@@ -59,13 +59,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_aooha"]
 gradient = SubResource("Gradient_frdjm")
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=599139641]
 texture_filter = 1
 script = SubResource("GDScript_0hol4")
 
-[node name="Touchscreen Inputs" type="Node" parent="."]
+[node name="Touchscreen Inputs" type="Node" parent="." unique_id=2039274204]
 
-[node name="Down" type="TouchScreenButton" parent="Touchscreen Inputs"]
+[node name="Down" type="TouchScreenButton" parent="Touchscreen Inputs" unique_id=922852023]
 visible = false
 texture_filter = 1
 position = Vector2(-870.4, 99.8)
@@ -75,7 +75,7 @@ shape = SubResource("RectangleShape2D_sfyvs")
 action = "Down"
 visibility_mode = 1
 
-[node name="Up" type="TouchScreenButton" parent="Touchscreen Inputs"]
+[node name="Up" type="TouchScreenButton" parent="Touchscreen Inputs" unique_id=579128974]
 visible = false
 texture_filter = 1
 position = Vector2(-695.538, 72.6)
@@ -86,7 +86,7 @@ shape = SubResource("RectangleShape2D_sfyvs")
 action = "Up"
 visibility_mode = 1
 
-[node name="Left" type="TouchScreenButton" parent="Touchscreen Inputs"]
+[node name="Left" type="TouchScreenButton" parent="Touchscreen Inputs" unique_id=496979539]
 visible = false
 texture_filter = 1
 position = Vector2(-797.279, -2.2)
@@ -97,7 +97,7 @@ shape = SubResource("RectangleShape2D_sfyvs")
 action = "Left"
 visibility_mode = 1
 
-[node name="Right" type="TouchScreenButton" parent="Touchscreen Inputs"]
+[node name="Right" type="TouchScreenButton" parent="Touchscreen Inputs" unique_id=312981417]
 visible = false
 texture_filter = 1
 position = Vector2(-769.327, 173.805)
@@ -108,33 +108,33 @@ shape = SubResource("RectangleShape2D_sfyvs")
 action = "Right"
 visibility_mode = 1
 
-[node name="Background" type="Node" parent="."]
+[node name="Background" type="Node" parent="." unique_id=2112588199]
 
-[node name="Black" type="Sprite2D" parent="Background"]
+[node name="Black" type="Sprite2D" parent="Background" unique_id=684108672]
 visible = false
 z_index = 1
 z_as_relative = false
 scale = Vector2(50, 50)
 texture = SubResource("GradientTexture2D_dckhu")
 
-[node name="Layer 0 Light" type="PointLight2D" parent="."]
+[node name="Layer 0 Light" type="PointLight2D" parent="." unique_id=1504429682]
 light_mask = 3
 scale = Vector2(700, 700)
 range_z_min = 1
 range_z_max = 1
 texture = SubResource("GradientTexture2D_a4loa")
 
-[node name="Layer 1000 Light" type="PointLight2D" parent="."]
+[node name="Layer 1000 Light" type="PointLight2D" parent="." unique_id=361863995]
 scale = Vector2(700, 700)
 range_z_min = 1000
 range_z_max = 1001
 texture = SubResource("GradientTexture2D_a4loa")
 
-[node name="Player Camera" type="Camera2D" parent="."]
+[node name="Player Camera" type="Camera2D" parent="." unique_id=1906252598]
 zoom = Vector2(0.125, 0.125)
 script = ExtResource("3_frdjm")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=961471441]
 light_mask = 2
 visibility_layer = 2
 z_index = -1000
@@ -142,7 +142,7 @@ position = Vector2(17, -12)
 scale = Vector2(50, 50)
 texture = ExtResource("4_dckhu")
 
-[node name="PointLight2D" type="PointLight2D" parent="Sprite2D2"]
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D2" unique_id=1814567034]
 scale = Vector2(1000, 1000)
 range_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_aooha")
