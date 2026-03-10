@@ -193,7 +193,6 @@ sprite_frames = SubResource("SpriteFrames_u676e")
 animation = &"Rouge Run Left"
 
 [node name="Lamp" type="PointLight2D" parent="." unique_id=2017767968]
-visible = false
 material = SubResource("ShaderMaterial_42k1w")
 scale = Vector2(4, 4)
 range_z_max = 0
@@ -201,13 +200,11 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_kv3fc")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1330763532]
-visible = false
 blend_mode = 1
 range_z_min = -964
 range_z_max = 0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1971393716]
-visible = false
 light_mask = 2
 z_index = -100
 z_as_relative = false

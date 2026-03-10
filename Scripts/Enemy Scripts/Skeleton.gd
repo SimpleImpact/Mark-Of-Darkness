@@ -36,11 +36,13 @@ var hoverDist = 100
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
 
+var knockbackRes = 0.95
+
 func _ready():
 	while not Globals.pReady:
 		set_physics_process(false)
 	set_physics_process(true)
-	ray.add_exception(self)
+	
 
 func get_input():
 	var player = Globals.player
@@ -100,7 +102,7 @@ func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_ind
 	if area.has_meta("Type"):
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")
-			knockback = Vector2.ONE *area.get_meta("Knockback")
+			knockback = (Vector2.ONE *area.get_meta("Knockback")) *knockbackRes
 			var dist = Globals.distance(Vector2(zeroHP, 0), Vector2(maxHP, 0)) #Returns (64 - health/maxHealth) -32
 			var targetHealth = Vector2(((dist * health/maxHealth) -32), 0)
 			if targetHealth.x < zeroHP:

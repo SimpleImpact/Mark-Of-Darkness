@@ -7,8 +7,8 @@ extends Node
 
 
 
-var test = [[preload("res://Enemies/Skeleton.tscn"),0],
-	[preload("res://Enemies/babyGolem.tscn"),1]]
+var test = [[preload("res://Enemies/Skeleton.tscn"),1],
+	[preload("res://Enemies/babyGolem.tscn"),0]]
 
 
 
