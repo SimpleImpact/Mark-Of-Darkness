@@ -1,9 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://dp8bmdgw20t85"]
+[gd_scene format=3 uid="uid://dp8bmdgw20t85"]
 
 [ext_resource type="Texture2D" uid="uid://11na623fi73x" path="res://Sprites/skeleton.png" id="1_0bpre"]
 [ext_resource type="Script" uid="uid://g7h66uowjaav" path="res://Scripts/Enemy Scripts/Skeleton.gd" id="1_65cfn"]
 [ext_resource type="Texture2D" uid="uid://do48k6umxschx" path="res://Sprites/skeletonFlipped.png" id="2_xfew0"]
-[ext_resource type="SpriteFrames" uid="uid://o2rwj156dhip" path="res://Animations/Health Bar.tres" id="4_ossgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyr8d"]
 atlas = ExtResource("1_0bpre")
@@ -161,7 +160,9 @@ height = 104.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lj6og"]
 size = Vector2(80, 100)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_eeo85"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1282185552]
 collision_layer = 34
 collision_mask = 48
 motion_mode = 1
@@ -169,7 +170,7 @@ wall_min_slide_angle = 0.0
 safe_margin = 38.29
 script = ExtResource("1_65cfn")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=281062013]
 z_index = -2
 texture_filter = 1
 scale = Vector2(7, 7)
@@ -177,36 +178,46 @@ sprite_frames = SubResource("SpriteFrames_ecbsf")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="Healthbar" type="AnimatedSprite2D" parent="."]
-z_index = -1
-texture_filter = 1
-position = Vector2(0, -55)
-scale = Vector2(2, 2)
-sprite_frames = ExtResource("4_ossgy")
-animation = &"Spawn Anim"
-autoplay = "Spawn Anim"
-
-[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent" type="NavigationAgent2D" parent="." unique_id=991141186]
 simplify_epsilon = 10.0
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1562155918]
 
-[node name="WallCollider" type="CollisionShape2D" parent="."]
+[node name="WallCollider" type="CollisionShape2D" parent="." unique_id=1610164290]
 shape = SubResource("CapsuleShape2D_db7n3")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=707113908]
 wait_time = 0.01
 autostart = true
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=188699460]
 collision_layer = 0
 collision_mask = 2
 metadata/Enemy = true
 
-[node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=2073641034]
 visible = false
 shape = SubResource("RectangleShape2D_lj6og")
 metadata/Type = "Attack Detector"
+
+[node name="HealthbarBorder" type="Line2D" parent="." unique_id=1372804378]
+z_index = 1
+position = Vector2(0, -55)
+points = PackedVector2Array(-34, 0, 34, 0)
+default_color = Color(0, 0, 0, 1)
+
+[node name="HealthbarRed" type="Line2D" parent="HealthbarBorder" unique_id=1553946597]
+points = PackedVector2Array(-32, 0, 32, 0)
+width = 7.0
+default_color = Color(0.958424, 0, 0.141896, 1)
+
+[node name="HealthbarGreen" type="Line2D" parent="HealthbarBorder" unique_id=1136002143]
+points = PackedVector2Array(-32, 0, 32, 0)
+width = 7.0
+default_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=426523149]
+shape = SubResource("CircleShape2D_eeo85")
 
 [connection signal="area_shape_entered" from="Hitbox" to="." method="_on_hitbox_area_shape_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 #1. map
 #2. player
 #3. enemies
@@ -13,6 +13,10 @@ func _ready() -> void:
 	add_child(dungeonScene)
 
 func mapGenerated():
+	var default_map_rid: RID = get_world_2d().get_navigation_map()
+	var navRegion = NavigationServer2D.get_maps()
+	#print(default_map_rid)
+	#print(NavigationServer2D.map_get_regions(navRegion[0]))
 	playerSpawn()
 	
 func playerSpawn():

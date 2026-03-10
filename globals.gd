@@ -33,6 +33,11 @@ var pReady = false
 func distance(pos1:Vector2, pos2:Vector2):
 	return(sqrt((pos2.x - pos1.x) **2 + (pos2.y - pos1.y) **2))
 
+func rect_distance(pos1:Vector2, pos2:Vector2):
+	var xDist = abs(pos2.x - pos1.x)
+	var yDist = abs(pos2.y - pos1.y)
+	return(Vector2(xDist, yDist))
+
 ### These are both needed idk why ###
 func _ready() -> void:
 	pass
@@ -41,3 +46,18 @@ func _process(_delta: float) -> void:
 
 func Round(value, deci):
 	return(round(value * (10 ** deci)) / (10 ** deci))
+
+func merge_all_nav_regions():
+	var merged_poly := NavigationPolygon.new()
+
+	for region in get_tree().get_nodes_in_group("nav_regions"):
+		var poly: NavigationPolygon = region.navigation_polygon
+		if poly == null:
+			continue
+
+		for i in range(poly.get_outline_count()):
+			var outline = poly.get_outline(i)
+			merged_poly.add_outline(outline)
+
+	merged_poly.make_polygons_from_outlines()
+	$MergedNavigationRegion.navigation_polygon = merged_poly

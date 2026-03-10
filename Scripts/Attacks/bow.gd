@@ -3,7 +3,7 @@ extends Node2D
 var cooldown = true
 
 @onready var sprite = $BowSprite
-@onready var arrowScene = preload("res://Attacks/Projectiles/arrow.tscn")
+@onready var arrowScene = preload("res://Attacks/Projectiles/Arrow.tscn")
 
 var baseAttackSpeed = 0.5
 

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://dtt0juo6b13df"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://dtt0juo6b13df"]
 
 [ext_resource type="Texture2D" uid="uid://dfw6x1tpso0lf" path="res://Sprites/Attacks/bow/bow.png" id="1_2wehn"]
 

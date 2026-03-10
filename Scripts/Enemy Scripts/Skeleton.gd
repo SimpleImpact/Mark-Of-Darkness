@@ -18,6 +18,9 @@ var health = maxHealth
 
 @onready var sprite = $Sprite
 
+@onready var zeroHP = $HealthbarBorder/HealthbarGreen.points[0].x
+@onready var maxHP = $HealthbarBorder/HealthbarGreen.points[1].x
+
 var curSpeed = 0
 var lastVelo = Vector2(0,0)
 var lastSeen:Vector2
@@ -33,20 +36,13 @@ var hoverDist = 100
 @onready var nav: NavigationAgent2D = $NavigationAgent
 @onready var ray = $RayCast2D
 
+var knockbackRes = 0.95
+
 func _ready():
 	while not Globals.pReady:
 		set_physics_process(false)
 	set_physics_process(true)
-
-func _process(_delta: float) -> void:
-	$Healthbar.frame = round(float(health) / (float(maxHealth) / 30))
-	if !dead:
-		if velocity.x > 5 or (velocity.y < -5 and velocity.x > 5):
-			sprite.play("Run Right")
-		elif velocity.x < -5 or (velocity.y > 5 and velocity.x < -5):
-			sprite.play("Run Left")
-		else:
-			sprite.play("Idle")
+	
 
 func get_input():
 	var player = Globals.player
@@ -63,7 +59,7 @@ func get_input():
 		direction = (global_position -Globals.playerPos).normalized()
 	var stopped = false
 	#check to see if at last seen
-	if Globals.distance(global_position, player.global_position) > sight  or Globals.distance(global_position, player.global_position) < hoverDist:
+	if Globals.distance(global_position, player.global_position) > sight or Globals.distance(global_position, player.global_position) < hoverDist:
 		stopped = true
 	if Globals.distance(global_position, player.global_position) < hoverDist:
 		direction = -direction
@@ -106,9 +102,14 @@ func _on_hitbox_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_ind
 	if area.has_meta("Type"):
 		if area.get_meta("Type") == "Attack":
 			health -= area.get_meta("Damage")
-			knockback = Vector2.ONE *area.get_meta("Knockback")
+			knockback = (Vector2.ONE *area.get_meta("Knockback")) *knockbackRes
+			var dist = Globals.distance(Vector2(zeroHP, 0), Vector2(maxHP, 0)) #Returns (64 - health/maxHealth) -32
+			var targetHealth = Vector2(((dist * health/maxHealth) -32), 0)
+			if targetHealth.x < zeroHP:
+				$HealthbarBorder/HealthbarGreen.set_point_position(1, Vector2(zeroHP, 0))
+			else:
+				$HealthbarBorder/HealthbarGreen.set_point_position(1, targetHealth)
 	if health <= 0:
 		dead = true
 		set_physics_process(false)
-		print(collision_mask)
 		sprite.play("Death")
