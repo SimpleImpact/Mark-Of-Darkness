@@ -9,7 +9,7 @@ script/source = "extends Node
 var loadScript = preload(\"res://Scripts/loader.gd\")
 var player_obj: PackedScene = preload(\"res://Objects/player.tscn\")
 var ui_obj: PackedScene = preload(\"res://UI/Player UI/playerUI.tscn\")
-var superZoom = true
+var superZoom = false
 @export var debug = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -62,6 +62,7 @@ gradient = SubResource("Gradient_frdjm")
 [node name="Node2D" type="Node2D" unique_id=1335172763]
 texture_filter = 1
 script = SubResource("GDScript_0hol4")
+debug = true
 
 [node name="Touchscreen Inputs" type="Node" parent="." unique_id=62663770]
 
